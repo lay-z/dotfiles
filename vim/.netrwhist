@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/priyav'
+let g:netrw_dirhist_2='/home/priyav/.TelegramDesktop'
+let g:netrw_dirhist_3='/home/priyav'
+let g:netrw_dirhist_4='/home/priyav/go_fun/src'
+let g:netrw_dirhist_5='/home/priyav/fintricity/chain/keystore'
+let g:netrw_dirhist_6='/home/priyav/fintricity/chain'
+let g:netrw_dirhist_7='/home/priyav/fintricity'
