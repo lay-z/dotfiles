@@ -13,7 +13,7 @@
     # The geometry of the window:
     # [{width}]x{height}[+/-{x}+/-{y}]
     # The geometry of the message window.
-    geometry = "500x3-10+50"
+    geometry = "0x0-10+50"
 
     indicate_hidden = false
 
@@ -76,8 +76,8 @@
 
     ### Icons ###
     icon_position = left
-    max_icon_size = 64
-    icon_path="/usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:~/.config/dunst/icons"
+    max_icon_size = 32
+    icon_path= /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:~/.config/dunst/icons
 
     ### History ###
     sticky_history = yes
@@ -120,6 +120,14 @@
     icon = "~/.config/dunst/icons/critical.svg"
     timeout = 0
     foreground="#8791a3"
+
+[chromium]
+    desktop_entry = chromium
+    # background = "#222"
+    # frame_color = "#eea59d"
+    new_icon = "~/.config/dunst/icons/chrome.svg"
+    # timeout = 0
+    # foreground="#8791a3"
 
 
 # vim: ft=conf
