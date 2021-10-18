@@ -4,11 +4,25 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
+# TODO make a list of programs that i should have installed, and also install them. for now just keep track of them as list
+# howdoi 	# pip install howdoi
+# polybar # TODO how to install - apt install polybar?
+# i3wm  	# apt install i3wm?
+# vim	# apt install vim
+# git	# apt install git
+# nvm	# node version manager - some script
+# uxrvt	# apt install uxrvt?
+
+
+
 ########## Variables
 
-dir=~/dotfiles                    # dotfiles directory
+dir=$(pwd)                        # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc vimrc vim zshrc oh-my-zsh"    # list of files/folders to symlink in homedir
+config_dir=~/.config
+shell="bashrc vimrc zshrc oh-my-zsh Xresources"    # list of files/folders to symlink in homedir
+ui_config="i3 polybar"
+
 
 ##########
 
@@ -23,9 +37,16 @@ cd $dir
 echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
-for file in $files; do
+for file in $shell; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/.$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
+done
+
+for file in $ui_config; do
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/config_dir/$file ~/dotfiles_old/
+    echo "Creating symlink to $file in home directory."
+    ln -s ~/$config_dir/$file ~/.$file
 done
