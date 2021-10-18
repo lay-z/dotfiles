@@ -12,15 +12,18 @@
 # git	# apt install git
 # nvm	# node version manager - some script
 # uxrvt	# apt install uxrvt?
+# fzf	# TODO?
+# dunst notiications
 
 
 
 ########## Variables
 
 dir=$(pwd)                        # dotfiles directory
+echo $dir
 olddir=~/dotfiles_old             # old dotfiles backup directory
 config_dir=~/.config
-shell="bashrc vimrc zshrc oh-my-zsh Xresources"    # list of files/folders to symlink in homedir
+shell_config="bashrc vimrc zshrc oh-my-zsh Xresources"    # list of files/folders to symlink in homedir
 ui_config="i3 polybar"
 
 
@@ -37,7 +40,7 @@ cd $dir
 echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
-for file in $shell; do
+for file in $shell_config; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/.$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
@@ -45,8 +48,8 @@ for file in $shell; do
 done
 
 for file in $ui_config; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/config_dir/$file ~/dotfiles_old/
+    echo "Moving any existing dotfiles from $config_dir to $olddir"
+    mv $config_dir/$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
-    ln -s ~/$config_dir/$file ~/.$file
+    ln -s $dir/$file $config_dir/$file
 done
