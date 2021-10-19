@@ -99,6 +99,7 @@ function commit_dot_files() {
 	cd $DOTFILES_DIR && git add --all && git commit -am 'modified zsh config' && cd -
 }
 
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -123,6 +124,9 @@ alias open="xdg-open"
 alias jupyter_mode_activate='source ~/bin/jypter_env/bin/activate'
 alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
 alias dc="docker-compose"
+
+# System aliases
+function() { ps aux | grep $1 }
 
 # HOW DO I 
 alias h='function hdi(){ howdoi $* -c -n 5; }; hdi'
