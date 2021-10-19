@@ -93,6 +93,8 @@ source $ZSH/oh-my-zsh.sh
 # Change default editor to vim
 export EDITOR=/usr/bin/vim
 
+export DOTFILES_DIR=~/Code/dotfiles
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -102,7 +104,7 @@ export EDITOR=/usr/bin/vim
 # For a full list of active aliases, run `alias`.
 #
 # Aliases
-alias zshconfig="vim ~/.zshrc"
+alias zshconfig="vim ~/.zshrc && source ~/.zshrc && cd $DOTFILES_DIR && git commit -am 'modified zsh config' && cd -"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias gitlog="git log --all --decorate --oneline --graph"
 alias open="xdg-open"

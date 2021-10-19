@@ -11,7 +11,7 @@
 
 set $mod Mod4
 
-set $font "pango:Ubuntu:style=Bold 11"
+set $font "pango:Ubuntu Mono:style=Light 11"
 
 
 # Font for window titles. Will also be used by the bar unless a different font
