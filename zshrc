@@ -95,6 +95,10 @@ export EDITOR=/usr/bin/vim
 
 export DOTFILES_DIR=~/Code/dotfiles
 
+function commit_dot_files() {
+	cd $DOTFILES_DIR && git add --all && git commit -am 'modified zsh config' && cd -
+}
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -104,11 +108,11 @@ export DOTFILES_DIR=~/Code/dotfiles
 # For a full list of active aliases, run `alias`.
 #
 # Aliases
-alias zshconfig="vim ~/.zshrc && source ~/.zshrc && cd $DOTFILES_DIR && git commit -am 'modified zsh config' && cd -"
+alias zshconfig="vim ~/.zshrc && source ~/.zshrc && commit_dot_files"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias gitlog="git log --all --decorate --oneline --graph"
 alias open="xdg-open"
-alias i3config="vim ~/.config/i3/config.ini"
+alias i3config="vim ~/.config/i3/config.ini && commit_dot_files"
 alias polybar_config="vim ~/.config/polybar/config"
 alias jupyter_mode_activate='source ~/bin/jypter_env/bin/activate'
 alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
