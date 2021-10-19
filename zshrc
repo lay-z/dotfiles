@@ -108,12 +108,17 @@ function commit_dot_files() {
 # For a full list of active aliases, run `alias`.
 #
 # Aliases
+
+# UI edits
 alias zshconfig="vim ~/.zshrc && source ~/.zshrc && commit_dot_files"
 alias ohmyzsh="vim ~/.oh-my-zsh"
+alias polybarconfig="vim ~/.config/polybar/config && commit_dot_files"
+alias i3config="vim ~/.config/i3/config.ini && commit_dot_files"
+alias dunstconfig="vim ~/.config/dunst/dunstrc && systemctl restart --user dunst && commit_dot_files"
+
+# Other handy aliases
 alias gitlog="git log --all --decorate --oneline --graph"
 alias open="xdg-open"
-alias i3config="vim ~/.config/i3/config.ini && commit_dot_files"
-alias polybar_config="vim ~/.config/polybar/config"
 alias jupyter_mode_activate='source ~/bin/jypter_env/bin/activate'
 alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
 alias dc="docker-compose"
