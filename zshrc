@@ -126,7 +126,7 @@ alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
 alias dc="docker-compose"
 
 # System aliases
-function() { ps aux | grep $1 }
+is_running() { ps aux | grep $1 }
 
 # HOW DO I 
 alias h='function hdi(){ howdoi $* -c -n 5; }; hdi'
