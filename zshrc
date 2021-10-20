@@ -117,6 +117,7 @@ alias polybarconfig="vim ~/.config/polybar/config.ini && commit_dot_files 'polyb
 alias i3config="vim ~/.config/i3/config.ini && commit_dot_files 'i3 config'"
 alias dunstconfig="vim ~/.config/dunst/dunstrc && systemctl restart --user dunst && commit_dot_files 'dunst config'"
 alias xresources="vim ~/.Xresources && xrdb ~/.Xresources && commit_dot_files 'Xresources'"
+alias vimrc="vim ~/.vimrc && commit_dot_files 'vimrc'"
 
 # Other handy aliases
 alias gitlog="git log --all --decorate --oneline --graph"
