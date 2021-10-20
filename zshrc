@@ -96,7 +96,7 @@ export EDITOR=/usr/bin/vim
 export DOTFILES_DIR=~/Code/dotfiles
 
 function commit_dot_files() {
-	cd $DOTFILES_DIR && git add --all && git commit -am 'modified zsh config' && cd -
+	cd $DOTFILES_DIR && git add --all && git commit -am "modified $1" && cd -
 }
 
 
@@ -111,12 +111,12 @@ function commit_dot_files() {
 # Aliases
 
 # UI edits
-alias zshconfig="vim ~/.zshrc && source ~/.zshrc && commit_dot_files"
+alias zshconfig="vim ~/.zshrc && source ~/.zshrc && commit_dot_files zsh config"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias polybarconfig="vim ~/.config/polybar/config.ini && commit_dot_files"
-alias i3config="vim ~/.config/i3/config.ini && commit_dot_files"
-alias dunstconfig="vim ~/.config/dunst/dunstrc && systemctl restart --user dunst && commit_dot_files"
-alias xresources="vim ~/.Xresources && xrdb ~/.Xresources && commit_dot_files"
+alias polybarconfig="vim ~/.config/polybar/config.ini && commit_dot_files polybar config"
+alias i3config="vim ~/.config/i3/config.ini && commit_dot_files i3 config"
+alias dunstconfig="vim ~/.config/dunst/dunstrc && systemctl restart --user dunst && commit_dot_files dunst config"
+alias xresources="vim ~/.Xresources && xrdb ~/.Xresources && commit_dot_files Xresources"
 
 # Other handy aliases
 alias gitlog="git log --all --decorate --oneline --graph"
