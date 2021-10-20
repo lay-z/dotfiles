@@ -127,7 +127,7 @@ alias dc="docker-compose"
 
 # helpful methods
 is_running() { ps aux | grep $1 }
-untar() { tar czvf $1 }
+untar() { tar -xzvf $1 }
 
 # HOW DO I 
 alias h='function hdi(){ howdoi $* -c -n 5; }; hdi'
