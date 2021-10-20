@@ -129,5 +129,8 @@
     # timeout = 0
     # foreground="#8791a3"
 
+[gnome-pomodoro]
+	# TODO we'll get this one in
+
 
 # vim: ft=conf
