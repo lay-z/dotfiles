@@ -114,7 +114,7 @@ function commit_dot_files() {
 alias zshconfig="vim ~/.zshrc && source ~/.zshrc && commit_dot_files 'zsh config'"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias polybarconfig="vim ~/.config/polybar/config.ini && commit_dot_files 'polybar config'"
-alias i3config="vim ~/.config/i3/config.ini && commit_dot_files 'i3 config'"
+alias i3config="vim ~/.config/i3/config && commit_dot_files 'i3 config'"
 alias dunstconfig="vim ~/.config/dunst/dunstrc && systemctl restart --user dunst && commit_dot_files 'dunst config'"
 alias xresources="vim ~/.Xresources && xrdb ~/.Xresources && commit_dot_files 'Xresources'"
 alias vimrc="vim ~/.vimrc && commit_dot_files 'vimrc'"
