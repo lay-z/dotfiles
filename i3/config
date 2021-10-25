@@ -266,11 +266,12 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Application auto startups
 exec firefox
-exec chrome-browser
+exec chromium-browser
 exec telegram-desktop
 exec discord
 exec run_keybase
 exec walc
+
 
 # run everytime i3 is restarted
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -292,4 +293,4 @@ bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opaci
 bindsym $mod+q exec flameshot gui
 
 # Run compositor rofi
-exec picom --no-startup-id
+exec --no-startup-id picom 
