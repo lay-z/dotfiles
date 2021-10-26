@@ -58,3 +58,10 @@ URxvt.matcher.button: 1
 
 urxvt*depth: 32
 urxvt*background: rgba:0000/0000/0000/c100
+
+# Remove previous key bindings ctrl-alt-c/v
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
+# Set ctrl-shift-c/v to be copy/paste from terminal
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
