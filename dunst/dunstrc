@@ -22,7 +22,7 @@
     shrink = true
 
     # Transparency of notifications [0-100]
-    transparency = 0
+    transparency = 20
 
     # Notification stack
     notification_height = 3
