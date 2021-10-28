@@ -277,8 +277,8 @@ exec gnome-pomodoro
 # run everytime i3 is restarted
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # exec_always feh --bg-scale ~/ricing/desktop-photos/one-punch-man.jpg
-exec_always feh --bg-scale ~/ricing/desktop-photos/all-white-background.jpg
-# exec_always --no-startup-id feh --bg-scale ~/ricing/desktop-photos/mountain-with-sky.jpg
+# exec_always feh --bg-scale ~/ricing/desktop-photos/all-white-background.jpg
+exec_always --no-startup-id feh --bg-scale ~/ricing/desktop-photos/mountain-with-sky.jpg
 
 # Move workspaces to new screens (outputs)
 bindsym $mod+Ctrl+Shift+h move workspace to output left
