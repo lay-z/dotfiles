@@ -1,7 +1,8 @@
 # Frenzy's Dunst
 
-#[colors]
-    #foreground = "#8791a3"
+[colors]
+    foreground = "#4b0082"
+    background = "#EEA59D"
 
 [global]
     ### Display ###
@@ -21,7 +22,7 @@
     shrink = true
 
     # Transparency of notifications [0-100]
-    transparency = 40
+    transparency = 0
 
     # Notification stack
     notification_height = 3
@@ -102,14 +103,14 @@
     history = ctrl+grave
 
 [urgency_low]
-    background = "#1b1b23"
+    # background = "#1b1b23"
     frame_color = "#caf6bb"
     icon = "~/.config/dunst/icons/low.svg"
     foreground="#8791a3"
     timeout = 3
 
 [urgency_normal]
-    background = "#222"
+    # background = "#222"
     frame_color = "#eea59d"
     timeout = 5
     foreground="#8791a3"
