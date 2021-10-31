@@ -133,8 +133,11 @@ is_running() { ps aux | grep $1 }
 untar() { tar -xzvf $1 }
 fix_keyboard() { sh ~/.profile }
 
-# HOW DO I 
-alias h='function hdi(){ howdoi $* -c -n 5; }; hdi'
+# Way of searching through howdoi in terminal
+function hdi(){ howdoi $* -c -n 5; }; hdi
+
+# Sets the brightness for all connected monitors through xrandr
+backlight() {xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1 }
 
 
 
