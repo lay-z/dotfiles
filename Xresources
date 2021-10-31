@@ -71,44 +71,83 @@ URxvt.iso14755 : false
 
 
 
-! Trying out themes
-! Solarazied_light https://github.com/felixr/urxvt-color-themes/blob/master/solarized_light 
-*background: #fdf6e3
-*foreground: #839496
+!! ! Trying out themes
+!! ! Solarazied_light https://github.com/felixr/urxvt-color-themes/blob/master/solarized_light 
+!! *background: #fdf6e3
+!! *foreground: #839496
+!! 
+!! *fadeColor: #fdf6e3
+!! *cursorColor: #586e75
+!! ! *pointerColorBackground: #93a1a1
+!! *pointerColor: #586e75
+!! 
+!! !! black dark/light
+!! *color0: #eee8d5
+!! *color8: #fdf6e3
+!! 
+!! !! red dark/light
+!! *color1: #dc322f
+!! *color9: #cb4b16
+!! 
+!! !! green dark/light
+!! *color2: #859900
+!! *color10: #93a1a1
+!! 
+!! !! yellow dark/light
+!! *color3: #b58900
+!! *color11: #839496
+!! 
+!! !! blue dark/light
+!! *color4: #268bd2
+!! *color12: #657b83
+!! 
+!! !! magenta dark/light
+!! *color5: #d33682
+!! *color13: #6c71c4
+!! 
+!! !! cyan dark/light
+!! *color6: #2aa198
+!! *color14: #586e75
+!! 
+!! !! white dark/light
+!! *color7: #073642
+!! *color15: #002b36
 
-*fadeColor: #fdf6e3
-*cursorColor: #586e75
-! *pointerColorBackground: #93a1a1
-*pointerColor: #586e75
 
-!! black dark/light
-*color0: #eee8d5
-*color8: #fdf6e3
+! PaperColour Theme
 
-!! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
+URxvt.foreground: #4D4D4C
+URxvt.background: #EEEEEE
 
-!! green dark/light
-*color2: #859900
-*color10: #93a1a1
+! black
+URxvt.color0: #EDEDED
+URxvt.color8: #969694
 
-!! yellow dark/light
-*color3: #b58900
-*color11: #839496
+! red
+URxvt.color1: #D7005F
+URxvt.color9: #D7005F
 
-!! blue dark/light
-*color4: #268bd2
-*color12: #657b83
+! green
+URxvt.color2: #718C00
+URxvt.color10: #718C00
 
-!! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
+! yellow / orange
+URxvt.color3: #D75F00
+URxvt.color11: #D75F00
 
-!! cyan dark/light
-*color6: #2aa198
-*color14: #586e75
+! blue
 
-!! white dark/light
-*color7: #073642
-*color15: #002b36
+URxvt.color4: #4271AE
+URxvt.color12: #4271AE
+
+! magenta
+URxvt.color5: #8959A8
+URxvt.color13: #8959A8
+
+! cyan
+URxvt.color6: #3E999F
+URxvt.color14: #3E999F
+
+! white
+URxvt.color7: #4D4D4C
+URxvt.color15: #F5F5F5
