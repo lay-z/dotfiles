@@ -130,7 +130,9 @@ alias dc="docker-compose"
 
 # My todos for the day
 export TODO_DIR=~/Documents/todos
-alias open_todo="vim $TODO_DIR/todo-$(date +"%Y-%m-%d").md"
+alias todo="vim $TODO_DIR/daily-todo-$(date +"%Y-%m-%d").md"
+alias todo_rice="vim $TODO_DIR/ricing-todo.md"
+alias todo_productivity="vim $TODO_DIR/ricing-todo.md"
 
 # helpful methods
 is_running() { ps aux | grep $1 }
