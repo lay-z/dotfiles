@@ -128,6 +128,10 @@ alias jupyter_mode_activate='source ~/bin/jypter_env/bin/activate'
 alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
 alias dc="docker-compose"
 
+# My todos for the day
+export TODO_DIR=~/Documents/todos
+alias open_todo="vim $TOTO_DIR/todo-$(date +"%Y-%m-%d")"
+
 # helpful methods
 is_running() { ps aux | grep $1 }
 untar() { tar -xzvf $1 }
