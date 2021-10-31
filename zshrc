@@ -141,7 +141,7 @@ fix_keyboard() { sh ~/.profile }
 function hdi(){ howdoi $* -c -n 5; }
 
 # Sets the brightness for all connected monitors through xrandr
-backlight() {xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1 }
+brightness() {xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1 }
 
 
 
