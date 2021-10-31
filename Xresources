@@ -57,7 +57,7 @@ URxvt.matcher.button: 1
 URxvt.perl-ext-common: default,matcher,vtwheel
 
 urxvt*depth: 32
-urxvt*background: rgba:0000/0000/0000/c100
+!urxvt*background: rgba:0000/0000/0000/c100
 
 !Remove previous key bindings ctrl-alt-c/v
 URxvt.keysym.Control-Meta-c: builtin-string:
