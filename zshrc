@@ -130,14 +130,14 @@ alias dc="docker-compose"
 
 # My todos for the day
 export TODO_DIR=~/Documents/todos
-alias function todo()  { vim $TODO_DIR/daily-todo-$(date +"%Y-%m-%d").md }
+function todo()  { vim $TODO_DIR/daily-todo-$(date +"%Y-%m-%d").md }
 alias todo_rice="vim $TODO_DIR/ricing-todo.md"
 alias todo_productivity="vim $TODO_DIR/ricing-todo.md"
 
 # helpful methods
 is_running() { ps aux | grep $1 }
 untar() { tar -xzvf $1 }
-fix_keyboard() { sh ~/.profile }
+reset_keyboard() { sh ~/.profile }
 
 # Way of searching through howdoi in terminal
 function hdi(){ howdoi $* -c -n 5; }
