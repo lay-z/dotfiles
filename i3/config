@@ -290,7 +290,7 @@ bindsym $mod+Ctrl+Shift+k move workspace to output up
 bindsym $mod+Ctrl+Shift+s exec systemctl suspend
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
+bindsym $mod+d exec rofi -show run -lines 8 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
 
 bindsym $mod+q exec flameshot gui
 
