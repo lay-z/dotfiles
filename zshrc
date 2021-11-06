@@ -132,7 +132,7 @@ alias dc="docker-compose"
 export TODO_DIR=~/Documents/todos
 function todo()  { vim $TODO_DIR/the-big-todo.md }
 alias todo_rice="vim $TODO_DIR/ricing-todo.md"
-alias todo_productivity="vim $TODO_DIR/productivity-todo.md"
+alias todo_productivity="vim $TODO_DIR/producivity-todo.md"
 
 # helpful methods
 is_running() { ps aux | grep $1 }
