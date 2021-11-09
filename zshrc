@@ -72,7 +72,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ubuntu)
+plugins=(git ubuntu zsh-vim-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -159,3 +159,6 @@ export NVM_DIR="/home/layz/.nvm"
 
 # Initialize fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Turn zsh into vim mode
+bindkey -v
