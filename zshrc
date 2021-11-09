@@ -130,7 +130,7 @@ alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
 alias dc="docker-compose"
 
 # Set up neovim
-alias nvim="~/bin/nvim.appimage"
+#alias nvim="~/bin/nvim.appimage"
 
 # My todos for the day
 export TODO_DIR=~/Documents/todos
