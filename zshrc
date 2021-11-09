@@ -129,6 +129,9 @@ alias jupyter_mode_activate='source ~/bin/jypter_env/bin/activate'
 alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
 alias dc="docker-compose"
 
+# Set up neovim
+alias nvim="~/.nvim.appimage"
+
 # My todos for the day
 export TODO_DIR=~/Documents/todos
 function todo()  { vim $TODO_DIR/the-big-todo.md }
