@@ -48,9 +48,11 @@ URxvt*color21:                        #eeeeee
 Xcursor.size: 16W
 URxvt.urgentOnBell: true
 URxvt.scrollBar: False
-/* URxvt.font: xft:Ubuntu Light:pixelsize=16,style=Regular */
-URxvt.font: xft:Ubuntu Mono:pixelsize=16,style=Regular
-!URxvt.font: xft:Roboto Mono:pixelsize=15,style=Regular
+!! URxvt.font: xft:Ubuntu Light:pixelsize=16,style=Regular */
+!! URxvt.font: xft:Ubuntu Mono:pixelsize=16,style=Regular
+URxvt.font: xft:UbuntuMono Nerd Font Mono:pixelsize=15,style=Regular
+ 
+!URxvt.font: xft:DroidSansMono Nerd Font:pixelsize=15,style=Bold
 URxvt.depth: 24
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.matcher.button: 1
