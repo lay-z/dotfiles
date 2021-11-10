@@ -14,7 +14,7 @@ URxvt*highlightTextColor:             #43a5d5
 URxvt*cursorColor2:                   color
 URxvt*pointerColor:                   color
 URxvt*pointerColor2:                  color
-URxvt*borderColor:                    color
+URxvt*borderColor:                    #151718
 URxvt*tab-bg:                         colour
 URxvt*tab-fg:                         colour
 URxvt*tabbar-bg:                      colour
@@ -51,6 +51,7 @@ URxvt.scrollBar: False
 !! URxvt.font: xft:Ubuntu Light:pixelsize=16,style=Regular */
 !! URxvt.font: xft:Ubuntu Mono:pixelsize=16,style=Regular
 URxvt.font: xft:UbuntuMono Nerd Font Mono:pixelsize=14,style=Regular
+URxvt.internalBorder: 24
  
 !URxvt.font: xft:DroidSansMono Nerd Font:pixelsize=15,style=Bold
 URxvt.depth: 24
