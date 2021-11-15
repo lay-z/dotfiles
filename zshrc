@@ -122,6 +122,9 @@ alias xresources="vim ~/.Xresources && xrdb ~/.Xresources && commit_dot_files 'X
 alias vimrc="vim ~/.vimrc && commit_dot_files 'vimrc'"
 alias tmuxrc="vim ~/.tmux.conf && commit_dot_files 'tmux'"
 
+# Git alias
+alias gbd='git branch --merged | grep -i -v -E "master"| xargs git branch -d'
+
 # Other handy aliases
 alias gitlog="git log --all --decorate --oneline --graph"
 alias open="xdg-open"
