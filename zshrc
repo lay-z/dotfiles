@@ -80,7 +80,8 @@ source $ZSH/oh-my-zsh.sh
 
 export SAVEHIST=100000
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# export MANPATH="/usr/local/man:$MANbinPATH"TH
+
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -165,3 +166,9 @@ export NVM_DIR="/home/layz/.nvm"
 
 # Turn zsh into vim mode
 bindkey -v
+
+
+# Go stuff!
+export GOPATH=$HOME/Code/go
+export GOBIN=$HOME/Code/go/bin
+export PATH=/usr/local/go/bin:$GOBIN:$PATH
