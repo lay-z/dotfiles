@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# Themes that we like :( 
+# Themes that we like - (jonathan)
 ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
@@ -172,3 +172,5 @@ bindkey -v
 export GOPATH=$HOME/Code/go
 export GOBIN=$HOME/Code/go/bin
 export PATH=/usr/local/go/bin:$GOBIN:$PATH
+go env -w GOPATH=$GOPATH
+go env -w GOBIN=$GOBIN
