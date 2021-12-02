@@ -174,3 +174,6 @@ export GOBIN=$HOME/Code/go/bin
 export PATH=/usr/local/go/bin:$GOBIN:$PATH
 go env -w GOPATH=$GOPATH
 go env -w GOBIN=$GOBIN
+
+# Python stuff
+alias activate="source venv/bin/activate"
