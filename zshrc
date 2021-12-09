@@ -177,3 +177,4 @@ go env -w GOBIN=$GOBIN
 
 # Python stuff
 alias activate="source venv/bin/activate"
+export GOPRIVATE=github.com/m2m-architect
