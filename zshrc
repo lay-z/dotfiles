@@ -133,6 +133,10 @@ alias jupyter_mode_activate='source ~/bin/jypter_env/bin/activate'
 alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
 alias dc="docker-compose"
 
+# Gataca aliases
+alias gtcgo="cd ~/Code/go/github.com/gattaca"
+alias gtcdefi="cd ~/Code/defi"
+
 # Set up neovim
 # alias nvim="~/bin/nvim.appimage"
 
@@ -178,3 +182,4 @@ go env -w GOBIN=$GOBIN
 # Python stuff
 alias activate="source venv/bin/activate"
 export GOPRIVATE=github.com/m2m-architect
+
