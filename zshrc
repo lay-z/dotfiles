@@ -134,7 +134,7 @@ alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
 alias dc="docker-compose"
 
 # Gataca aliases
-alias gtcgo="cd ~/Code/go/github.com/gattaca"
+alias gtcgo="cd ~/Code/go/src/github.com/gattaca"
 alias gtcdefi="cd ~/Code/defi"
 
 # Set up neovim
