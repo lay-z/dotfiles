@@ -133,6 +133,7 @@ alias jupyter_mode_activate='source ~/bin/jypter_env/bin/activate'
 alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
 alias dc="docker-compose"
 alias list_open_ports="netstat -lntu"
+alias list_open_ports_with_processes="sudo netstat -tlnp"
 
 # Gataca aliases
 alias gtcgo="cd ~/Code/go/src/github.com/gattaca"
