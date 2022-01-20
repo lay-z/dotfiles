@@ -129,11 +129,20 @@ alias gbd='git branch --merged | grep -i -v -E "master"| xargs git branch -d'
 # Other handy aliases
 alias gitlog="git log --all --decorate --oneline --graph"
 alias open="xdg-open"
-alias jupyter_mode_activate='source ~/bin/jypter_env/bin/activate'
-alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
 alias dc="docker-compose"
 alias list_open_ports="netstat -lntu"
 alias list_open_ports_with_processes="sudo netstat -tlnp"
+
+# Jupyter fun times
+
+alias jupyter_mode_activate='source ~/bin/jypter_env/bin/activate'
+alias jupyter_start_note_book='jupyter_mode_activate && jupyter notebook'
+init_notebook() {
+    cd ~/bin/jypter_env
+    jupyter_mode_activate
+    jupyter_start_note_book
+}
+
 
 # Gataca aliases
 alias gtcgo="cd ~/Code/go/src/github.com/gattaca"
