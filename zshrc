@@ -148,6 +148,12 @@ init_notebook() {
 alias gtcgo="cd ~/Code/go/src/github.com/gattaca"
 alias gtcdefi="cd ~/Code/defi"
 
+function init_testnet() {
+    gtcgo
+    cd gtc-avalanche-network-runner
+    rm -rf ~/.avalanchego && AVAXBUILDPATH=$GOPATH/src/github.com/ava-labs/avalanchego/build/avalanchego ./scripts/run.sh
+}
+
 # Set up neovim
 # alias nvim="~/bin/nvim.appimage"
 
