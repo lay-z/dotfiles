@@ -196,6 +196,22 @@ export PATH=/usr/local/go/bin:$GOBIN:$PATH
 go env -w GOPATH=$GOPATH
 go env -w GOBIN=$GOBIN
 
+go_playground() {
+    
+    mkdir /tmp/goplayground
+    cd /tmp/goplayground
+    echo 'package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    fmt.Println("Hello, playground")
+}' > main.go
+    vim main.go
+}
+
 # Python stuff
 alias activate="source venv/bin/activate"
 export GOPRIVATE=github.com/m2m-architect
