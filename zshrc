@@ -216,3 +216,6 @@ func main() {
 alias activate="source venv/bin/activate"
 export GOPRIVATE=github.com/m2m-architect
 
+
+# Flatpak installation
+PATH=/var/lib/flatpak/exports/bin:$PATH
