@@ -147,7 +147,7 @@ init_notebook() {
 # Gataca aliases
 alias gtcgo="cd ~/Code/go/src/github.com/gattaca"
 alias gtcdefi="cd ~/Code/defi"
-alias paladin="cd ~/Code/paladin-network"
+alias paladin="cd ~/Code/go/src/github.com/PaladinNetwork"
 
 function init_testnet() {
     gtcgo
