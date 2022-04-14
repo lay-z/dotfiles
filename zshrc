@@ -213,6 +213,12 @@ func main() {
     vim main.go
 }
 
+# IP stuff?
+# Automatically gets your public ip address and copies it into the clipboard for use
+whatsmyip() {
+    dig +short myip.opendns.com @resolver1.opendns.com | clipboard
+}
+
 # Python stuff
 alias activate="source venv/bin/activate"
 export GOPRIVATE=github.com/m2m-architect
@@ -220,3 +226,5 @@ export GOPRIVATE=github.com/m2m-architect
 
 # Flatpak installation
 PATH=/var/lib/flatpak/exports/bin:$PATH
+
+export PATH="$PATH:/home/layz/.foundry/bin"
