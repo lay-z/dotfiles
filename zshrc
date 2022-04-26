@@ -219,6 +219,11 @@ whatsmyip() {
     dig +short myip.opendns.com @resolver1.opendns.com | clipboard
 }
 
+
+init_paladin() {
+    tmux new -s paladin_local
+}
+
 # Python stuff
 alias activate="source venv/bin/activate"
 export GOPRIVATE=github.com/m2m-architect
