@@ -220,8 +220,14 @@ whatsmyip() {
 }
 
 
+
+# Specific for paladin network
 init_paladin() {
     tmux new -s paladin_local
+}
+
+mount_pdn_store() {
+    veracrypt /home/layz/crypts/paladin /media/veracrypt1
 }
 
 # Python stuff
