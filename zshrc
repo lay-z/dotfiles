@@ -219,6 +219,16 @@ whatsmyip() {
     dig +short myip.opendns.com @resolver1.opendns.com | clipboard
 }
 
+backspace_swapped() {
+    keycode 22 = slash 
+    keycode 61 = BackSpace
+}
+
+backspace_normal() {
+    keycode 61  = slash 
+    keycode 22 = BackSpace
+}
+
 
 
 # Specific for paladin network
