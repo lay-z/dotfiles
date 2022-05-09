@@ -163,8 +163,7 @@ assign [class="TelegramDesktop"] $ws9
 assign [class="Keybase"] $ws9
 assign [class="walc"] $ws9
 assign [class="discord"] $ws9
-
-assign [class="Chromium"] $ws10
+assign [class="GoogleChrome"] $ws10
 
 
 # reload the configuration file
@@ -266,12 +265,13 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Application auto startups
 exec firefox
-exec chromium-browser
+exec google-chrome
 exec telegram-desktop
 exec discord
 exec run_keybase
 exec walc
 exec gnome-pomodoro
+exec i3-
 
 
 # run everytime i3 is restarted
