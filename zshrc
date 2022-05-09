@@ -220,7 +220,7 @@ whatsmyip() {
 }
 
 backspace_swapped() {
-    echo -e "keycode 22 = slash question \n keycode 61 = BackSpace" | xmodmap -
+    echo -e "keycode 22 = slash\n keycode 61 = BackSpace question" | xmodmap -
 }
 
 backspace_normal() {
