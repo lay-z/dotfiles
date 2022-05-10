@@ -228,6 +228,9 @@ backspace_normal() {
 }
 
 
+alias sshconfig="vim ~/.ssh/config"
+
+
 
 # Specific for paladin network
 init_paladin() {
