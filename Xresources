@@ -117,79 +117,79 @@ URxvt.iso14755 : false
 !! *color15: #002b36
 
 
-! PaperColour Theme
-
-URxvt.foreground: #4D4D4C
-URxvt.background: #EEEEEE
-
-! black
-URxvt.color0: #EDEDED
-URxvt.color8: #969694
-
-! red
-URxvt.color1: #D7005F
-URxvt.color9: #D7005F
-
-! green
-URxvt.color2: #718C00
-URxvt.color10: #718C00
-
-! yellow / orange
-URxvt.color3: #D75F00
-URxvt.color11: #D75F00
-
-! blue
-
-URxvt.color4: #4271AE
-URxvt.color12: #4271AE
-
-! magenta
-URxvt.color5: #8959A8
-URxvt.color13: #8959A8
-
-! cyan
-URxvt.color6: #3E999F
-URxvt.color14: #3E999F
-
-! white
-URxvt.color7: #4D4D4C
-URxvt.color15: #F5F5F5
-
-
-/* !! From terminal.sexy */
-/* ! special */
-/* *.foreground:   #c5c8c6 */
-/* *.background:   #1d1f21 */
-/* *.cursorColor:  #c5c8c6 */
+/* ! PaperColour Theme */
+/*  */
+/* URxvt.foreground: #4D4D4C */
+/* URxvt.background: #EEEEEE */
 /*  */
 /* ! black */
-/* *.color0:       #282a2e */
-/* *.color8:       #373b41 */
+/* URxvt.color0: #EDEDED */
+/* URxvt.color8: #969694 */
 /*  */
 /* ! red */
-/* *.color1:       #a54242 */
-/* *.color9:       #cc6666 */
+/* URxvt.color1: #D7005F */
+/* URxvt.color9: #D7005F */
 /*  */
 /* ! green */
-/* *.color2:       #8c9440 */
-/* *.color10:      #b5bd68 */
+/* URxvt.color2: #718C00 */
+/* URxvt.color10: #718C00 */
 /*  */
-/* ! yellow */
-/* *.color3:       #de935f */
-/* *.color11:      #f0c674 */
+/* ! yellow / orange */
+/* URxvt.color3: #D75F00 */
+/* URxvt.color11: #D75F00 */
 /*  */
 /* ! blue */
-/* *.color4:       #5f819d */
-/* *.color12:      #81a2be */
+/*  */
+/* URxvt.color4: #4271AE */
+/* URxvt.color12: #4271AE */
 /*  */
 /* ! magenta */
-/* *.color5:       #85678f */
-/* *.color13:      #b294bb */
+/* URxvt.color5: #8959A8 */
+/* URxvt.color13: #8959A8 */
 /*  */
 /* ! cyan */
-/* *.color6:       #5e8d87 */
-/* *.color14:      #8abeb7 */
+/* URxvt.color6: #3E999F */
+/* URxvt.color14: #3E999F */
 /*  */
 /* ! white */
-/* *.color7:       #707880 */
-/* *.color15:      #c5c8c6 */
+/* URxvt.color7: #4D4D4C */
+/* URxvt.color15: #F5F5F5 */
+
+
+!! From terminal.sexy
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
+
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
+
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
+
+! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
+
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
+
+! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
+
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
