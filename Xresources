@@ -73,6 +73,10 @@ URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 URxvt.iso14755 : false 
 
 
+! Theme
+#include "~/Code/dot-files/xresource-themes/dark-theme"
+
+
 
 !! ! Trying out themes
 !! ! Solarazied_light https://github.com/felixr/urxvt-color-themes/blob/master/solarized_light 
