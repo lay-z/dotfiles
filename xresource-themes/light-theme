@@ -1,5 +1,4 @@
 ! PaperColour Theme
-
 URxvt.foreground: #4D4D4C
 URxvt.background: #EEEEEE
 
@@ -20,7 +19,6 @@ URxvt.color3: #D75F00
 URxvt.color11: #D75F00
 
 ! blue
-
 URxvt.color4: #4271AE
 URxvt.color12: #4271AE
 
