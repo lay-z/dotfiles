@@ -147,6 +147,7 @@ init_notebook() {
 # Gataca aliases
 alias gtcgo="cd ~/Code/go/src/github.com/gattaca"
 alias gtcdefi="cd ~/Code/defi"
+alias gtcdefi="cd ~/Code/devops/gtc/"
 alias gtcrust="cd ~/Code/rust/gattaca"
 alias paladin="cd ~/Code/go/src/github.com/PaladinNetwork"
 alias gtcdocs="gtcgo && cd GattacaDocs && code ."
