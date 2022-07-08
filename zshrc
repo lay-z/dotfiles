@@ -254,3 +254,8 @@ export GOPRIVATE=github.com/m2m-architect
 PATH=/var/lib/flatpak/exports/bin:$PATH
 
 export PATH="$PATH:/home/layz/.foundry/bin"
+
+
+# Set up chrome apps
+export PATH="$PATH:$DOTFILES_DIR/chrome-apps"
+
