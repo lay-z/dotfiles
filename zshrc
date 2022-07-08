@@ -122,7 +122,7 @@ alias dunstconfig="vim ~/.config/dunst/dunstrc && systemctl restart --user dunst
 alias xresources="vim ~/.Xresources && xrdb ~/.Xresources && commit_dot_files 'Xresources'"
 alias vimrc="vim ~/.vimrc && commit_dot_files 'vimrc'"
 alias tmuxrc="vim ~/.tmux.conf && commit_dot_files 'tmux'"
-alias chromeapps="cd ~/$DOTFILES_DIR/chrome-apps/"
+alias chromeapps="cd $DOTFILES_DIR/chrome-apps/"
 
 # Git alias
 alias gbd='git branch --merged | grep -i -v -E "master"| xargs git branch -d'
