@@ -297,3 +297,8 @@ bindsym $mod+q exec flameshot gui
 
 # Run compositor rofi
 exec --no-startup-id picom 
+
+
+
+# Set up notion to be held in scratch pad 
+for_window [class="^Google-chrome" instance="^notion"] floating enable, move scratchpad, scratchpad show
