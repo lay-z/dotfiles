@@ -171,7 +171,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+ctrl+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 
 # set $bg-color 	   	 #4dc75e
@@ -294,6 +294,7 @@ bindsym $mod+d exec rofi -show run -lines 8 -eh 2 -width 100 -padding 800 -opaci
 
 bindsym $mod+Shift+w exec rofi -show window -lines 8 -eh 2 -width 100 -padding 500 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
 
+bindsym $mod+shift+e exec emote
 bindsym $mod+q exec flameshot gui
 
 # Run compositor rofi
