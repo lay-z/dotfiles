@@ -15,6 +15,7 @@
 # fzf	# TODO?
 # dunst notiications
 # redshift
+# google-chrome # apt install google-chrome?
 
 
 
