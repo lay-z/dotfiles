@@ -1,2 +1,3 @@
-2022/07/08-07:53:06.864 16f353 Creating DB /home/layz/Code/dotfiles/chrome-apps/.config/google-chrome-gmail/Profile 1/Extension Rules since it was missing.
-2022/07/08-07:53:06.929 16f353 Reusing MANIFEST /home/layz/Code/dotfiles/chrome-apps/.config/google-chrome-gmail/Profile 1/Extension Rules/MANIFEST-000001
+2022/07/08-07:57:23.965 170773 Reusing MANIFEST /home/layz/Code/dotfiles/chrome-apps/.config/google-chrome-gmail/Profile 1/Extension Rules/MANIFEST-000001
+2022/07/08-07:57:23.966 170773 Recovering log #3
+2022/07/08-07:57:23.966 170773 Reusing old log /home/layz/Code/dotfiles/chrome-apps/.config/google-chrome-gmail/Profile 1/Extension Rules/000003.log 

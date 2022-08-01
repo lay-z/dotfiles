@@ -1,0 +1,8 @@
+2022/07/27-16:46:47.241 6 Creating DB /home/layz/Code/dotfiles/chrome-apps/.config/google-chrome-for-whatsapp/Default/Local Storage/leveldb since it was missing.
+2022/07/27-16:46:47.299 6 Reusing MANIFEST /home/layz/Code/dotfiles/chrome-apps/.config/google-chrome-for-whatsapp/Default/Local Storage/leveldb/MANIFEST-000001
+2022/07/28-10:42:08.929 7b Level-0 table #5: started
+2022/07/28-10:42:08.954 7b Level-0 table #5: 22910 bytes OK
+2022/07/28-10:42:08.971 7b Delete type=0 #3
+2022/07/28-16:43:40.483 1b2 Level-0 table #7: started
+2022/07/28-16:43:40.506 1b2 Level-0 table #7: 10459 bytes OK
+2022/07/28-16:43:40.521 1b2 Delete type=0 #4

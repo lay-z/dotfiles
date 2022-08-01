@@ -238,8 +238,9 @@ mode "monitor" {
         bindsym 1 exec sh ~/.screenlayout/only-laptop.sh
         bindsym 2 exec sh ~/.screenlayout/home-wide-monitor.sh
         bindsym 3 exec sh ~/.screenlayout/sonia-monitor-up.sh
+        bindsym 4 exec sh ~/.screenlayout/sonia-bournmouth.sh
 
-        # back to normal: Enter or Escape or $mod+r
+        # back to normal: Enter or Escape or $mod+s
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+s mode "default"
