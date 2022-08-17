@@ -128,11 +128,15 @@ alias chromeapps="cd $DOTFILES_DIR/chrome-apps/"
 alias gbd='git branch --merged | grep -i -v -E "master"| xargs git branch -d'
 
 # Other handy aliases
-alias gitlog="git log --all --decorate --oneline --graph"
 alias open="xdg-open"
 alias dc="docker-compose"
 alias list_open_ports="netstat -lntu"
 alias list_open_ports_with_processes="sudo netstat -tlnp"
+
+# git aliases
+alias gitlog="git log --all --decorate --oneline --graph"
+alias gitprune="git remote prune origin && git branch --merged origin/master | xargs git branch -d"
+
 
 # Jupyter fun times
 
