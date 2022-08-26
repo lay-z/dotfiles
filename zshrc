@@ -155,7 +155,7 @@ alias gtcdefi="cd ~/Code/defi"
 alias gtcops="cd ~/Code/devops/gtc/"
 alias gtcrust="cd ~/Code/rust/gattaca"
 alias paladin="cd ~/Code/go/src/github.com/PaladinNetwork"
-alias gtcdocs="gtcgo && cd GattacaDocs && code ."
+alias gtcdocs="gtcgo && cd GattacaDocs && vim ."
 
 function init_testnet() {
     gtcgo
