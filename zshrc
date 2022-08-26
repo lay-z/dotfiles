@@ -165,6 +165,7 @@ function init_testnet() {
 
 # Set up neovim
 # alias nvim="~/bin/nvim.appimage"
+alias vim=nvim
 
 # My todos for the day
 export TODO_DIR=~/Documents/todos
