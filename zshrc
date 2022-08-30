@@ -225,7 +225,8 @@ func main() {
 # IP stuff?
 # Automatically gets your public ip address and copies it into the clipboard for use
 whatsmyip() {
-    dig +short myip.opendns.com resolver2.opendns.com | clipboard
+    ## dig +short myip.opendns.com resolver2.opendns.com | clipboard
+  curl https://ipinfo.io/ip | clipboard
 }
 
 backspace_swapped() {
