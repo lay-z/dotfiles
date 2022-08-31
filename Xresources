@@ -74,8 +74,8 @@ URxvt.iso14755 : false
 
 
 ! Theme
-#include "./Code/dotfiles/xresource-themes/dark-theme"
-! #include "./Code/dotfiles/xresource-themes/light-theme"
+! #include "./Code/dotfiles/xresource-themes/dark-theme"
+#include "./Code/dotfiles/xresource-themes/light-theme"
 
 
 
