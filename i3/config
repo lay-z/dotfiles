@@ -292,10 +292,15 @@ bindsym $mod+Ctrl+Shift+s exec systemctl suspend
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show run -lines 8 -eh 2 -width 100 -padding 800 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
 
-bindsym $mod+Shift+w exec rofi -show window -lines 8 -eh 2 -width 100 -padding 500 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
+bindsym $mod+Shift+w exec rofi -show window -lines 8 -eh 2 -width 100 -padding 900 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
+bindsym $mod+Tab exec rofi -show window -lines 8 -eh 2 -width 100 -padding 900 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
 
 bindsym $mod+shift+e exec emote
 bindsym $mod+q exec flameshot gui
+
+# Make sure that pop up windows are in floating mode, so don't resize the programs that create them
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
 
 # Run compositor rofi
 exec --no-startup-id picom 
