@@ -9,10 +9,10 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 # alt is mod
-set $mod Mod1
+#set $mod Mod1
 #
 # windows is mod
-# set $mod Mod4
+set $mod Mod4
 set $font "pango:Ubuntu Mono:style=Light 11"
 
 
