@@ -302,6 +302,9 @@ bindsym $mod+q exec flameshot gui
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
+## Toggle the bar?!
+bindsym $mod+o exec polybar-msg cmd toggle
+
 # Run compositor rofi
 exec --no-startup-id picom 
 
