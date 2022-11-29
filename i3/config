@@ -178,11 +178,11 @@ bindsym $mod+ctrl+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit sh
 
 # set $bg-color 	   	 #4dc75e
 # set $bg-color 	   	 #61C766
-set $bg-color 	   	     #eea59d
-set $inactive-bg-color   #2f343f
+set $bg-color 	   	     #BD93F9
+set $inactive-bg-color   #282A36
 set $text-color          #f3f4f5
 set $inactive-text-color #676e7d
-set $urgent-bg-color     #e53935
+set $urgent-bg-color     #FF5555
 
 # window colors
 #                       border              background         text                 indicator
