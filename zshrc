@@ -185,6 +185,9 @@ function hdi(){ howdoi $* -c -n 5; }
 brightness() {xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1 }
 
 
+###########################################################################################
+#######################        Language Specfics       ####################################
+###########################################################################################
 
 ## Node stuff
 
@@ -221,6 +224,20 @@ func main() {
 }' > main.go
     vim main.go
 }
+
+
+
+# Rust stuff
+
+rust_clear_target(){
+  find . -name target -type d | xargs rm -rfv
+}
+
+
+
+
+
+##########################################################################################
 
 # IP stuff?
 # Automatically gets your public ip address and copies it into the clipboard for use
@@ -271,3 +288,9 @@ reload_tmux_conf() {
   tmux source-file ~/.tmux.conf
 }
 
+
+# Start TMUX off
+# If not running interactively, do not do anything
+[[ $- != *i* ]] && return
+# Otherwise start tmux
+[[ -z "$TMUX" ]] && exec tmux && exit
