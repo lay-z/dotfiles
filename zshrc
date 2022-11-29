@@ -265,3 +265,9 @@ export PATH="$PATH:/home/layz/.foundry/bin"
 # Set up chrome apps
 export PATH="$PATH:$DOTFILES_DIR/chrome-apps"
 
+
+# TMUX specific stuff
+reload_tmux_conf() {
+  tmux source-file ~/.tmux.conf
+}
+
