@@ -236,8 +236,10 @@ rust_clear_target(){
 
 
 
-
 ##########################################################################################
+
+## Try to get correct editor for visual?
+export VISUAL="vim"
 
 # IP stuff?
 # Automatically gets your public ip address and copies it into the clipboard for use
