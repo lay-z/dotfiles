@@ -276,7 +276,7 @@ export GOPRIVATE=github.com/m2m-architect
 
 
 # Flatpak installation
-PATH=/var/lib/flatpak/exports/bin:$PATH
+PATH=/var/lib/flatpak/app:$PATH
 
 export PATH="$PATH:/home/layz/.foundry/bin"
 
