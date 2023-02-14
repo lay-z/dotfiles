@@ -78,7 +78,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export SAVEHIST=100000
+export SAVEHIST=10000000
 
 # export MANPATH="/usr/local/man:$MANbinPATH"TH
 
@@ -124,7 +124,7 @@ alias vimrc="vim ~/.vimrc && commit_dot_files 'vimrc'"
 alias tmuxrc="vim ~/.tmux.conf && commit_dot_files 'tmux'"
 alias chromeapps="cd $DOTFILES_DIR/chrome-apps/"
 
-# Git alias
+# Git alias - deletes all branches that have been merged into master (I think)
 alias gbd='git branch --merged | grep -i -v -E "master"| xargs git branch -d'
 
 # Other handy aliases
@@ -135,6 +135,7 @@ alias list_open_ports_with_processes="sudo netstat -tlnp"
 
 # git aliases
 alias gitlog="git log --all --decorate --oneline --graph"
+# seems to do the same thing as above, but also removes remote, actually no seems to be better version of above command
 alias gitprune="git remote prune origin && git branch --merged origin/master | xargs git branch -d"
 
 

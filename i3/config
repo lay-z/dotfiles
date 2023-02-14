@@ -312,6 +312,9 @@ exec --no-startup-id picom
 
 exec --no-startup-id notion 
 
+# Get that redshift in. Adjust lat & long when back in the uk
+exec --no-startup-id redshift -m randr -l -1.2488722568897288:36.78507261941251
+
 
 
 # use xprop to find out class names to target windows by
