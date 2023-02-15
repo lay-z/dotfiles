@@ -291,6 +291,8 @@ reload_tmux_conf() {
   tmux source-file ~/.tmux.conf
 }
 
+xrdb ~/.Xresources
+
 
 # Start TMUX off
 # If not running interactively, do not do anything
