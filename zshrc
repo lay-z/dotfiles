@@ -249,6 +249,11 @@ whatsmyip() {
   curl https://ipinfo.io/ip | clipboard
 }
 
+# Scan local network for Machines and some info about them
+nmap_scan_local() {
+   sudo nmap -sn 192.168.1.0/24
+}
+
 backspace_swapped() {
     echo -e "keycode 22 = slash\n keycode 61 = BackSpace question" | xmodmap -
 }
@@ -298,4 +303,4 @@ xrdb ~/.Xresources
 # If not running interactively, do not do anything
 [[ $- != *i* ]] && return
 # Otherwise start tmux
-[[ -z "$TMUX" ]] && exec tmux && exit
+[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
