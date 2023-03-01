@@ -23,7 +23,7 @@ set $font "pango:Ubuntu Mono:style=Light 11"
 font $font
 
 gaps inner 5
-gaps outer 0
+gaps outer 5
 
 # Your preferred terminal emulator
 set $term alacritty
@@ -73,6 +73,10 @@ output * bg ~/ricing/desktop-photos/mountain-with-sky.jpg fill
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+ input * {
+        xkb_layout "gb"
+}
+
 
 
 # Colors!
