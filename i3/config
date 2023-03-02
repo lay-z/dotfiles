@@ -272,7 +272,6 @@ exec google-chrome
 exec telegram-desktop
 exec discord
 exec run_keybase
-exec walc
 exec gnome-pomodoro
 
 

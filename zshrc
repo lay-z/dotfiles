@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/home/layz/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -122,6 +122,7 @@ alias dunstconfig="vim ~/.config/dunst/dunstrc && systemctl restart --user dunst
 alias xresources="vim ~/.Xresources && xrdb ~/.Xresources && commit_dot_files 'Xresources'"
 alias vimrc="vim ~/.vimrc && commit_dot_files 'vimrc'"
 alias tmuxrc="vim ~/.tmux.conf && commit_dot_files 'tmux'"
+alias swayconf="vim ~/.config/sway/config && commit_dot_files 'sway config updated'"
 alias chromeapps="cd $DOTFILES_DIR/chrome-apps/"
 
 # Git alias - deletes all branches that have been merged into master (I think)
@@ -166,7 +167,7 @@ function init_testnet() {
 
 # Set up neovim
 # alias nvim="~/bin/nvim.appimage"
-alias vim=nvim
+alias vim=lvim
 
 # My todos for the day
 export TODO_DIR=~/Documents/todos

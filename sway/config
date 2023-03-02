@@ -35,6 +35,18 @@ bindsym $mod+Tab exec $scripts/sway-select-window.sh
 
 include /etc/sway/config-vars.d/*
 
+
+
+########## start up programs
+#
+exec --no-startup-id /opt/safing/portmaster/portmaster-start app
+
+# Get that redshift in. Adjust lat & long when back in the uk
+exec --no-startup-id redshift -m wayland -l -1.2488722568897288:36.78507261941251
+
+
+
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -46,6 +58,8 @@ output * bg ~/ricing/desktop-photos/mountain-with-sky.jpg fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+# bindsym $mod+Ctrl+Shift+s swaylock -f -c 000000
+bindsym $mod+Ctrl+Shift+s systemctl suspend
 
 ### Idle configuration
 #
@@ -55,6 +69,12 @@ output * bg ~/ricing/desktop-photos/mountain-with-sky.jpg fill
 #          timeout 300 'swaylock -f -c 000000' \
 #          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 #          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000 -i $lock_bg' \
+         timeout 600 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000 -i $lock_bg'
+         # before-suspend 'swaylock -f -c 000000 -i $lock_bg'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -208,6 +228,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
 #
 # Resizing containers:
 #
