@@ -30,7 +30,8 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi --show drun
+set $menu wofi --show drun -I -G
+
 bindsym $mod+Tab exec $scripts/sway-select-window.sh
 
 include /etc/sway/config-vars.d/*
@@ -43,6 +44,11 @@ exec --no-startup-id /opt/safing/portmaster/portmaster-start app
 
 # Get that redshift in. Adjust lat & long when back in the uk
 exec --no-startup-id redshift -m wayland -l -1.2488722568897288:36.78507261941251
+exec --no-startup-id slack
+
+# Gives us a nice tray panel indicator for interacting with networks
+exec --no-startup-id nm-applet 
+
 
 
 
