@@ -31,8 +31,12 @@ set $term alacritty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu wofi --show drun -I -G -a
+# set $menu rofi -show drun -lines 8 -eh 2 -width 100 -padding 800 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
 
-bindsym $mod+Tab exec $scripts/sway-select-window.sh
+# Application window switcher
+set $windows python3 $scripts/sway-select-window.py
+# set $windows rofi -show window -lines 8 -eh 2 -width 100 -padding 900 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
+
 
 include /etc/sway/config-vars.d/*
 
@@ -134,6 +138,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    bindsym $mod+Tab exec $windows
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
