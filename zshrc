@@ -125,6 +125,9 @@ alias tmuxrc="vim ~/.tmux.conf && commit_dot_files 'tmux'"
 alias swayconf="vim ~/.config/sway/config && commit_dot_files 'sway config updated'"
 alias chromeapps="cd $DOTFILES_DIR/chrome-apps/"
 
+# Cheatsheet
+alias chtsh="CHTSH_QUERY_OPTIONS="style=perldoc" cht.sh"
+
 # Git alias - deletes all branches that have been merged into master (I think)
 alias gbd='git branch --merged | grep -i -v -E "master"| xargs git branch -d'
 

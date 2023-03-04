@@ -48,12 +48,22 @@ exec --no-startup-id /opt/safing/portmaster/portmaster-start app
 
 # Get that redshift in. Adjust lat & long when back in the uk
 exec --no-startup-id redshift -m wayland -l -1.2488722568897288:36.78507261941251
-exec --no-startup-id slack
+exec slack
+exec telegram-desktop
+exec run_keybase
 
 # Gives us a nice tray panel indicator for interacting with networks
 exec --no-startup-id nm-applet 
 
 
+### Media keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
+
+bindsym XF86MonBrightnessUp exec sudo light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec sudo light -U 5 # decrease screen brightness
 
 
 
@@ -61,8 +71,9 @@ exec --no-startup-id nm-applet
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg ~/ricing/desktop-photos/mountain-with-sky.jpg fill
 set $lock_bg ~/ricing/desktop-photos/mountain-with-sky.jpg
+set $lock_screen swaylock -f -c 000000 -i $lock_bg
+output * bg $lock_bg fill
 #
 # Example configuration:
 #
@@ -151,8 +162,11 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Ctrl+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the suspend shortcut. Do you really want to suspend? This will end your Wayland session.' -Z 'Yes, suspend sway' 'swaylock -f -c 000000 -i $lock_bg && systemctl suspend'
+    bindsym $mod+Ctrl+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    bindsym XF86Sleep exec $lock_screen && systemctl suspend
+    bindsym Scroll_Lock exec $lock_screen
+
 #
 # Moving around:
 #
