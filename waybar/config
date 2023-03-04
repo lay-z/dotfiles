@@ -31,22 +31,22 @@
         "format": "<span style=\"italic\">{}</span>"
     },
     "tray": {
-        "icon-size": 21,
         "spacing": 10
+          "icon-size": 21,
     },
     "clock": {
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
         "interval": 1,
-        "format": "{icon0.test}{icon1}{icon2}{icon3} {usage:>2}",
+        "format": "{icon0}{icon1}{icon2}{icon3} {usage:>2}",
         "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     },
     "memory": {
         "format": "{}% "
     },
     "battery": {
-        "bat": "BAT0pane",
+        "bat": "BAT0",
         "states": {
             // "good": 95,
             "warning": 5,
