@@ -1,6 +1,6 @@
 import subprocess
-import json
 from collections.abc import Iterable
+import json
 
 
 def trim(string: str, max_length: int):
@@ -52,7 +52,7 @@ def wofi(options: Iterable[str]):
    
         It returns the selection
     '''
-    return subprocess.check_output(['wofi','-i', '-k', '/dev/null', '-d'],
+    return subprocess.check_output(['wofi','-I', '-G', '-a', '-k', '/dev/null', '-d'],
             input='\n'.join(options), encoding='UTF-8').strip('\n')
 
 
