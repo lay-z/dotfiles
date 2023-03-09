@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0;
     font-family: "Ubuntu Nerd Font", "Font Awesome 5 Free";
-    font-size: 13px;
+    font-size: 14px;
     min-height: 0;
 }
 
@@ -12,14 +12,14 @@ window#waybar {
 }
 
 #window {
-    font-weight: bold;
-    font-family: "Ubuntu";
+    /* font-weight: bold; */
+    font-family: "Ubuntu", "Font Awesome 5 Free";
 }
-/*
+
 #workspaces {
     padding: 0 5px;
+    /* font-weight: bold; */
 }
-*/
 
 #workspaces button {
     padding: 0 5px;
@@ -29,7 +29,8 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    color: #c9545d;
+    color: #BD93F9;
+    /* color: #87D7FF; */
     border-top: 2px solid #c9545d;
 }
 
@@ -44,7 +45,7 @@ window#waybar {
 }
 
 #clock {
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 #battery {
@@ -72,6 +73,12 @@ window#waybar {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
+ 
+#custom-separator {
+  color: #ffffff;
+  margin: 0 5px;
+}
+
 
 #cpu {
 }
@@ -101,4 +108,8 @@ window#waybar {
 
 #custom-notification {
   font-family: "NotoSansMono Nerd Font";
+}
+
+#custom-pomodoro.paused {
+  border-bottom: 3px solid #FFD75F;
 }

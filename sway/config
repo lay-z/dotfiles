@@ -167,6 +167,10 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
     bindsym XF86Sleep exec $lock_screen && systemctl suspend
     bindsym Scroll_Lock exec $lock_screen
 
+    bindsym Print exec grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'SCREENSHOT_%s.jpeg') 
+
+    
+
 #
 # Moving around:
 #

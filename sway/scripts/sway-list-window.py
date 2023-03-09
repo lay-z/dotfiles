@@ -1,8 +1,8 @@
 # This script gets the list of all current windows and shows them on wofi
 # The selected window get's focused.
 import subprocess
-from i3ipc import Connection, Event
 
+from i3ipc import Connection, Event
 
 def get_windows(conn):
     '''Given a sway connection object, return the current windows infromation
