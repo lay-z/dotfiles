@@ -72,7 +72,15 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ubuntu zsh-vim-mode)
+plugins=(git ubuntu zsh-vi-mode zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages)
+
+##### plugin configuration for colorize
+ZSH_COLORIZE_STYLE="colorful" 
+ZSH_COLORIZE_TOOL=chroma
+
+alias less=cless
+alias cat=ccat
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,7 +102,7 @@ export SAVEHIST=10000000
 # fi
 
 # Change default editor to vim
-export EDITOR=/usr/bin/vim
+export EDITOR=/home/layz/.local/bin/lvim
 
 export DOTFILES_DIR=~/Code/dotfiles
 
@@ -107,8 +115,8 @@ function commit_dot_files() {
 # export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # For a full list of active aliases, run `alias`.
 #
 # Aliases
@@ -190,6 +198,13 @@ function hdi(){ howdoi $* -c -n 5; }
 brightness() {xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1 }
 
 
+color_picker() { 
+  color=$(grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | awk '{print $3}')
+  echo $color
+  echo $color | clipboard
+}
+
+
 ###########################################################################################
 #######################        Language Specfics       ####################################
 ###########################################################################################
@@ -200,11 +215,8 @@ brightness() {xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xr
 export NVM_DIR="/home/layz/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# Initialize fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # Turn zsh into vim mode
-bindkey -v
+# bindkey -v
 
 
 # Go stuff!
@@ -301,6 +313,20 @@ reload_tmux_conf() {
 }
 
 xrdb ~/.Xresources
+
+# source $ZSH_CUSTOM/plugins/dracula-syntax-higlighting/zsh-syntax-highlighting.sh
+# $ZSH_CUSTOM/plugins/dracula-syntax-highlighting/zsh-syntax-highlighting.shzsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=#B08AE7,bg=underline
+
+# thanks to vi-mode plugin, need to run these key binds after zsh init
+function zvm_after_init() {
+  # Initialize fzf
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+  # allow for ctrl space to accept auto suggestion
+  bindkey '^ ' autosuggest-accept
+}
+
 
 
 # Start TMUX off
