@@ -75,7 +75,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git ubuntu zsh-vi-mode zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages)
 
 ##### plugin configuration for colorize
-ZSH_COLORIZE_STYLE="colorful" 
+# ZSH_COLORIZE_STYLE="colorful" 
 ZSH_COLORIZE_TOOL=chroma
 
 alias less=cless
@@ -220,8 +220,8 @@ export NVM_DIR="/home/layz/.nvm"
 
 
 # Go stuff!
-export GOPATH=$HOME/Code/go
 export GOBIN=$HOME/Code/go/bin
+export GOPATH=$HOME/Code/go
 export PATH=/usr/local/go/bin:$GOBIN:$PATH
 go env -w GOPATH=$GOPATH
 go env -w GOBIN=$GOBIN
@@ -315,7 +315,7 @@ reload_tmux_conf() {
 xrdb ~/.Xresources
 
 # source $ZSH_CUSTOM/plugins/dracula-syntax-higlighting/zsh-syntax-highlighting.sh
-# $ZSH_CUSTOM/plugins/dracula-syntax-highlighting/zsh-syntax-highlighting.shzsh
+source $ZSH_CUSTOM/plugins/dracula-syntax-highlighting/zsh-syntax-highlighting.sh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=#B08AE7,bg=underline
 
 # thanks to vi-mode plugin, need to run these key binds after zsh init
@@ -329,8 +329,8 @@ function zvm_after_init() {
 
 
 
-# Start TMUX off
-# If not running interactively, do not do anything
-[[ $- != *i* ]] && return
-# Otherwise start tmux
-[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
+# # Start TMUX off
+# # If not running interactively, do not do anything
+# [[ $- != *i* ]] && return
+# # Otherwise start tmux
+# [[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
