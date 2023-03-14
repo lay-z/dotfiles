@@ -128,7 +128,7 @@ alias xresources="vim ~/.Xresources && xrdb ~/.Xresources && commit_dot_files 'X
 alias vimrc="vim ~/.vimrc && commit_dot_files 'vimrc'"
 alias tmuxrc="vim ~/.tmux.conf && commit_dot_files 'tmux'"
 alias swayconf="vim ~/.config/sway/config && commit_dot_files 'sway config updated'"
-alias alacrittyconf="vim ~/.config/alacritty/config && commit_dot_files 'alacritty config updated'"
+alias alacrittyconf="vim ~/.config/alacritty/alacritty.yml && commit_dot_files 'alacritty config updated'"
 alias chromeapps="cd $DOTFILES_DIR/chrome-apps/"
 
 # Cheatsheet
