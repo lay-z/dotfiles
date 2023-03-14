@@ -71,7 +71,8 @@ bindsym XF86MonBrightnessDown exec sudo light -U 5 # decrease screen brightness
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-set $lock_bg ~/ricing/desktop-photos/mountain-with-sky.jpg
+# set $lock_bg ~/ricing/desktop-photos/mountain-with-sky.jpg
+set $lock_bg ~/ricing/desktop-photos/light-landscape.jpg
 set $lock_screen swaylock -f -c 000000 -i $lock_bg
 output * bg $lock_bg fill
 #
