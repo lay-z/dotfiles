@@ -65,7 +65,6 @@ COMPLETION_WAITING_DOTS="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -75,14 +74,12 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git ubuntu zsh-vi-mode zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages)
 
 ##### plugin configuration for colorize
-# ZSH_COLORIZE_STYLE="colorful" 
+ZSH_COLORIZE_STYLE="solarized-dark256" 
 ZSH_COLORIZE_TOOL=chroma
 
 alias less=cless
 alias cat=ccat
 
-
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -131,6 +128,7 @@ alias xresources="vim ~/.Xresources && xrdb ~/.Xresources && commit_dot_files 'X
 alias vimrc="vim ~/.vimrc && commit_dot_files 'vimrc'"
 alias tmuxrc="vim ~/.tmux.conf && commit_dot_files 'tmux'"
 alias swayconf="vim ~/.config/sway/config && commit_dot_files 'sway config updated'"
+alias alacrittyconf="vim ~/.config/alacritty/config && commit_dot_files 'alacritty config updated'"
 alias chromeapps="cd $DOTFILES_DIR/chrome-apps/"
 
 # Cheatsheet
@@ -149,6 +147,7 @@ alias list_open_ports_with_processes="sudo netstat -tlnp"
 alias gitlog="git log --all --decorate --oneline --graph"
 # seems to do the same thing as above, but also removes remote, actually no seems to be better version of above command
 alias gitprune="git remote prune origin && git branch --merged origin/master | xargs git branch -d"
+
 
 
 # Jupyter fun times
@@ -314,12 +313,10 @@ reload_tmux_conf() {
 
 xrdb ~/.Xresources
 
-# source $ZSH_CUSTOM/plugins/dracula-syntax-higlighting/zsh-syntax-highlighting.sh
-source $ZSH_CUSTOM/plugins/dracula-syntax-highlighting/zsh-syntax-highlighting.sh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=#B08AE7,bg=underline
 
 # thanks to vi-mode plugin, need to run these key binds after zsh init
-function zvm_after_init() {
+function zvm_after_init() { 
   # Initialize fzf
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -328,9 +325,15 @@ function zvm_after_init() {
 }
 
 
+source $ZSH/oh-my-zsh.sh
 
-# # Start TMUX off
-# # If not running interactively, do not do anything
-# [[ $- != *i* ]] && return
-# # Otherwise start tmux
-# [[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
+# New files to replace common cli utilities
+unalias ls
+alias ls=exa
+alias la="ls -la"
+
+# Start TMUX off
+# If not running interactively, do not do anything
+[[ $- != *i* ]] && return
+# Otherwise start tmux
+[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
