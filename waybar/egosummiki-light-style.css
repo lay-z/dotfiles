@@ -1,3 +1,6 @@
+@import url('./light-colours.css');
+@import url('./dark-colours.css');
+
 * {
     border: none;
     border-radius: 0;
@@ -8,11 +11,11 @@
 
 window#waybar {
     background: transparent;
-    color: black;
+    color: @text-color;
 }
 
 #window {
-    /* font-weight: bold; */
+    font-weight: bold;
     font-family: "Ubuntu", "Font Awesome 5 Free";
 }
 
@@ -24,14 +27,14 @@ window#waybar {
 #workspaces button {
     padding: 0 5px;
     background: transparent;
-    color: black;
+    color: @highlight-text-color;
     border-top: 2px solid transparent;
 }
 
 #workspaces button.focused {
-    color: #BD93F9;
     /* color: #87D7FF; */
-    border-top: 2px solid #c9545d;
+  color: @htext-color;
+    border-top: 2px solid @htext-color;
 }
 
 #mode {
@@ -45,14 +48,14 @@ window#waybar {
 }
 
 #clock {
-    /* font-weight: bold; */
+    font-weight: bold;
 }
 
 #battery {
 }
 
 #battery icon {
-    color: red;
+    color: @text-color;
 }
 
 #battery.charging {
@@ -75,7 +78,7 @@ window#waybar {
 }
  
 #custom-separator {
-  color: black;
+  color: @text-color;
   margin: 0 5px;
 }
 
@@ -109,6 +112,10 @@ window#waybar {
 
 #custom-notification {
   font-family: "NotoSansMono Nerd Font";
+}
+
+#custom-pomodoro.paused {
+  font-weight: bold;
 }
 
 #custom-pomodoro.paused {

@@ -126,7 +126,7 @@ exec swayidle -w \
 # set $bg-color        #4dc75e
 # set $bg-color        #61C766
 set $bg-color            #BD93F9
-set $inactive-bg-color   #282A36
+set $inactive-bg-color   #ffffff
 set $text-color          #f3f4f5
 set $inactive-text-color #676e7d
 set $urgent-bg-color     #FF5555
