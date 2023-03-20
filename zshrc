@@ -184,6 +184,7 @@ export TODO_DIR=~/Documents/todos
 function todo()  { vim $TODO_DIR/the-big-todo.md }
 alias todo_rice="vim $TODO_DIR/ricing-todo.md"
 alias todo_productivity="vim $TODO_DIR/producivity-todo.md"
+alias clipboard=wl-copy
 
 # helpful methods
 is_running() { ps aux | grep $1 }

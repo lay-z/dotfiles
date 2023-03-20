@@ -11,7 +11,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
-lvim.colorscheme = "lunar"
+-- lvim.colorscheme = "lunar"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -19,8 +19,10 @@ lvim.colorscheme = "lunar"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
--- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<C-b>"] = ":bp<CR>"
+lvim.keys.normal_mode["<C-p>"] = ":bn<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+-- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -46,7 +48,9 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 -- Change theme settings
 -- lvim.builtin.theme.options.dim_inactive = true
--- lvim.builtin.theme.options.style = "storm"
+-- Set colorscheme
+-- lvim.colorscheme = 'onelight'
+lvim.colorscheme = 'dracula-nvim'
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
@@ -70,6 +74,7 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
+  "help",
   "bash",
   "c",
   "javascript",
@@ -86,6 +91,22 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
+
+-- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+-- parser_config.ini = {
+--   install_info = {
+--     url = "https://github.com/nvim-treesitter/tree-sitter-ini",
+--     files = {"src/parser.c", "src/scanner.cc"}
+--   },
+--   filetype = "ini", -- if filetype does not match the parser name
+-- }
+-- require "nvim-treesitter.parsers".ini = {
+--   install_info = {
+--     url = "https://github.com/nvim-treesitter/tree-sitter-ini",
+--     files = {"src/parser.c"}
+--   },
+--   filetype = "ini",
+-- }
 
 -- generic LSP settings
 
@@ -163,13 +184,13 @@ lvim.builtin.treesitter.highlight.enable = true
 -- }
 
 -- Additional Plugins
--- lvim.plugins = {
 --     {
 --       "folke/trouble.nvim",
 --       cmd = "TroubleToggle",
 --     },
 -- }
 
+-- lvim.plugins = {
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
 --   pattern = { "*.json", "*.jsonc" },
@@ -183,3 +204,64 @@ lvim.builtin.treesitter.highlight.enable = true
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
+--
+lvim.plugins = {
+  {
+    "tpope/vim-surround",
+    -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
+
+    -- setup = function()
+    --  vim.o.timeoutlen = 500
+    -- end
+  },
+  { "lourenci/github-colors" },
+  { "olimorris/onedarkpro.nvim" },
+  {
+    "s1n7ax/nvim-window-picker",
+    tag = "1.*",
+    config = function()
+      require("window-picker").setup({
+        autoselect_one = true,
+        include_current = false,
+        filter_rules = {
+          -- filter using buffer options
+          bo = {
+            -- if the file type is one of following, the window will be ignored
+            filetype = { "neo-tree", "neo-tree-popup", "notify", "quickfix" },
+            -- if the buffer type is one of following, the window will be ignored
+            buftype = { "terminal" },
+          },
+        },
+        other_win_hl_color = "#e35e4f",
+      })
+    end,
+  },
+  { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
+  {'Mofiqul/dracula.nvim'},
+  { 'https://github.com/ap/vim-css-color' }
+}
+
+-- -- example mappings you can place in some other place
+-- local picker = require('window-picker')
+
+-- -- An awesome method to jump to windows
+-- vim.keymap.set("n", ",w", function()
+--   local picked_window_id = picker.pick_window({
+--     include_current_win = true
+--   }) or vim.api.nvim_get_current_win()
+--   vim.api.nvim_set_current_win(picked_window_id)
+-- end, { desc = "Pick a window" })
+
+-- -- Swap two windows using the awesome window picker
+-- local function swap_windows()
+--   local window = picker.pick_window({
+--     include_current_win = false
+--   })
+--   local target_buffer = vim.fn.winbufnr(window)
+--   -- Set the target window to contain current buffer
+--   vim.api.nvim_win_set_buf(window, 0)
+--   -- Set current window to contain target buffer
+--   vim.api.nvim_win_set_buf(0, target_buffer)
+-- end
+
+-- vim.keymap.set('n', ',W', swap_windows, { desc = 'Swap windows' })

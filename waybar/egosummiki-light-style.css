@@ -1,4 +1,4 @@
-@import url('./light-colours.css');
+/* @import url('./light-colours.css'); */
 @import url('./dark-colours.css');
 
 * {
@@ -27,13 +27,13 @@ window#waybar {
 #workspaces button {
     padding: 0 5px;
     background: transparent;
-    color: @highlight-text-color;
+    color: @text-color;
     border-top: 2px solid transparent;
 }
 
 #workspaces button.focused {
     /* color: #87D7FF; */
-  color: @htext-color;
+  color: @highlight-text-color;
     border-top: 2px solid @htext-color;
 }
 

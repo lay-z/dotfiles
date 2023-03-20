@@ -6,9 +6,11 @@
 
 ### Variables
 #
+
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-set $scripts ~/.config/sway/scripts
+set $sway_scripts ~/.config/sway/scripts
 
 
 # Home row direction keys, like vim
@@ -30,12 +32,18 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi --show drun -a -G -I
-# set $menu rofi -show drun -lines 8 -eh 2 -width 100 -padding 800 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
+# set $menu wofi --show drun -a -G -I
+set $menu rofi -show drun
 
 # Application window switcher
-set $windows python3 $scripts/sway-select-window.py
-# set $windows rofi -show window -lines 8 -eh 2 -width 100 -padding 900 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
+# TODO get rofi-wayland working to test this out -
+# set $windows rofi -show window 
+# set $windows python3 $sway_scripts/window-switcher/sway-select-window.py
+set $windows python3 $sway_scripts/sway-list-window.py
+
+# Trying to use a focus last peeps
+# exec always i3-focus-last server 
+# set $windows /home/layz/.cargo/bin/i3-focus-last menu
 
 
 include /etc/sway/config-vars.d/*
@@ -71,8 +79,8 @@ bindsym XF86MonBrightnessDown exec sudo light -U 5 # decrease screen brightness
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-# set $lock_bg ~/ricing/desktop-photos/mountain-with-sky.jpg
-set $lock_bg ~/ricing/desktop-photos/light-landscape.jpg
+set $lock_bg ~/ricing/desktop-photos/mountain-with-sky.jpg
+# set $lock_bg ~/ricing/desktop-photos/light-landscape.jpg
 set $lock_screen swaylock -f -c 000000 -i $lock_bg
 output * bg $lock_bg fill
 #
@@ -125,11 +133,19 @@ exec swayidle -w \
 # Colors!
 # set $bg-color        #4dc75e
 # set $bg-color        #61C766
+# Dark Colors
 set $bg-color            #BD93F9
 set $inactive-bg-color   #ffffff
 set $text-color          #f3f4f5
 set $inactive-text-color #676e7d
 set $urgent-bg-color     #FF5555
+
+# Light Colors
+# set $bg-color            #36316B
+# set $inactive-bg-color   #ffffff
+# set $text-color          #f3f4f5
+# set $inactive-text-color #676e7d
+# set $urgent-bg-color     #FF5555
 
 # window colors
 #                       border              background         text                 indicator
@@ -169,6 +185,10 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
     bindsym Scroll_Lock exec $lock_screen
 
     bindsym Print exec grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'SCREENSHOT_%s.jpeg') 
+
+# Applications
+    bindsym $mod+n exec $sway_scripts/sway-instance-switcher.sh '[class="^Google-chrome" instance="^notion"]'
+    bindsym $mod+c exec $sway_scripts/sway-instance-switcher.sh '[class="^Google-chrome" instance="^chat.openai.com"]' focus
 
     
 
@@ -311,5 +331,10 @@ default_floating_border pixel
 bar {
   swaybar_command waybar
 }
+
+
+## Specific for resolution and scaling
+output "*" scale 1.0
+
 
 include /etc/sway/config.d/*
