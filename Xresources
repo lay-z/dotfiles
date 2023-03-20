@@ -50,7 +50,7 @@ URxvt.urgentOnBell: true
 URxvt.scrollBar: False
 !! URxvt.font: xft:Ubuntu Light:pixelsize=16,style=Regular */
 !! URxvt.font: xft:Ubuntu Mono:pixelsize=16,style=Regular
-URxvt.font: xft:UbuntuMono NerdFont Mono:pixelsize=14,style=Regular
+URxvt.font: xft:UbuntuMono NerdFont Mono:pixelsize=15,style=Regular
 URxvt.internalBorder: 16
  
 !URxvt.font: xft:DroidSansMono Nerd Font:pixelsize=15,style=Bold
