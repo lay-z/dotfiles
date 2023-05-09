@@ -49,8 +49,8 @@ lvim.keys.normal_mode["<C-p>"] = ":bn<CR>"
 -- Change theme settings
 -- lvim.builtin.theme.options.dim_inactive = true
 -- Set colorscheme
--- lvim.colorscheme = 'onelight'
-lvim.colorscheme = 'dracula-nvim'
+lvim.colorscheme = 'onelight'
+-- lvim.colorscheme = 'dracula-nvim'
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
@@ -141,13 +141,17 @@ lvim.builtin.treesitter.highlight.enable = true
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
--- lvim.lsp.on_attach_callback = function(client, bufnr)
---   local function buf_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---   --Enable completion triggered by <c-x><c-o>
---   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
--- end
+lvim.lsp.on_attach_callback = function(client, bufnr)
+  local function buf_set_option(...)
+    vim.api.nvim_buf_set_option(bufnr, ...)
+  end
+  --Enable completion triggered by <c-x><c-o>
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- local opts = { buffer = bufnr, noremap = true, silent = true }
+  vim.keymap.set("n", "<C-f>", "v:lua.vim.lsp.buf.code_action")
+end
+
+vim.keymap.set("n", "<C-f>", "vim.lsp.buf.code_action")
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 -- local formatters = require "lvim.lsp.null-ls.formatters"
@@ -265,3 +269,9 @@ lvim.plugins = {
 -- end
 
 -- vim.keymap.set('n', ',W', swap_windows, { desc = 'Swap windows' })
+--  vim.keymap.set('n', '<leader>y', '"+y') 
+ vim.keymap.set('v', '<leader>y', '"+y')
+ vim.keymap.set('n', '<leader>p', '"+p')
+ vim.keymap.set('v', '<leader>p', '"+p')
+ vim.keymap.set('n', '<leader>P', '"+P')
+ vim.keymap.set('v', '<leader>P', '"+P')

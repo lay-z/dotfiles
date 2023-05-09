@@ -77,18 +77,32 @@ bindsym XF86MonBrightnessDown exec sudo light -U 5 # decrease screen brightness
 
 ### Output configuration
 #
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-set $lock_bg ~/ricing/desktop-photos/mountain-with-sky.jpg
-# set $lock_bg ~/ricing/desktop-photos/light-landscape.jpg
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# set $lock_bg ~/ricing/desktop-photos/mountain-with-sky.jpg
+set $lock_bg ~/ricing/desktop-photos/light-landscape.jpg
 set $lock_screen swaylock -f -c 000000 -i $lock_bg
 output * bg $lock_bg fill
+
 #
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+
+
+# mid_point_ultra_wide = 2560 / 2
+# mid_point_1080 = 1920 / 2
+# start_position = mid_point_ultra_wide - mid_point_1080
+set $start_position_1080 320
+
+output HDMI-A-1 position 0,0
+output eDP-1 position $start_position_1080,1080
+
+## Specific for resolution and scaling
+output "*" scale 1.0
+# output "DP-1" scale 0.85
 
 
 ### Idle configuration
@@ -123,9 +137,32 @@ exec swayidle -w \
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
- input * {
-        xkb_layout "gb"
-        xkb_options "altwin:swap_lalt_lwin"
+
+# Specific to keyboard attached to laptop
+input "1:1:AT_Translated_Set_2_keyboard" {
+   xkb_layout "gb"
+   xkb_options "altwin:swap_lalt_lwin"
+}
+
+# Sonias ziyoulang keyboard
+input "9639:64103:CX_2.4G_Receiver" {
+   xkb_layout "gb"
+   xkb_options "altwin:swap_lalt_lwin"
+}
+
+
+# Divas microsoft keyboard from work
+input "1118:2040:Microsoft_Wired_Keyboard_600" {
+   xkb_layout "gb"
+   xkb_options "altwin:swap_lalt_lwin"
+}
+
+# specific options for apple keyboard
+input "Mike_Ward___s_Keyboard" {
+  # xkb_options "ctrl:swapcaps_fnctrl"
+  xkb_options "ctrl:swap_lfn_lctl" 
+  #ctrl:swapcaps_fnctrl"
+  # xkb_layout "macintosh"
 }
 
 
@@ -182,13 +219,14 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
     bindsym XF86Sleep exec $lock_screen && systemctl suspend
+    bindsym $mod+ctrl+shift+s exec $lock_screen && systemctl suspend
     bindsym Scroll_Lock exec $lock_screen
 
     bindsym Print exec grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'SCREENSHOT_%s.jpeg') 
 
 # Applications
-    bindsym $mod+n exec $sway_scripts/sway-instance-switcher.sh '[class="^Google-chrome" instance="^notion"]'
-    bindsym $mod+c exec $sway_scripts/sway-instance-switcher.sh '[class="^Google-chrome" instance="^chat.openai.com"]' focus
+    bindsym $mod+n exec python3 $sway_scripts/sway-instance-switcher.py Google-chrome notion
+    bindsym $mod+c exec python3 $sway_scripts/sway-instance-switcher.py Google-chrome chat.openai.com chatgpt
 
     
 
@@ -243,6 +281,11 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    bindsym $mod+Control+Shift+$right move workspace to output right
+    bindsym $mod+Control+Shift+$left move workspace to output left
+    bindsym $mod+control+shift+$down move workspace to output down
+    bindsym $mod+control+shift+$up move workspace to output up
 #
 # Layout stuff:
 #
@@ -333,8 +376,5 @@ bar {
 }
 
 
-## Specific for resolution and scaling
-output "*" scale 1.0
-
-
+# include ~/.config/sway/config.d/*
 include /etc/sway/config.d/*

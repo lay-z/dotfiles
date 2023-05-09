@@ -184,6 +184,7 @@ export TODO_DIR=~/Documents/todos
 function todo()  { vim $TODO_DIR/the-big-todo.md }
 alias todo_rice="vim $TODO_DIR/ricing-todo.md"
 alias todo_productivity="vim $TODO_DIR/producivity-todo.md"
+# TODO need to put this into an if
 alias clipboard=wl-copy
 
 # helpful methods
@@ -195,7 +196,9 @@ reset_keyboard() { sh ~/.profile }
 function hdi(){ howdoi $* -c -n 5; }
 
 # Sets the brightness for all connected monitors through xrandr
-brightness() {xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1 }
+brightness() {
+	xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1 
+}
 
 
 color_picker() { 

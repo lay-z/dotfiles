@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
     "modules-center": ["clock", "custom/separator", "sway/window", "custom/separator", "custom/pomodoro"],
-    "modules-right": ["pulseaudio", "cpu", "memory", "battery", "backlight", "tray", "custom/notification"],
+    "modules-right": ["bluetooth", "pulseaudio", "cpu", "memory", "battery", "backlight", "tray", "custom/notification"],
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
@@ -43,16 +43,19 @@
         "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     },
     "memory": {
-        "format": "{}% "
+        "format": "{}% "
     },
     "battery": {
         "bat": "BAT0",
         "states": {
-            // "good": 95,
-            "warning": 5,
-            "critical": 15
+            "max": 100,
+            "good": 70,
+            "medium": 40,
+            "low": 20,
+            "warning": 5
         },
-        "format": "{capacity}% {icon}",
+        "format": "{icon} {capacity}% {time}",
+        "format-charging": " {icon} {capacity}% {time}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
@@ -64,6 +67,17 @@
         "format-disconnected": "Disconnected ⚠",
         "tooltip-format": "{essid} ({signalStrength}%)  ",
         "on-click": "gnome-control-center wifi"
+    },
+    "bluetooth": {
+      "format-connected": " {device_alias}",
+      "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+      "format": " {status}",
+      // // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+      // "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+      "on-click": "~/.config/sway/scripts/bluetooth/connect.sh"
     },
     "pulseaudio": {
         //"scroll-step": 1,

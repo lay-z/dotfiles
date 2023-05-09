@@ -42,6 +42,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# set $lock_bg ~/ricing/desktop-photos/mountain-with-sky.jpg
+set $lock_screen i3lock -f -c 000000 
+bindsym XF86Sleep exec $lock_screen && systemctl suspend
+bindsym Scroll_Lock exec $lock_screen
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -163,15 +168,14 @@ assign [class="Firefox"] $ws2
 # Get the chats in
 assign [class="TelegramDesktop"] $ws9
 assign [class="Keybase"] $ws9
-assign [class="walc"] $ws9
 assign [class="discord"] $ws9
 assign [class="GoogleChrome"] $ws10
 
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c restart
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+# bindsym $mod+Shift+r restkrt
 # exit i3 (logs you out of your X session)
 bindsym $mod+ctrl+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -290,12 +294,16 @@ bindsym $mod+Ctrl+Shift+k move workspace to output up
 #
 bindsym $mod+Ctrl+Shift+s exec systemctl suspend
 
-# start rofi (a program launcher)
-bindsym $mod+d exec rofi -show drun -lines 8 -eh 2 -width 100 -padding 800 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
-bindsym $mod+y exec rofi -show run -lines 8 -eh 2 -width 100 -padding 800 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
+bindsym $mod+Return exec alacritty
 
-bindsym $mod+Shift+w exec rofi -show window -lines 8 -eh 2 -width 100 -padding 900 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
-bindsym $mod+Tab exec rofi -show window -lines 8 -eh 2 -width 100 -padding 900 -opacity "85" -bw "0" -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" # -font "$font"
+# start rofi (a program launcher)
+bindsym $mod+d exec /bin/rofi -show drun
+bindsym $mod+y exec /bin/rofi -show run 
+
+bindsym $mod+p exec $HOME/.config/rofi/emoji-picker/picker.sh
+
+bindsym $mod+Shift+w exec /bin/rofi -show window -show-preview
+bindsym $mod+Tab exec /bin/rofi -show window -window-thumbnail
 
 bindsym $mod+shift+e exec emote
 bindsym $mod+q exec flameshot gui
@@ -308,19 +316,28 @@ for_window [window_role="task_dialog"] floating enable
 bindsym $mod+o exec polybar-msg cmd toggle
 
 # Run compositor rofi
-exec --no-startup-id picom 
+exec_always --no-startup-id ~/.config/picom/launch.sh 
 
 exec --no-startup-id notion 
 
 # Get that redshift in. Adjust lat & long when back in the uk
-exec --no-startup-id redshift -m randr -l -1.2488722568897288:36.78507261941251
+exec --no-startup-id redshift -m wayland -l -1.2488722568897288:36.78507261941251 -t 6500K:2500K
 
-# use xprop to find out class names to target windows by
-# Set up notion to be held in scratch pad 
-for_window [class="^Google-chrome" instance="^notion"] floating enable, move scratchpad, scratchpad show
-bindsym $mod+n [class="^Google-chrome" instance="^notion"] scratchpad show
-bindsym $mod+b move scratchpad
+
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
 
 # To mamke discord a floating window
 # for_window [class="discord"] floating enable, move scratchpad, scratchpad show
 # bindsym $mod+d [class="discord"] scratchpad show
+bindsym $mod+n exec i3-msg '[class="^Google-chrome" instance="^notion"]' focus | 
+bindsym $mod+c exec i3-msg '[class="^Google-chrome" instance="^chat.openai.com"]' focus

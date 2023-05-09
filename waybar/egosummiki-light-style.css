@@ -10,12 +10,14 @@
 }
 
 window#waybar {
-    background: transparent;
+    /* background: transparent; */
+    background: #282A36 ;
     color: @text-color;
 }
 
 #window {
     font-weight: bold;
+    color: #F1FA8C;
     font-family: "Ubuntu", "Font Awesome 5 Free";
 }
 
@@ -58,6 +60,26 @@ window#waybar {
     color: @text-color;
 }
 
+
+#battery.max {
+  color: #b1ff00;
+}
+
+#battery.good {
+  color: #8fce00;
+}
+
+#battery.medium {
+  color: #ffd966;
+}
+
+#battery.low {
+  color: #FF5555 ;
+}
+
+#battery.warning {
+}
+
 #battery.charging {
 }
 
@@ -69,11 +91,12 @@ window#waybar {
 }
 
 #battery.warning:not(.charging) {
-    color: black;
+    color: #FF5555 ;
+    /* color: black; */
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    animation-iteration-count: 10;
     animation-direction: alternate;
 }
  
@@ -84,9 +107,11 @@ window#waybar {
 
 
 #cpu {
+  color: #8BE9FD ;
 }
 
 #memory {
+  color: #ff79c6;
 }
 
 #network {
@@ -97,9 +122,14 @@ window#waybar {
 }
 
 #pulseaudio {
+  color: #50FA7B;
 }
 
 #pulseaudio.muted {
+}
+
+#backlight {
+  color: #ff79c6;
 }
 
 #custom-spotify {
