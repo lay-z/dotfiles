@@ -362,6 +362,7 @@ source $ZSH/oh-my-zsh.sh
 unalias ls
 alias ls=exa
 alias la="ls -la"
+alias ll="ls -la"
 
 # Start TMUX off
 # If not running interactively, do not do anything
