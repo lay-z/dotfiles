@@ -49,8 +49,8 @@ lvim.keys.normal_mode["<C-p>"] = ":bn<CR>"
 -- Change theme settings
 -- lvim.builtin.theme.options.dim_inactive = true
 -- Set colorscheme
-lvim.colorscheme = 'onelight'
--- lvim.colorscheme = 'dracula-nvim'
+-- lvim.colorscheme = 'onelight'
+lvim.colorscheme = 'dracula-nvim'
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
@@ -242,7 +242,8 @@ lvim.plugins = {
   },
   { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
   {'Mofiqul/dracula.nvim'},
-  { 'https://github.com/ap/vim-css-color' }
+  { 'https://github.com/ap/vim-css-color' },
+  { 'luk400/vim-jukit'}
 }
 
 -- -- example mappings you can place in some other place

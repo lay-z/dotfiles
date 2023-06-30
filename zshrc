@@ -74,7 +74,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git ubuntu zsh-vi-mode zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages)
 
 ##### plugin configuration for colorize
-ZSH_COLORIZE_STYLE="solarized-dark256" 
+ZSH_COLORIZE_STYLE="dracula" 
 ZSH_COLORIZE_TOOL=chroma
 
 alias less=cless
@@ -175,9 +175,17 @@ function init_testnet() {
     rm -rf ~/.avalanchego && AVAXBUILDPATH=$GOPATH/src/github.com/ava-labs/avalanchego/build/avalanchego ./scripts/run.sh
 }
 
+
+function program_exists() {
+    hash $1 2>/dev/null
+}
+
+
 # Set up neovim
 # alias nvim="~/bin/nvim.appimage"
-alias vim=lvim
+if program_exists lvim; then
+    alias vim=lvim
+fi
 
 # My todos for the day
 export TODO_DIR=~/Documents/todos
@@ -185,7 +193,15 @@ function todo()  { vim $TODO_DIR/the-big-todo.md }
 alias todo_rice="vim $TODO_DIR/ricing-todo.md"
 alias todo_productivity="vim $TODO_DIR/producivity-todo.md"
 # TODO need to put this into an if
-alias clipboard=wl-copy
+#
+if program_exists clipboard ; then
+	alias clipboard=clipboard
+# If system is wayland
+elif [[ $XDG_SESSION_TYPE = 'wayland' ]]; then
+	alias clipboard=wl-copy
+else
+	alias clipboard="xclip -sel clip"
+fi
 
 # helpful methods
 is_running() { ps aux | grep $1 }
@@ -223,27 +239,29 @@ export NVM_DIR="/home/layz/.nvm"
 
 
 # Go stuff!
-export GOBIN=$HOME/Code/go/bin
-export GOPATH=$HOME/Code/go
-export PATH=/usr/local/go/bin:$GOBIN:$PATH
-go env -w GOPATH=$GOPATH
-go env -w GOBIN=$GOBIN
+# only do this if the go binary is available
+if program_exists go ; then
+    export GOBIN=$HOME/Code/go/bin
+    export GOPATH=$HOME/Code/go
+    export PATH=/usr/local/go/bin:$GOBIN:$PATH
+    go env -w GOPATH=$GOPATH
+    go env -w GOBIN=$GOBIN
 
-go_playground() {
-    
-    mkdir /tmp/goplayground
-    cd /tmp/goplayground
-    echo 'package main
-
+    go_playground() {
+        
+        mkdir /tmp/goplayground
+        cd /tmp/goplayground
+        echo 'package main
 import (
     "fmt"
 )
 
 func main() {
     fmt.Println("Hello, playground")
-}' > main.go
-    vim main.go
-}
+}'      > main.go
+        vim main.go
+    }
+fi
 
 
 
@@ -299,6 +317,9 @@ mount_pdn_store() {
 alias activate="source venv/bin/activate"
 export GOPRIVATE=github.com/m2m-architect
 
+## Conda
+alias condasetup="source ~/anaconda3/bin/activate"
+
 
 # Flatpak installation
 PATH=/var/lib/flatpak/app:$PATH
@@ -315,7 +336,9 @@ reload_tmux_conf() {
   tmux source-file ~/.tmux.conf
 }
 
-xrdb ~/.Xresources
+if [ -f /tmp/foo.txt ]; then
+    xrdb ~/.Xresources
+fi
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=#B08AE7,bg=underline
 
@@ -338,6 +361,6 @@ alias la="ls -la"
 
 # Start TMUX off
 # If not running interactively, do not do anything
-[[ $- != *i* ]] && return
+#[[ $- != *i* ]] && return
 # Otherwise start tmux
-[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
+#[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
