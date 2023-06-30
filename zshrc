@@ -354,6 +354,10 @@ function zvm_after_init() {
 
 source $ZSH/oh-my-zsh.sh
 
+
+# Notifier for long running bash operaitons
+[[ -f /usr/share/undistract-me/undistract-me.sh ]] && source /usr/share/undistract-me/undistract-me.sh
+
 # New files to replace common cli utilities
 unalias ls
 alias ls=exa
