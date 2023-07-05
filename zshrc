@@ -320,6 +320,11 @@ export GOPRIVATE=github.com/m2m-architect
 ## Conda
 alias condasetup="source ~/anaconda3/bin/activate"
 
+# PYenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 
 # Flatpak installation
 PATH=/var/lib/flatpak/app:$PATH
