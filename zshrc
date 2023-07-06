@@ -227,7 +227,7 @@ kill_processes() {
     else
         kill_mode="$1"
     fi
-    #ps aux | fzf -m | pid_from_ps_aux | xargs kill $kill_mode
+    ps aux | fzf -m | pid_from_ps_aux | xargs kill $kill_mode
 }
 
 
@@ -364,11 +364,26 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=#B08AE7,bg=underline
 # thanks to vi-mode plugin, need to run these key binds after zsh init
 function zvm_after_init() { 
   # Initialize fzf
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  if [ -f ~/.fzf.zsh ]; then
+      source ~/.fzf.zsh
+      # now lets do some zsh specific functions
+      
+      # TODO try to figure out a way to produce some kind of usability like
+      # https://github.com/ajeetdsouza/zoxide but with zsh
+      #function zcd() {
+      #    dir=[ -z "$1"] || cwd
+      #    while [ -d $dir ]; do
+      #        dir=$(ls $dir | fzf)
+      #        echo $dir
+      #    done
+      #}
+  fi
 
   # allow for ctrl space to accept auto suggestion
   bindkey '^ ' autosuggest-accept
+
 }
+
 
 
 source $ZSH/oh-my-zsh.sh
