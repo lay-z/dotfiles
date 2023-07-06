@@ -221,14 +221,15 @@ pid_from_ps_aux() {
 }
 
 kill_processes() {
-    if [[ -z '$1' ]]; then
+    if [ -z '$1' ]; then
         echo "No kill mode selected, using default of -9"
         break
         kill_mode="$1"
     else
+        echo "we are here"
         kill_mode=-9
     fi
-    ps aux | fzf -m | pid_from_ps_aux | xargs kill $kill_mode
+    #ps aux | fzf -m | pid_from_ps_aux | xargs kill $kill_mode
 }
 
 
