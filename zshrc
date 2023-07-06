@@ -216,6 +216,10 @@ brightness() {
 	xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1 
 }
 
+pid_from_ps_aux() {
+    awk '{print $2}'
+}
+
 
 color_picker() { 
   color=$(grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | awk '{print $3}')
