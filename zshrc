@@ -220,6 +220,14 @@ pid_from_ps_aux() {
     awk '{print $2}'
 }
 
+kill_processes() {
+    if [ -z = '$1' ]]; then
+        echo "No kill mode selected, using default of -9"
+        $1=-9
+    fi
+    ps aux | fzf -m | pid_from_ps_aux | xargs kill $1
+}
+
 
 color_picker() { 
   color=$(grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | awk '{print $3}')
