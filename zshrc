@@ -78,7 +78,8 @@ ZSH_COLORIZE_STYLE="dracula"
 ZSH_COLORIZE_TOOL=chroma
 
 alias less=cless
-alias cat=ccat
+# alias cat=ccat
+alias cat=bat
 
 
 # User configuration
