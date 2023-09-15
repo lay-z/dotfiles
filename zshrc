@@ -83,7 +83,9 @@ alias cat=ccat
 
 # User configuration
 
-export SAVEHIST=10000000
+export SAVEHIST=1000000000
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
 
 # export MANPATH="/usr/local/man:$MANbinPATH"TH
 
