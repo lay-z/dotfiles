@@ -83,6 +83,7 @@ alias cat=ccat
 
 # User configuration
 
+# Save all the history for all time
 export SAVEHIST=1000000000
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
