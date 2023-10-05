@@ -290,6 +290,12 @@ rust_clear_target(){
 }
 
 
+########################## Place to keep fun and technological information ################# 
+fun_n_technological(){
+  vim ~/Documents/EarthAcre/fun_n_technological.md
+}
+
+
 
 
 ##########################################################################################
