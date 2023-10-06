@@ -31,6 +31,11 @@ ui_config="i3 polybar dunst redshift"
 
 ##########
 
+# First initialize submodules
+echo "Updating submodules"
+git submodule update --init --recursive
+echo "...done"
+
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
