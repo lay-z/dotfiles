@@ -25,7 +25,7 @@ dir=$(pwd)                        # dotfiles directory
 echo $dir
 olddir=~/dotfiles_old             # old dotfiles backup directory
 config_dir=~/.config
-shell_config="bashrc vimrc zshrc oh-my-zsh Xresources"    # list of files/folders to symlink in homedir
+shell_config="bashrc vimrc zshrc oh-my-zsh Xresources fzf.zsh fzf"    # list of files/folders to symlink in homedir
 ui_config="i3 polybar dunst redshift"
 
 

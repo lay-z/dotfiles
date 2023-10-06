@@ -1,3 +1,9 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = git@github.com:lay-z/ohmyzsh.git
+[submodule "alacritty/themes"]
+	path = alacritty/themes
+	url = https://github.com/alacritty/alacritty-theme
+[submodule "fzf"]
+	path = fzf
+	url = https://github.com/junegunn/fzf.git
