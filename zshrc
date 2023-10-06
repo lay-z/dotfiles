@@ -374,6 +374,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=#B08AE7,bg=underline
 function zvm_after_init() { 
   # Initialize fzf
   if [ -f ~/.fzf.zsh ]; then
+      echo "We are sourcing fzf.zsh"
       source ~/.fzf.zsh
       # now lets do some zsh specific functions
       
@@ -406,6 +407,11 @@ unalias ls
 alias ls=exa
 alias la="ls -la"
 alias ll="ls -la"
+
+
+TRAPWINCH() {
+  zle && { zle reset-prompt; zle -R }
+}
 
 # Start TMUX off
 # If not running interactively, do not do anything
