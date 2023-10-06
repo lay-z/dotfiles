@@ -374,7 +374,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=#B08AE7,bg=underline
 function zvm_after_init() { 
   # Initialize fzf
   if [ -f ~/.fzf.zsh ]; then
-      echo "We are sourcing fzf.zsh"
       source ~/.fzf.zsh
       # now lets do some zsh specific functions
       
