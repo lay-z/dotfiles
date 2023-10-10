@@ -1,4 +1,4 @@
-DOTFILE_DIR="~/Code/dotfiles/"
+DOTFILE_DIR=~/Code/dotfiles/
 
 cd $DOTFILE_DIR
 
