@@ -15,6 +15,8 @@ keymap.set("n", "<leader>se", "<C-w>=") --make split windows equal width
 keymap.set("n", "<leader>sx", ":close<CR>") --make split windows equal width
 
 keymap.set("n", "<leader>w", ":wall<CR>") -- write all open buffers
+keymap.set("n", "<leader>wq", ":wqall<CR>") -- write all open buffers
+keymap.set("n", "<leader>q", ":q<CR>") -- write all open buffers
 
 keymap.set("n", "<leader>to", ":tabnew<CR>") 
 keymap.set("n", "<leader>tx", ":tabclose<CR>")
@@ -27,5 +29,7 @@ keymap.set("n", "<leader>bx", ":bd<CR>") -- Close buffer TODO figure out how to 
 keymap.set("n", "<leader>tp", ":tabprevious<CR>")
 
 
+-- TODO should this be wrapped in a pcall? probably
+keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>")
 
 

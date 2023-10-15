@@ -18,7 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 local colourschemes = require('layz/plugins/colour-scheme')
 
 local plugins = {
-  "christoomey/vim-tmux-navigator"
+  "christoomey/vim-tmux-navigator",
+  "szw/vim-maximizer",
 }
 
 
@@ -27,7 +28,8 @@ for i, v in ipairs(colourschemes) do -- Iterate over the second array
   table.insert(plugins, v) -- Append each value to the first array
 end
 
-print(vim.inspect(plugins))
+-- TODO turn this into a debug log statement
+-- print(vim.inspect(plugins))
 local opts = {} --https://github.com/folke/lazy.nvim#%EF%B8%8F-configuration
 
 require("lazy").setup(plugins, opts)
