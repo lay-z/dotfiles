@@ -1,0 +1,5 @@
+{
+  "lazy.nvim": { "branch": "main", "commit": "0c53d4673ff02c57a192558325b394cfd9adde0f" },
+  "nightfly": { "branch": "master", "commit": "776f6ba8b9324838a250f55937ce7d957f820eeb" },
+  "vim-tmux-navigator": { "branch": "master", "commit": "7db70e08ea03b3e4d91f63713d76134512e28d7e" }
+}
