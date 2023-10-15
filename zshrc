@@ -71,8 +71,8 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ubuntu zsh-vi-mode zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages)
-
+plugins=(git ubuntu zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages)
+#zsh-vi-mode 
 ##### plugin configuration for colorize
 ZSH_COLORIZE_STYLE="dracula" 
 ZSH_COLORIZE_TOOL=chroma
