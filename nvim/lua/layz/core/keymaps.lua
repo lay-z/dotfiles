@@ -30,6 +30,7 @@ keymap.set("n", "<leader>tp", ":tabprevious<CR>")
 
 
 -- TODO should this be wrapped in a pcall? probably
+-- TODO maybe this should be placed with the plugin.
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>")
 
 

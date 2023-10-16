@@ -20,6 +20,7 @@ local colourschemes = require('layz/plugins/colour-scheme')
 local plugins = {
   "christoomey/vim-tmux-navigator",
   "szw/vim-maximizer",
+  "tpope/vim-surround",
 }
 
 
