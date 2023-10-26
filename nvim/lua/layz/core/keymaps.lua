@@ -28,9 +28,33 @@ keymap.set("n", "<leader>bn", ":bn<CR>") -- Next buffer
 keymap.set("n", "<leader>bx", ":bd<CR>") -- Close buffer TODO figure out how to close buffer, but bring on another buffer in window :thinking_face:
 keymap.set("n", "<leader>tp", ":tabprevious<CR>")
 
+-- Getting commenting to work
+keymap.set("n", "<C-t>", "gcc")
+keymap.set("v", "<C-t>", "gc")
+
 
 -- TODO should this be wrapped in a pcall? probably
 -- TODO maybe this should be placed with the plugin.
-keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>")
 
+local function get_command_history()
+  local history = {}
+  for i = vim.fn.histnr("cmd"), 1, -1 do
+    local cmd = vim.fn.histget("cmd", i)
+    if cmd ~= "" then
+      table.insert(history, cmd)
+    end
+  end
+  return history
+end
 
+function run_command_from_history()
+  local history = get_command_history()
+  vim.ui.select(history, {
+    prompt = 'Select a command to run:',
+    format_item = function(item) return item end,
+  }, function(item)
+    if item then
+      vim.cmd(item)
+    end
+  end)
+end

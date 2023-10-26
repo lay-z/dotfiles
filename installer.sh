@@ -17,6 +17,53 @@
 # redshift
 # google-chrome # apt install google-chrome?
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m' # No Color
+
+info() {
+  echo -e "${GREEN}$1${NC} "
+}
+
+warning() {
+  echo -e "${YELLOW}$1${NC} "
+keymap.set("n", "<C-/>", "gcc")
+}
+
+error() {
+  echo -e "${RED}$1${NC} "
+}
+
+info "This is an informational message."
+warning "This is a warning message."
+error "This is an error message."
+
+run() {
+  local cmd="$@"
+  local output
+  local exit_status
+
+  output=$(eval "$cmd" 2>&1)
+  exit_status=$?
+
+  if [ $exit_status -ne 0 ]; then
+    error "[ERROR] Failed to execute command: $cmd"
+    error "Error output:"
+    error "$output"
+    return $exit_status
+  else
+    info "succcesfully ran $cmd"
+  fi
+
+  return 0
+}
+
+test() {
+ echo "we printing this out to stream"; exit 0   
+}
+
+run test
 
 
 ########## Variables
@@ -31,32 +78,34 @@ ui_config="i3 polybar dunst redshift"
 
 ##########
 
-# First initialize submodules
-echo "Updating submodules"
-git submodule update --init --recursive
-echo "...done"
+install() {
+    # First initialize submodules
+    info "Updating submodules"
+    run git submodule update --init --recursive
+    echo "...done"
 
-# create dotfiles_old in homedir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
-mkdir -p $olddir
-echo "...done"
+    # create dotfiles_old in homedir
+    info "Creating $olddir for backup of any existing dotfiles in ~"
+    run mkdir -p $olddir
+    info "...done"
 
-# change to the dotfiles directory
-echo "Changing to the $dir directory"
-cd $dir
-echo "...done"
+    # change to the dotfiles directory
+    info "Changing to config direcotry ($dir)"
+    run cd $dir
+    info "...done"
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
-for file in $shell_config; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
-done
+    # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+    for file in $shell_config; do
+        echo "Moving any existing dotfiles from ~ to $olddir"
+        mv ~/.$file ~/dotfiles_old/
+        echo "Creating symlink to $file in home directory."
+        ln -s $dir/$file ~/.$file
+    done
 
-for file in $ui_config; do
-    echo "Moving any existing dotfiles from $config_dir to $olddir"
-    mv $config_dir/$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file $config_dir/$file
-done
+    for file in $ui_config; do
+        echo "Moving any existing dotfiles from $config_dir to $olddir"
+        mv $config_dir/$file ~/dotfiles_old/
+        echo "Creating symlink to $file in home directory."
+        ln -s $dir/$file $config_dir/$file
+    done
+}

@@ -1,6 +1,9 @@
 {
-  "lazy.nvim": { "branch": "main", "commit": "1c16e4236f0937e8955865a0e5e046c7dafbc4b5" },
+  "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
+  "lazy.nvim": { "branch": "main", "commit": "16603c6917435d8446f7357cb61095138a417085" },
   "nightfly": { "branch": "master", "commit": "776f6ba8b9324838a250f55937ce7d957f820eeb" },
+  "nvim-tree.lua": { "branch": "master", "commit": "78a9ca5ed6557f29cd0ce203df44213e54bfabb9" },
+  "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "vim-maximizer": { "branch": "master", "commit": "2e54952fe91e140a2e69f35f22131219fcd9c5f1" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-tmux-navigator": { "branch": "master", "commit": "7db70e08ea03b3e4d91f63713d76134512e28d7e" }
