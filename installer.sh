@@ -28,7 +28,6 @@ info() {
 
 warning() {
   echo -e "${YELLOW}$1${NC} "
-keymap.set("n", "<C-/>", "gcc")
 }
 
 error() {
@@ -77,7 +76,6 @@ ui_config="i3 polybar dunst redshift"
 
 
 ##########
-
 install() {
     # First initialize submodules
     info "Updating submodules"

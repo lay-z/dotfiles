@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "layz.plugins" }, --[[ { import = "layz.plugins.lsp" } ]] }, {
+require("lazy").setup({ { import = "layz.plugins" }, { import = "layz.plugins.lsp" } }, {
   install = {
     colorscheme = { "nightfly" },
   },
@@ -20,6 +20,7 @@ require("lazy").setup({ { import = "layz.plugins" }, --[[ { import = "layz.plugi
     notify = false,
   },
   change_detection = {
-    notify = false,
+    enabled = true,
+    notify = true,
   },
 })
