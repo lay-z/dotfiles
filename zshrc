@@ -291,9 +291,18 @@ rust_clear_target(){
 
 
 # Ruby stuff
-if [ -f "~/.rvm/scripts/rvm" ]; then
-  source ~/.rvm/scripts/rvm
-fi
+
+# ruby_paths=(
+#   "/etc/profile.d/rvm.sh"
+#   "~/.rvm/scripts/rvm"
+# )
+# # Loop through the array
+# for path in "${ruby_paths[@]}"; do
+#   # Check if the path exists
+#   if [ -f "$path" ]; then
+#     . $path
+#   fi
+# done
 
 
 ########################## Place to keep fun and technological information ################# 
@@ -392,6 +401,10 @@ function zvm_after_init() {
       #        echo $dir
       #    done
       #}
+      #
+      export FZF_DEFAULT_COMMAND="fd . $HOME"                                                                                                                                                                             23-11-01 - 19:22:26
+      export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+      export FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME "
   fi
 
   # allow for ctrl space to accept auto suggestion
