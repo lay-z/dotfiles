@@ -404,7 +404,7 @@ function zvm_after_init() {
       #
       export FZF_DEFAULT_COMMAND="fd . $HOME"                                                                                                                                                                             23-11-01 - 19:22:26
       export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-      export FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME "
+      export FZF_ALT_C_COMMAND='fd -i -t d -L --exclude "go/pkg" --exclude "node_modules" -d 6 . $HOME'
   fi
 
   # allow for ctrl space to accept auto suggestion
@@ -436,3 +436,6 @@ TRAPWINCH() {
 #[[ $- != *i* ]] && return
 # Otherwise start tmux
 #[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
