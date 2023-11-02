@@ -291,18 +291,12 @@ rust_clear_target(){
 
 
 # Ruby stuff
+if [ -f "~/.rvm/scripts/rvm" ]; then 
+  source ~/.rvm/scripts/rvm
 
-# ruby_paths=(
-#   "/etc/profile.d/rvm.sh"
-#   "~/.rvm/scripts/rvm"
-# )
-# # Loop through the array
-# for path in "${ruby_paths[@]}"; do
-#   # Check if the path exists
-#   if [ -f "$path" ]; then
-#     . $path
-#   fi
-# done
+  # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+  export PATH="$PATH:$HOME/.rvm/bin"
+fi
 
 
 ########################## Place to keep fun and technological information ################# 
@@ -396,21 +390,22 @@ function zvm_after_init() {
       # https://github.com/ajeetdsouza/zoxide but with zsh
       #function zcd() {
       #    dir=[ -z "$1"] || cwd
-      #    while [ -d $dir ]; do
+      #    while [ -d $dir ]" do
       #        dir=$(ls $dir | fzf)
       #        echo $dir
       #    done
       #}
-      #
-      export FZF_DEFAULT_COMMAND="fd . $HOME"                                                                                                                                                                             23-11-01 - 19:22:26
-      export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-      export FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME"
+      FZF_DEFAULT_COMMAND="fd . $HOME"
+      FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+      FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME"
   fi
+      #
 
   # allow for ctrl space to accept auto suggestion
   bindkey '^ ' autosuggest-accept
 
 }
+
 
 
 
@@ -427,9 +422,9 @@ alias la="ls -la"
 alias ll="ls -la"
 
 
-TRAPWINCH() {
-  zle && { zle reset-prompt; zle -R }
-}
+# TRAPWINCH() {
+#   zle && { zle reset-prompt" zle -R }
+# }
 
 # Start TMUX off
 # If not running interactively, do not do anything
@@ -437,5 +432,3 @@ TRAPWINCH() {
 # Otherwise start tmux
 #[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
