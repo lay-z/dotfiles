@@ -291,8 +291,9 @@ rust_clear_target(){
 
 
 # Ruby stuff
+source ~/.rvm/scripts/rvm
 if [ -f "~/.rvm/scripts/rvm" ]; then
-    source ~/.arvm/scripts/rvm
+    echo "TODO we gotta understand why this doesn't work?"
 
     # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
     export PATH="$PATH:$HOME/.rvm/bin"

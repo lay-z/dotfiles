@@ -20,6 +20,7 @@ return {
 				"pylint", -- python linter
 				"eslint_d", -- js linter
 				"beautysh", --Shell script linter
+				"rufo",
 			},
 		})
 
@@ -51,6 +52,7 @@ return {
 					end,
 				}),
 				formatting.beautysh,
+				formatting.rufo,
 			},
 			-- configure format on save
 			on_attach = function(current_client, bufnr)
