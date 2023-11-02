@@ -74,7 +74,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git ubuntu zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages zsh-vi-mode )
 
 ##### plugin configuration for colorize
-ZSH_COLORIZE_STYLE="dracula" 
+ZSH_COLORIZE_STYLE="dracula"
 ZSH_COLORIZE_TOOL=chroma
 
 alias less=cless
@@ -108,7 +108,7 @@ export EDITOR=/home/layz/.local/bin/lvim
 export DOTFILES_DIR=~/Code/dotfiles
 
 function commit_dot_files() {
-	cd $DOTFILES_DIR && git add --all && git commit -am "modified $1" && cd -
+    cd $DOTFILES_DIR && git add --all && git commit -am "modified $1" && cd -
 }
 
 
@@ -199,12 +199,12 @@ alias todo_productivity="vim $TODO_DIR/producivity-todo.md"
 # TODO need to put this into an if
 #
 if program_exists clipboard ; then
-	alias clipboard=clipboard
-# If system is wayland
+    alias clipboard=clipboard
+    # If system is wayland
 elif [[ $XDG_SESSION_TYPE = 'wayland' ]]; then
-	alias clipboard=wl-copy
+    alias clipboard=wl-copy
 else
-	alias clipboard="xclip -sel clip"
+    alias clipboard="xclip -sel clip"
 fi
 
 # helpful methods
@@ -217,7 +217,7 @@ function hdi(){ howdoi $* -c -n 5; }
 
 # Sets the brightness for all connected monitors through xrandr
 brightness() {
-	xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1 
+    xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1
 }
 
 pid_from_ps_aux() {
@@ -235,10 +235,10 @@ kill_processes() {
 }
 
 
-color_picker() { 
-  color=$(grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | awk '{print $3}')
-  echo $color
-  echo $color | clipboard
+color_picker() {
+    color=$(grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | awk '{print $3}')
+    echo $color
+    echo $color | clipboard
 }
 
 
@@ -266,7 +266,7 @@ if program_exists go ; then
     go env -w GOBIN=$GOBIN
 
     go_playground() {
-        
+
         mkdir /tmp/goplayground
         cd /tmp/goplayground
         echo 'package main
@@ -276,7 +276,7 @@ import (
 
 func main() {
     fmt.Println("Hello, playground")
-}'      > main.go
+        }'      > main.go
         vim main.go
     }
 fi
@@ -286,22 +286,22 @@ fi
 # Rust stuff
 
 rust_clear_target(){
-  find . -name target -type d | xargs rm -rfv
+    find . -name target -type d | xargs rm -rfv
 }
 
 
 # Ruby stuff
-if [ -f "~/.rvm/scripts/rvm" ]; then 
-  source ~/.rvm/scripts/rvm
+if [ -f "~/.rvm/scripts/rvm" ]; then
+    source ~/.rvm/scripts/rvm
 
-  # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-  export PATH="$PATH:$HOME/.rvm/bin"
+    # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+    export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
 
-########################## Place to keep fun and technological information ################# 
+########################## Place to keep fun and technological information #################
 fun_n_technological(){
-  vim ~/Documents/EarthAcre/fun_n_technological.md
+    vim ~/Documents/EarthAcre/fun_n_technological.md
 }
 
 
@@ -316,12 +316,12 @@ export VISUAL="vim"
 # Automatically gets your public ip address and copies it into the clipboard for use
 whatsmyip() {
     ## dig +short myip.opendns.com resolver2.opendns.com | clipboard
-  curl https://ipinfo.io/ip | clipboard
+    curl https://ipinfo.io/ip | clipboard
 }
 
 # Scan local network for Machines and some info about them
 nmap_scan_local() {
-   sudo nmap -sn 192.168.1.0/24
+    sudo nmap -sn 192.168.1.0/24
 }
 
 backspace_swapped() {
@@ -370,7 +370,7 @@ export PATH="$PATH:$DOTFILES_DIR/chrome-apps"
 
 # TMUX specific stuff
 reload_tmux_conf() {
-  tmux source-file ~/.tmux.conf
+    tmux source-file ~/.tmux.conf
 }
 
 if [ -f /tmp/foo.txt ]; then
@@ -380,29 +380,29 @@ fi
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=#B08AE7,bg=underline
 
 # thanks to vi-mode plugin, need to run these key binds after zsh init
-function zvm_after_init() { 
-  # Initialize fzf
-  if [ -f ~/.fzf.zsh ]; then
-      source ~/.fzf.zsh
-      # now lets do some zsh specific functions
-      
-      # TODO try to figure out a way to produce some kind of usability like
-      # https://github.com/ajeetdsouza/zoxide but with zsh
-      #function zcd() {
-      #    dir=[ -z "$1"] || cwd
-      #    while [ -d $dir ]" do
-      #        dir=$(ls $dir | fzf)
-      #        echo $dir
-      #    done
-      #}
-      FZF_DEFAULT_COMMAND="fd . $HOME"
-      FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-      FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME"
-  fi
-      #
+function zvm_after_init() {
+    # Initialize fzf
+    if [ -f ~/.fzf.zsh ]; then
+        source ~/.fzf.zsh
+        # now lets do some zsh specific functions
 
-  # allow for ctrl space to accept auto suggestion
-  bindkey '^ ' autosuggest-accept
+        # TODO try to figure out a way to produce some kind of usability like
+        # https://github.com/ajeetdsouza/zoxide but with zsh
+        #function zcd() {
+        #    dir=[ -z "$1"] || cwd
+        #    while [ -d $dir ]" do
+        #        dir=$(ls $dir | fzf)
+        #        echo $dir
+        #    done
+        #}
+        FZF_DEFAULT_COMMAND="fd . $HOME"
+        FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+        FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME"
+    fi
+    #
+
+    # allow for ctrl space to accept auto suggestion
+    bindkey '^ ' autosuggest-accept
 
 }
 
@@ -431,4 +431,3 @@ alias ll="ls -la"
 #[[ $- != *i* ]] && return
 # Otherwise start tmux
 #[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
-
