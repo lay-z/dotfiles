@@ -1,3 +1,5 @@
+local config = require("layz.config")
+
 local opt = vim.opt -- for conciseness :)
 
 --line numbers
@@ -22,8 +24,10 @@ opt.cursorline = true
 
 -- appearance
 opt.termguicolors = true
-opt.background = "dark"
--- opt.background = "light"
+opt.background = config["background"]
+print(config["colorscheme"])
+vim.cmd.colorscheme(config["colorscheme"])
+
 opt.signcolumn = "yes"
 
 -- backspace key
@@ -39,3 +43,8 @@ opt.splitbelow = true
 opt.iskeyword:append("-")
 
 opt.mouse = "a"
+
+-- Set up that log levels
+vim.lsp.set_log_level("debug")
+
+return config

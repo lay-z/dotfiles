@@ -150,10 +150,21 @@ return {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
+
+		-- TODO need to figure out why ruby_ls doesn't work :sob:
+		-- For some reason its in the config, but just doesn't work as expected
+		-- require("lspconfig").ruby_ls.setup({
+		-- 	-- capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- 	root_dir = require("lspconfig.util").root_pattern("*gemfile"),
+		-- 	-- root_pattern = { "gemfile", ".git", ".exercism", "test" },
+		-- })
+
 		lspconfig["solargraph"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-			root_pattern = { "gemfile", ".git", ".exercism" },
+			root_dir = require("lspconfig.util").root_pattern("gemfile", ".git", ".exercism"),
+			-- root_pattern = { "gemfile", ".git", ".exercism" },
 		})
 	end,
 }
