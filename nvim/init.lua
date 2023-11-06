@@ -2,3 +2,4 @@
 require("layz.core.keymaps")
 require("layz.lazy")
 require("layz.core.options")
+require("layz.core.tests")
