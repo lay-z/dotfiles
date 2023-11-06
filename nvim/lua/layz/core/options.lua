@@ -25,7 +25,6 @@ opt.cursorline = true
 -- appearance
 opt.termguicolors = true
 opt.background = config["background"]
-print(config["colorscheme"])
 vim.cmd.colorscheme(config["colorscheme"])
 
 opt.signcolumn = "yes"
