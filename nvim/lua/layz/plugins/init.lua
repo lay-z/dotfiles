@@ -1,7 +1,8 @@
 return {
-  "christoomey/vim-tmux-navigator",
-  "tpope/vim-surround",
-  "nvim-lua/plenary.nvim",
-  "nvim-tree/nvim-tree.lua",
+	"christoomey/vim-tmux-navigator",
+	"tpope/vim-surround",
+	"tpope/vim-unimpaired",
+	"nvim-lua/plenary.nvim",
+	"FabijanZulj/blame.nvim",
+	"nvim-tree/nvim-tree.lua",
 }
-
