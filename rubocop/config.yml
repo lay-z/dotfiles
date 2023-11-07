@@ -1,0 +1,5 @@
+# .rubocop.yml
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  # Or set to 'ignore' if you want to allow both single and double quotes
+  Enabled: false
