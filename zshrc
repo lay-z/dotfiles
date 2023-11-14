@@ -66,6 +66,38 @@ COMPLETION_WAITING_DOTS="true"
 
 # Would you like to use another custom folder than $ZSH/custom?
 
+#!/bin/bash
+
+# Usage: clone_plugin <repo_url>
+# Example: clone_plugin https://github.com/username/my-plugin.git
+install_plug() {
+  local repo_url="$1"
+  local plugin_name=$(basename "$repo_url" .git)
+  local plugins_dir="$HOME/.oh-my-zsh/custom/plugins"
+
+  # Check if the plugin directory already exists
+  if [ -d "$plugins_dir/$plugin_name" ]; then
+    echo "Plugin '$plugin_name' already exists in '$plugins_dir'. Skipping clone."
+    return 1
+  fi
+
+  # Clone the repository
+  git clone "$repo_url" "$plugins_dir/$plugin_name"
+
+  if [ $? -ne 0 ]; then
+    echo "Failed to clone plugin '$plugin_name'."
+    return 1
+  fi
+
+  return 0
+}
+
+# make sure custom plugins are installed first
+install_plug https://github.com/zsh-users/zsh-autosuggestions
+install_plug https://github.com/zsh-users/zsh-syntax-highlighting
+install_plug https://github.com/jeffreytse/zsh-vi-mode
+
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -269,9 +301,19 @@ convert_image() {
 
 ## Node stuff
 
+install_nvm() {
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+}
+
 # too add node version manager support
+# This loads nvm
 export NVM_DIR="/home/layz/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+if [ -f $NVM_DIR/nvm.sh ]; then
+    . "$NVM_DIR/nvm.sh"
+  else
+    # TODO ask if we want to install nvm?
+    install_nvm
+fi
 
 # Turn zsh into vim mode
 # bindkey -v
@@ -312,12 +354,21 @@ rust_clear_target(){
 
 
 # Ruby stuff
-source ~/.rvm/scripts/rvm
-if [ -f "~/.rvm/scripts/rvm" ]; then
-    echo "TODO we gotta understand why this doesn't work?"
 
+# https://rvm.io/rvm/install
+install_rvm() {
+  gpg --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+  curl -sSL https://get.rvm.io | bash -s stable --ruby
+}
+
+if [ -f ~/.rvm/scripts/rvm ]; then
     # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+    source ~/.rvm/scripts/rvm
     export PATH="$PATH:$HOME/.rvm/bin"
+  else
+    # TODO ask if we want to install rvm?
+    install_rvm 
+    source ~/.rvm/scripts/rvm
 fi
 
 
@@ -513,3 +564,4 @@ alias ll="ls -la"
 #[[ $- != *i* ]] && return
 # Otherwise start tmux
 #[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
