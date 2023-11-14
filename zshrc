@@ -178,6 +178,14 @@ alias d="docker"
 alias list_open_ports="netstat -lntu"
 alias list_open_ports_with_processes="sudo netstat -tlnp"
 
+
+# Unclear if this is useful or not
+docker_group(){
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+  newgrp docker
+}
+
 # git aliases
 alias gitlog="git log --all --decorate --oneline --graph"
 # seems to do the same thing as above, but also removes remote, actually no seems to be better version of above command
