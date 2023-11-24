@@ -71,25 +71,25 @@ COMPLETION_WAITING_DOTS="true"
 # Usage: clone_plugin <repo_url>
 # Example: clone_plugin https://github.com/username/my-plugin.git
 install_plug() {
-  local repo_url="$1"
-  local plugin_name=$(basename "$repo_url" .git)
-  local plugins_dir="$HOME/.oh-my-zsh/custom/plugins"
+    local repo_url="$1"
+    local plugin_name=$(basename "$repo_url" .git)
+    local plugins_dir="$HOME/.oh-my-zsh/custom/plugins"
 
-  # Check if the plugin directory already exists
-  if [ -d "$plugins_dir/$plugin_name" ]; then
-    echo "Plugin '$plugin_name' already exists in '$plugins_dir'. Skipping clone."
-    return 1
-  fi
+    # Check if the plugin directory already exists
+    if [ -d "$plugins_dir/$plugin_name" ]; then
+        # echo "Plugin '$plugin_name' already exists in '$plugins_dir'. Skipping clone."
+        return 1
+    fi
 
-  # Clone the repository
-  git clone "$repo_url" "$plugins_dir/$plugin_name"
+    # Clone the repository
+    git clone "$repo_url" "$plugins_dir/$plugin_name"
 
-  if [ $? -ne 0 ]; then
-    echo "Failed to clone plugin '$plugin_name'."
-    return 1
-  fi
+    if [ $? -ne 0 ]; then
+        echo "Failed to clone plugin '$plugin_name'."
+        return 1
+    fi
 
-  return 0
+    return 0
 }
 
 # make sure custom plugins are installed first
@@ -181,9 +181,9 @@ alias list_open_ports_with_processes="sudo netstat -tlnp"
 
 # Unclear if this is useful or not
 docker_group(){
-  sudo groupadd docker
-  sudo usermod -aG docker $USER
-  newgrp docker
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    newgrp docker
 }
 
 # git aliases
@@ -310,7 +310,7 @@ convert_image() {
 ## Node stuff
 
 install_nvm() {
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 }
 
 # too add node version manager support
@@ -318,7 +318,7 @@ install_nvm() {
 export NVM_DIR="/home/layz/.nvm"
 if [ -f $NVM_DIR/nvm.sh ]; then
     . "$NVM_DIR/nvm.sh"
-  else
+else
     # TODO ask if we want to install nvm?
     install_nvm
 fi
@@ -365,17 +365,17 @@ rust_clear_target(){
 
 # https://rvm.io/rvm/install
 install_rvm() {
-  gpg --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-  curl -sSL https://get.rvm.io | bash -s stable --ruby
+    gpg --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+    curl -sSL https://get.rvm.io | bash -s stable --ruby
 }
 
 if [ -f ~/.rvm/scripts/rvm ]; then
     # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
     source ~/.rvm/scripts/rvm
     export PATH="$PATH:$HOME/.rvm/bin"
-  else
+else
     # TODO ask if we want to install rvm?
-    install_rvm 
+    install_rvm
     source ~/.rvm/scripts/rvm
 fi
 
