@@ -45,6 +45,7 @@ return {
 				formatting.stylua, -- lua formatter
 				formatting.isort,
 				formatting.black,
+				formatting.standardrb,
 				diagnostics.pylint,
 				diagnostics.standardrb,
 				diagnostics.eslint_d.with({ -- js/ts linter
