@@ -173,11 +173,23 @@ alias chtsh="CHTSH_QUERY_OPTIONS="style=perldoc" cht.sh"
 
 # Other handy aliases
 alias open="xdg-open"
-alias dc="docker-compose"
-alias d="docker"
 alias list_open_ports="netstat -lntu"
 alias list_open_ports_with_processes="sudo netstat -tlnp"
 
+
+##################################################################################################
+########################################## DOCKER THINGS #########################################
+##################################################################################################
+
+
+docker_started() {
+    systemctl is-active --quiet docker || systemctl start docker
+}
+
+
+alias dc="docker_started && docker compose"
+alias dcu="docker_started && docker compose up"
+alias d="docker_started docker"
 
 # Unclear if this is useful or not
 docker_group(){
@@ -185,6 +197,12 @@ docker_group(){
     sudo usermod -aG docker $USER
     newgrp docker
 }
+
+
+
+##################################################################################################
+########################################### GIT THINGS ###########################################
+##################################################################################################
 
 # git aliases
 alias gitlog="git log --all --decorate --oneline --graph"
