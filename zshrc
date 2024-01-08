@@ -121,6 +121,8 @@ export SAVEHIST=1000000000
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
 
+# TODO try to figure out a way to also share history with other machines
+
 # export MANPATH="/usr/local/man:$MANbinPATH"TH
 
 
@@ -206,10 +208,12 @@ docker_group(){
 
 # git aliases
 alias gitlog="git log --all --decorate --oneline --graph"
+# Git alias - deletes all branches that have been merged into master (I think)
+alias gitbd='git branch --merged | grep -i -v -E "master"| xargs git branch -d'
 # seems to do the same thing as above, but also removes remote, actually no seems to be better version of above command
 alias gitprune="git remote prune origin && git branch --merged origin/master | xargs git branch -d"
-# Git alias - deletes all branches that have been merged into master (I think)
-alias gbd='git branch --merged | grep -i -v -E "master"| xargs git branch -d'
+
+alias git_rm_untracked="git ls-files --others --exclude-standard | xargs rm -rfv"
 
 
 
@@ -240,6 +244,7 @@ function init_testnet() {
 
 
 function program_exists() {
+    # TODO figure out why this and not `which`
     hash $1 2>/dev/null
 }
 
@@ -274,8 +279,20 @@ reset_keyboard() { sh ~/.profile }
 swap_caps_esc() {
     local layout=${1:-gb} # Default to 'gb' if no argument is provided
 
-    setxkbmap -layout $layout -option # make CapsLock behave like Ctrl:
+    # Clear the existing layout
+    setxkbmap -layout $layout -option
+    # make CapsLock behave like Ctrl:
     setxkbmap -layout $layout -option ctrl:nocaps -option altwin:swap_alt_win
+
+    # make short-pressed Ctrl behave like Escape:
+    xcape -e 'Control_L=Escape'
+}
+
+swap_caps_esc_sonia() {
+    local layout=${1:-gb} # Default to 'gb' if no argument is provided
+
+    setxkbmap -layout $layout -option # make CapsLock behave like Ctrl:
+    setxkbmap -layout $layout -option ctrl:nocaps #option altwin:swap_alt_win
 
     # make short-pressed Ctrl behave like Escape:
     xcape -e 'Control_L=Escape'
@@ -287,6 +304,11 @@ function hdi(){ howdoi $* -c -n 5; }
 # Sets the brightness for all connected monitors through xrandr
 brightness() {
     xrandr | grep -E "\sconnected" | awk '{print $1}' | xargs -I {} xrandr --output {} --brightness $1
+}
+
+
+pick_timezone() {
+    timedatectl set-timezone $(timedatectl list-timezones | fzf)
 }
 
 pid_from_ps_aux() {

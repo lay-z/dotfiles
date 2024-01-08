@@ -151,9 +151,12 @@ return {
 			},
 		})
 
-		lspconfig["pyright"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
+		-- solidity babay
+		lspconfig["solidity"].setup({
+			cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
+			filetypes = { "solidity" },
+			root_dir = lspconfig.util.find_git_ancestor,
+			single_file_support = true,
 		})
 
 		-- TODO need to figure out why ruby_ls doesn't work :sob:
