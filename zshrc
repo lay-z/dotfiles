@@ -276,7 +276,7 @@ is_running() { ps aux | grep $1 }
 untar() { tar -xzvf $1 }
 reset_keyboard() { sh ~/.profile }
 
-swap_caps_esc() {
+swap_caps_esc_alt_win() {
     local layout=${1:-gb} # Default to 'gb' if no argument is provided
 
     # Clear the existing layout
@@ -288,7 +288,8 @@ swap_caps_esc() {
     xcape -e 'Control_L=Escape'
 }
 
-swap_caps_esc_sonia() {
+# todo need to figure out how to name this, doesn't include swap_alt_win
+swap_caps_esc() {
     local layout=${1:-gb} # Default to 'gb' if no argument is provided
 
     setxkbmap -layout $layout -option # make CapsLock behave like Ctrl:
@@ -530,13 +531,17 @@ mount_pdn_store() {
 alias activate="source venv/bin/activate"
 export GOPRIVATE=github.com/m2m-architect
 
+# Used for poetry autoloading completion
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+
 ## Conda
 alias condasetup="source ~/anaconda3/bin/activate"
 
 
 # PYenv
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH" || eval "$(pyenv init -)"
+command -v pyenv >/dev/null && export PATH="$PYENV_ROOT/bin:$PATH" && eval "$(pyenv init -)"
 
 
 # Flatpak installation
