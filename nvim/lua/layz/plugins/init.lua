@@ -5,4 +5,5 @@ return {
 	"nvim-lua/plenary.nvim",
 	"FabijanZulj/blame.nvim",
 	"nvim-tree/nvim-tree.lua",
+	"github/copilot.vim",
 }

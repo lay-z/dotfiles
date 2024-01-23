@@ -618,3 +618,5 @@ alias ll="ls -la"
 # Otherwise start tmux
 #[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(atuin init zsh)"
