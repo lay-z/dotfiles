@@ -192,6 +192,11 @@ docker_started() {
 alias dc="docker_started && docker compose"
 alias dcu="docker_started && docker compose up"
 alias d="docker_started docker"
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias dst="docker stop $(docker ps -q)"
+alias drm="docker rm $(dst)"
+
 
 # Unclear if this is useful or not
 docker_group(){
@@ -620,3 +625,5 @@ alias ll="ls -la"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(atuin init zsh)"
+CLUSTER=arn:aws:ecs:us-east-1:853100499654:cluster/tradable-non-production-ecs
+SERVICE=arn:aws:ecs:us-east-1:853100499654:service/tradable-non-production-ecs/tradable-non-production-onchain-service
