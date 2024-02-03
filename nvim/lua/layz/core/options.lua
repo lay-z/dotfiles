@@ -46,4 +46,11 @@ opt.mouse = "a"
 -- Set up that log levels
 vim.lsp.set_log_level("debug")
 
+-- Restore these parts of session when reopening nvim
+-- https://neovim.io/doc/user/options.html#'sessionoptions'
+-- By default vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,terminal'
+-- Adding 'globals' to enable restoring of tab names for tabby - https://github.com/nanozuki/tabby.nvim?tab=readme-ov-file#save-and-restore-in-session
+-- TODO maybe this should stil in the tabby config section?
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,globals"
+
 return config
