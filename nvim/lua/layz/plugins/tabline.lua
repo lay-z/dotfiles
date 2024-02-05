@@ -7,4 +7,8 @@ return {
 	--   -- configs...
 	-- end,
 	"https://github.com/mg979/tabline.nvim",
+	config = function()
+		require("tabline.setup").setup()
+		require("tabline.setup").mappings()
+	end,
 }

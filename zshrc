@@ -194,8 +194,8 @@ alias dcu="docker_started && docker compose up"
 alias d="docker_started docker"
 alias dps="docker ps"
 alias dpsa="docker ps -a"
-alias dst="docker stop $(docker ps -q)"
-alias drm="docker rm $(dst)"
+alias dst='docker stop $(docker ps -q)'
+alias drm='docker rm $(dst)'
 
 
 # Unclear if this is useful or not

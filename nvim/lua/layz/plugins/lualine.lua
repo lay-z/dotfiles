@@ -55,6 +55,7 @@ return {
 				-- theme = "ayu",
 				-- TODO try to figure out how we can keep this in configuration somewhere
 				theme = "catppuccin",
+				globalstatus = true,
 			},
 			sections = {
 				lualine_x = {
@@ -66,6 +67,13 @@ return {
 					{ "encoding" },
 					{ "fileformat" },
 					{ "filetype" },
+					{
+						-- https://github.com/gennaro-tedesco/nvim-possession?tab=readme-ov-file#-statusline
+						require("nvim-possession").status,
+						cond = function()
+							return require("nvim-possession").status() ~= nil
+						end,
+					},
 				},
 			},
 		})
