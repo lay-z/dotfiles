@@ -18,7 +18,7 @@ keymap.set("n", "<leader>w", ":wall<CR>") -- write all open buffers
 keymap.set("n", "<leader>wq", ":wqall<CR>") -- write all open buffers
 keymap.set("n", "<leader>q", ":q<CR>") -- write all open buffers
 
-keymap.set("n", "<leader>to", ":tabnew<CR>")
+keymap.set("n", "<leader>to", ":tabnew<CR>:Telescope find_files hidden=true<CR>")
 keymap.set("n", "<leader>tx", ":tabclose<CR>")
 keymap.set("n", "<leader>tn", ":tabnext<CR>")
 keymap.set("n", "<leader>tp", ":tabprevious<CR>")
@@ -26,7 +26,6 @@ keymap.set("n", "<leader>tp", ":tabprevious<CR>")
 keymap.set("n", "<leader>bp", ":bp<CR>") -- Previous buffer
 keymap.set("n", "<leader>bn", ":bn<CR>") -- Next buffer
 keymap.set("n", "<leader>bx", ":bd<CR>") -- Close buffer TODO figure out how to close buffer, but bring on another buffer in window :thinking_face:
-keymap.set("n", "<leader>tp", ":tabprevious<CR>")
 
 -- Getting commenting to work
 keymap.set("n", "<C-t>", "gcc")
