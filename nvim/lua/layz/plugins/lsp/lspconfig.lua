@@ -174,5 +174,11 @@ return {
 			root_dir = require("lspconfig.util").root_pattern("gemfile", ".git", ".exercism"),
 			-- root_pattern = { "gemfile", ".git", ".exercism" },
 		})
+
+		lspconfig["gopls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			-- root_pattern = { "gemfile", ".git", ".exercism" },
+		})
 	end,
 }

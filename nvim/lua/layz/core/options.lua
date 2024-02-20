@@ -70,4 +70,17 @@ vim.g.neovide_cursor_vfx_mode = "pixiedust"
 vim.g.neovide_cursor_vfx_particle_density = 20
 vim.g.neovide_cursor_animation_length = 0.05
 
+-- TODO figure out how to do this right :joy:
+-- Auto command to automatically update nerdtree to use match currently opened window
+-- vim.cmd([[
+--   autocmd BufEnter * if &modifiable | NERDTreeFind | wincmd p | endif
+-- ]])
+
+-- function Test()
+-- 	if vim.bo.modifiable then
+-- 		vim.cmd("NERDTreeFind")
+-- 		-- vim.cmd("wincmd p")
+-- 	end
+-- end
+
 return config

@@ -247,6 +247,9 @@ function init_testnet() {
     rm -rf ~/.avalanchego && AVAXBUILDPATH=$GOPATH/src/github.com/ava-labs/avalanchego/build/avalanchego ./scripts/run.sh
 }
 
+function path_exists() {
+    [ -d $1 ]
+}
 
 function program_exists() {
     # TODO figure out why this and not `which`
@@ -375,7 +378,7 @@ fi
 
 # Go stuff!
 # only do this if the go binary is available
-if program_exists go ; then
+if path_exists /usr/local/go ; then
     export GOBIN=$HOME/Code/go/bin
     export GOPATH=$HOME/Code/go
     export PATH=/usr/local/go/bin:$GOBIN:$PATH
