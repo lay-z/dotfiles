@@ -56,7 +56,7 @@ return {
 			keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
 			opts.desc = "Format the file"
-			vim.keymap.set("n", "<space>f", function()
+			vim.keymap.set("n", "<leader>lf", function()
 				vim.lsp.buf.format({ async = true })
 			end, opts)
 

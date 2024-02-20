@@ -53,4 +53,21 @@ vim.lsp.set_log_level("debug")
 -- TODO maybe this should stil in the tabby config section?
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,globals"
 
+-- Set up NEOVIDE
+vim.o.guifont = "Source Code Pro:h9" -- text below applies for VimScript
+vim.g.neovide_padding_top = 20
+vim.g.neovide_padding_bottom = 20
+vim.g.neovide_padding_right = 10
+vim.g.neovide_padding_left = 10
+vim.g.neovide_floating_blur_amount_x = 20.0
+vim.g.neovide_floating_blur_amount_y = 20.0
+vim.g.neovide_window_blurred = true
+vim.g.neovide_floating_shadow = true
+vim.g.neovide_floating_z_height = 10
+vim.g.neovide_light_angle_degrees = 45
+vim.g.neovide_light_radius = 5
+vim.g.neovide_cursor_vfx_mode = "pixiedust"
+vim.g.neovide_cursor_vfx_particle_density = 20
+vim.g.neovide_cursor_animation_length = 0.05
+
 return config
