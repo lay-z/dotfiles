@@ -3,11 +3,14 @@ return {
 	dependencies = {
 		"ibhagwan/fzf-lua",
 	},
-	conig = true,
+	config = true,
 	opts = {
 		autoload = true, -- Automatiacally load sessions defined for the current working directory
 		autoswitch = {
 			enable = true, -- Automatically saves and removes deletes any unsaved buffers currently open
+		},
+		autosave = {
+			enable = true, -- Automatically saves the session when you quit the editor
 		},
 	},
 	init = function()

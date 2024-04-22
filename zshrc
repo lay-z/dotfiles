@@ -146,6 +146,16 @@ function commit_dot_files() {
 }
 
 
+# Utiliy functions
+function path_exists() {
+    [ -d $1 ]
+}
+
+function program_exists() {
+    # TODO figure out why this and not `which`
+    hash $1 2>/dev/null
+}
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -216,10 +226,23 @@ alias gitlog="git log --all --decorate --oneline --graph"
 # Git alias - deletes all branches that have been merged into master (I think)
 alias gitbd='git branch --merged | grep -i -v -E "master"| xargs git branch -d'
 # seems to do the same thing as above, but also removes remote, actually no seems to be better version of above command
-alias gitprune="git remote prune origin && git branch --merged origin/master | xargs git branch -d"
+function gitprune() {
+    local branch="${1:-default_value}"
+    echo "Pruning all branches that have been merged into $branch"
+    # Rest of your function code goes here
+    git remote prune $branch && git branch --merged $branch/master | xargs git branch -d
+}
 
 alias git_rm_untracked="git ls-files --others --exclude-standard | xargs rm -rfv"
 
+
+##################################################################################################
+########################################### GIT hub things ###########################################
+##################################################################################################
+if program_exists gh; then
+    # TODO gotta work  out if the copilot extension is installed? and ask to install if its not?
+    eval "$(gh copilot alias -- zsh)"
+fi
 
 
 # Jupyter fun times
@@ -245,15 +268,6 @@ function init_testnet() {
     gtcgo
     cd gtc-avalanche-network-runner
     rm -rf ~/.avalanchego && AVAXBUILDPATH=$GOPATH/src/github.com/ava-labs/avalanchego/build/avalanchego ./scripts/run.sh
-}
-
-function path_exists() {
-    [ -d $1 ]
-}
-
-function program_exists() {
-    # TODO figure out why this and not `which`
-    hash $1 2>/dev/null
 }
 
 

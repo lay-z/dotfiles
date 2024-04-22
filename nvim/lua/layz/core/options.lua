@@ -54,7 +54,7 @@ vim.lsp.set_log_level("debug")
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,globals"
 
 -- Set up NEOVIDE
-vim.o.guifont = "Source Code Pro:h9" -- text below applies for VimScript
+-- vim.o.guifont = "Source Code Pro:h9" -- text below applies for VimScript
 vim.g.neovide_padding_top = 20
 vim.g.neovide_padding_bottom = 20
 vim.g.neovide_padding_right = 10
@@ -69,6 +69,8 @@ vim.g.neovide_light_radius = 5
 vim.g.neovide_cursor_vfx_mode = "pixiedust"
 vim.g.neovide_cursor_vfx_particle_density = 20
 vim.g.neovide_cursor_animation_length = 0.05
+-- Gives you the effect of explosion on every keypress
+vim.g.neovide_cursor_vfx_mode = "sonicboom"
 
 -- TODO figure out how to do this right :joy:
 -- Auto command to automatically update nerdtree to use match currently opened window
