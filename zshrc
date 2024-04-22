@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/home/layz/.local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -286,6 +286,8 @@ alias todo_productivity="vim $TODO_DIR/producivity-todo.md"
 #
 if program_exists clipboard ; then
     alias clipboard=clipboard
+elif uname -a | grep -q "Darwin"; then
+  alias clipboard="pbcopy"
     # If system is wayland
 elif [[ $XDG_SESSION_TYPE = 'wayland' ]]; then
     alias clipboard=wl-copy
@@ -378,7 +380,7 @@ install_nvm() {
 
 # too add node version manager support
 # This loads nvm
-export NVM_DIR="/home/layz/.nvm"
+export NVM_DIR="$HOME/.nvm"
 if [ -f $NVM_DIR/nvm.sh ]; then
     . "$NVM_DIR/nvm.sh"
 else
@@ -546,7 +548,7 @@ init_paladin() {
 }
 
 mount_pdn_store() {
-    veracrypt /home/layz/crypts/paladin /media/veracrypt1
+    veracrypt $HOME/crypts/paladin /media/veracrypt1
 }
 
 # Python stuff
@@ -569,7 +571,7 @@ command -v pyenv >/dev/null && export PATH="$PYENV_ROOT/bin:$PATH" && eval "$(py
 # Flatpak installation
 PATH=/var/lib/flatpak/app:$PATH
 
-export PATH="$PATH:/home/layz/.foundry/bin"
+export PATH="$PATH:$HOME/.foundry/bin"
 
 
 # Set up chrome apps
@@ -625,7 +627,7 @@ source $ZSH/oh-my-zsh.sh
 
 # New files to replace common cli utilities
 unalias ls
-alias ls=exa
+alias ls=eza
 alias la="ls -la"
 alias ll="ls -la"
 
@@ -641,6 +643,11 @@ alias ll="ls -la"
 #[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(atuin init zsh)"
+if program_exists atuin; then
+  eval "$(atuin init zsh)"
+else
+  echo "Atuin not installed"
+fi
+
 CLUSTER=arn:aws:ecs:us-east-1:853100499654:cluster/tradable-non-production-ecs
 SERVICE=arn:aws:ecs:us-east-1:853100499654:service/tradable-non-production-ecs/tradable-non-production-onchain-service
