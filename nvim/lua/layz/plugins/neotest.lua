@@ -4,6 +4,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"antoinemadec/FixCursorHold.nvim",
 		"zidhuss/neotest-minitest", -- For ruby minitest support
+    "nvim-neotest/nvim-nio"
 	},
 	config = function()
 		require("neotest").setup({

@@ -42,6 +42,7 @@ return {
 					"dockerfile",
 					"gitignore",
 					"query",
+					"rust",
 					"ruby",
 				},
 				incremental_selection = {

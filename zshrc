@@ -295,6 +295,17 @@ else
     alias clipboard="xclip -sel clip"
 fi
 
+setup_mac_things() {
+  # For LLVM and rust installation
+  export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+  export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+}
+
+if uname -a | grep -q "Darwin"; then
+  setup_mac_things
+fi
+
 # helpful methods
 is_running() { ps aux | grep $1 }
 untar() { tar -xzvf $1 }

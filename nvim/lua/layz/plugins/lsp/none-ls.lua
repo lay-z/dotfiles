@@ -18,9 +18,8 @@ return {
 				"stylua", -- lua formatter
 				"black", -- python formatter
 				"pylint", -- python linter
-				"eslint_d", -- js linter
+				"eslint", -- js linter
 				"beautysh", --Shell script linter
-				"rufo",
 			},
 		})
 
@@ -45,15 +44,8 @@ return {
 				formatting.stylua, -- lua formatter
 				formatting.isort,
 				formatting.black,
-				formatting.standardrb,
 				diagnostics.pylint,
-				diagnostics.standardrb,
-				diagnostics.eslint_d.with({ -- js/ts linter
-					condition = function(utils)
-						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
-					end,
-				}),
-				formatting.beautysh,
+				formatting.shfmt,
 				-- formatting.rufo,
 			},
 			-- configure format on save

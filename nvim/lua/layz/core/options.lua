@@ -44,7 +44,7 @@ opt.iskeyword:append("-")
 opt.mouse = "a"
 
 -- Set up that log levels
-vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("info")
 
 -- Restore these parts of session when reopening nvim
 -- https://neovim.io/doc/user/options.html#'sessionoptions'
