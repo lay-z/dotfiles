@@ -436,6 +436,18 @@ rust_clear_target(){
     find . -name target -type d | xargs rm -rfv
 }
 
+if path_exists ~/.cargo/bin ; then
+    # Add cargo to PATH
+    export PATH=~/.cargo/bin:$PATH
+fi
+
+# rust, but also web3
+if path_exists ~/.foundry/bin ; then
+    # Add cargo to PATH
+    export PATH=~/.foundry/bin:$PATH
+fi
+
+
 
 # Ruby stuff
 
@@ -582,9 +594,6 @@ command -v pyenv >/dev/null && export PATH="$PYENV_ROOT/bin:$PATH" && eval "$(py
 # Flatpak installation
 PATH=/var/lib/flatpak/app:$PATH
 
-export PATH="$PATH:$HOME/.foundry/bin"
-
-
 # Set up chrome apps
 export PATH="$PATH:$DOTFILES_DIR/chrome-apps"
 
@@ -662,3 +671,10 @@ fi
 
 CLUSTER=arn:aws:ecs:us-east-1:853100499654:cluster/tradable-non-production-ecs
 SERVICE=arn:aws:ecs:us-east-1:853100499654:service/tradable-non-production-ecs/tradable-non-production-onchain-service
+
+# bun completions
+[ -s "/Users/priyav/.bun/_bun" ] && source "/Users/priyav/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

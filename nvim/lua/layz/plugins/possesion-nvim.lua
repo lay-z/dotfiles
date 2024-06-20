@@ -14,6 +14,7 @@ return {
 		},
 	},
 	init = function()
+		-- should check if session location is created and create if not?
 		local possession = require("nvim-possession")
 		vim.keymap.set("n", "<leader>sl", function()
 			possession.list()

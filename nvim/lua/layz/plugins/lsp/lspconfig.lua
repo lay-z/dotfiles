@@ -4,8 +4,17 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
+		"mrcjkb/rustaceanvim",
+		-- "simrat39/rust-tools.nvim",
+	},
+	opts = {
+		inlay_hints = { enabled = true },
 	},
 	config = function()
+		-- configure neovim lsp
+		require("neodev").setup()
+		-- require("neodev").setup()
+
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
 
@@ -14,8 +23,13 @@ return {
 
 		local keymap = vim.keymap -- for conciseness
 
-		local opts = { noremap = true, silent = true }
 		local on_attach = function(client, bufnr)
+			print("On attach running on lspconfig")
+			local opts = {
+				noremap = true,
+				silent = true,
+			}
+
 			opts.buffer = bufnr
 
 			-- set keybinds
@@ -98,10 +112,19 @@ return {
 			on_attach = on_attach,
 		})
 
-		lspconfig["rust_analyzer"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		-- lspconfig["rust_analyzer"].setup({
+		-- 	capabilities = capabilities,
+		-- 	-- on_attach = on_attach,
+		-- 	on_attach = function(client, bufnr)
+		-- 		vim.lsp.inlay_hint.enable(true)
+		-- 		on_attach(client, bufnr)
+		-- 	end,
+		-- })
+		vim.g.rustaceanvim.server.on_attach = function(client, bufnr)
+			-- vim.lsp.inlay_hints({ prefix = " » ", highlight = "Comment" })
+			print("we got here!")
+			on_attach(client, bufnr)
+		end
 
 		-- configure svelte server
 		-- lspconfig["svelte"].setup({
@@ -157,17 +180,15 @@ return {
 							[vim.fn.stdpath("config") .. "/lua"] = true,
 						},
 					},
+					hint = {
+						enabled = true,
+					},
 				},
 			},
 		})
 
 		-- solidity babay
-		lspconfig["solidity"].setup({
-			cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
-			filetypes = { "solidity" },
-			root_dir = lspconfig.util.find_git_ancestor,
-			single_file_support = true,
-		})
+		lspconfig["solidity_ls"].setup({})
 
 		-- TODO need to figure out why ruby_ls doesn't work :sob:
 		-- For some reason its in the config, but just doesn't work as expected
