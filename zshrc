@@ -678,3 +678,8 @@ SERVICE=arn:aws:ecs:us-east-1:853100499654:service/tradable-non-production-ecs/t
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+copy_abi() {
+  cat ../../onchain-v2/out/$1.sol/$1.json | jq '.abi' > abi/$1.json
+}
