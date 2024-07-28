@@ -576,7 +576,6 @@ mount_pdn_store() {
 
 # Python stuff
 alias activate="source venv/bin/activate"
-export GOPRIVATE=github.com/m2m-architect
 
 # Used for poetry autoloading completion
 fpath+=~/.zfunc
@@ -633,6 +632,13 @@ function zvm_after_init() {
 
     # allow for ctrl space to accept auto suggestion
     bindkey '^ ' autosuggest-accept
+
+    if program_exists atuin; then
+      # Use to unbinding the zsh ctrl-r and use atuin-search again
+      bindkey "^r" atuin-search
+      # used to use down arrow key to search through history but for the directory
+      bindkey "^[[B" atuin-up-search
+    fi
 
 }
 

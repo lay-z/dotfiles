@@ -54,7 +54,11 @@ vim.lsp.set_log_level("info")
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,globals"
 
 -- Set up NEOVIDE
--- vim.o.guifont = "Source Code Pro:h9" -- text below applies for VimScript
+if vim.g.neovide then
+	-- Put anything you want to happen only in Neovide here
+	vim.o.guifont = "Source Code Pro:h10" -- text below applies for VimScript
+end
+
 vim.g.neovide_padding_top = 20
 vim.g.neovide_padding_bottom = 20
 vim.g.neovide_padding_right = 10
