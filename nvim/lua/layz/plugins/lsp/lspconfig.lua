@@ -36,8 +36,8 @@ return {
 			opts.desc = "Show LSP references"
 			keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
-			opts.desc = "Go to declaration"
-			keymap.set("n", "gd", vim.lsp.buf.declaration, opts) -- go to declaration
+			opts.desc = "Go to definition"
+			keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- go to declaration
 
 			opts.desc = "Show LSP definitions"
 			keymap.set("n", "gtd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
@@ -188,7 +188,9 @@ return {
 		})
 
 		-- solidity babay
-		lspconfig["solidity_ls"].setup({})
+		lspconfig["solidity_ls_nomicfoundation"].setup({
+			on_attach = on_attach,
+		})
 
 		-- TODO need to figure out why ruby_ls doesn't work :sob:
 		-- For some reason its in the config, but just doesn't work as expected
