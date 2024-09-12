@@ -19,8 +19,12 @@ opt.wrap = true
 opt.ignorecase = true -- case insensitive if all lowercase
 opt.smartcase = true -- if you have caps in search string, then will be case sensitive https://youtu.be/vdn_pKJUda8?si=QrOrWek76PWIcdJY&t=483q
 
--- Curosr line
+-- Cursor line
 opt.cursorline = true
+
+-- set spell check line
+opt.spell = true
+opt.spelllang = "en_us"
 
 -- appearance
 opt.termguicolors = true

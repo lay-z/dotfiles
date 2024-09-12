@@ -15,8 +15,9 @@ keymap.set("n", "<leader>se", "<C-w>=") --make split windows equal width
 keymap.set("n", "<leader>sx", ":close<CR>") --make split windows equal width
 
 keymap.set("n", "<leader>w", ":wall<CR>") -- write all open buffers
-keymap.set("n", "<leader>wq", ":wqall<CR>") -- write all open buffers
-keymap.set("n", "<leader>q", ":q<CR>") -- write all open buffers
+keymap.set("n", "<leader>wq", ":wqall<CR>") -- quit all open buffers
+keymap.set("n", "<leader>q", ":q<CR>") -- close current buffer
+keymap.set("n", "<leader>qa", ":qall!<CR>") -- close all buffers without saving <LOOSE CHANGES>
 
 keymap.set("n", "<leader>to", ":tabnew<CR>:Telescope find_files hidden=true<CR>")
 keymap.set("n", "<leader>tx", ":tabclose<CR>")
