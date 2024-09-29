@@ -45,7 +45,9 @@ return {
 				formatting.isort,
 				formatting.black,
 				diagnostics.pylint,
-				formatting.shfmt,
+				formatting.shfmt.with({
+					extra_args = { "-i", "shfmt", "-ci" },
+				}),
 				-- formatting.rufo,
 			},
 			-- configure format on save
