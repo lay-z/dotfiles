@@ -103,7 +103,7 @@ install_plug https://github.com/jeffreytse/zsh-vi-mode
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ubuntu zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages zsh-vi-mode)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages zsh-vi-mode)
 
 ##### plugin configuration for colorize
 ZSH_COLORIZE_STYLE="dracula"
