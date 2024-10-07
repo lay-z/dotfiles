@@ -689,3 +689,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 copy_abi() {
   cat ../../onchain-v2/out/$1.sol/$1.json | jq '.abi' > abi/$1.json
 }
+
+export PATH=$PATH:/home/layz/.spicetify
