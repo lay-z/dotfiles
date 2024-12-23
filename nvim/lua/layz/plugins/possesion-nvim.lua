@@ -2,6 +2,7 @@ return {
 	"gennaro-tedesco/nvim-possession",
 	dependencies = {
 		"ibhagwan/fzf-lua",
+		"nvim-tree/nvim-tree.lua",
 	},
 	config = true,
 	opts = {
@@ -12,6 +13,11 @@ return {
 		autosave = {
 			enable = true, -- Automatically saves the session when you quit the editor
 		},
+		-- post_hook = function()
+		-- 	-- require("FTerm").open()
+		-- 	print("post_hook posession!")
+		-- 	-- require("nvim-tree").toggle(false, true)
+		-- end,
 	},
 	init = function()
 		-- should check if session location is created and create if not?

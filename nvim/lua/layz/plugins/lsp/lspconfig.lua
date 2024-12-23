@@ -24,7 +24,6 @@ return {
 		local keymap = vim.keymap -- for conciseness
 
 		local on_attach = function(client, bufnr)
-			print("On attach running on lspconfig")
 			local opts = {
 				noremap = true,
 				silent = true,
@@ -127,7 +126,6 @@ return {
 		-- })
 		vim.g.rustaceanvim.server.on_attach = function(client, bufnr)
 			-- vim.lsp.inlay_hints({ prefix = " » ", highlight = "Comment" })
-			print("we got here!")
 			on_attach(client, bufnr)
 		end
 
