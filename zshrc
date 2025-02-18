@@ -1,3 +1,9 @@
+## Shamelessly stolen from - https://gist.github.com/elalemanyo/cb3395af64ac23df2e0c3ded8bd63b2f
+# Use `time ZSH_DEBUGRC=1 zsh -i -c exit` to then profile oh-my-zsh startup times
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zmodload zsh/zprof
+fi
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
@@ -44,6 +50,9 @@ ZSH_THEME="amuse"
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
+
+# Stops auto correcting for these files 
+CORRECT_IGNORE_FILE=".ssh|test|tests"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -96,6 +105,7 @@ install_plug() {
 install_plug https://github.com/zsh-users/zsh-autosuggestions
 install_plug https://github.com/zsh-users/zsh-syntax-highlighting
 install_plug https://github.com/jeffreytse/zsh-vi-mode
+install_plug https://github.com/mroth/evalcache
 
 
 # Which plugins would you like to load?
@@ -103,7 +113,8 @@ install_plug https://github.com/jeffreytse/zsh-vi-mode
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages zsh-vi-mode)
+zstyle ':omz:plugins:nvm' lazy yes
+plugins=(nvm git zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages zsh-vi-mode evalcache)
 
 ##### plugin configuration for colorize
 ZSH_COLORIZE_STYLE="dracula"
@@ -239,10 +250,11 @@ alias git_rm_untracked="git ls-files --others --exclude-standard | xargs rm -rfv
 ##################################################################################################
 ########################################### GIT hub things ###########################################
 ##################################################################################################
-if program_exists gh; then
-    # TODO gotta work  out if the copilot extension is installed? and ask to install if its not?
-    eval "$(gh copilot alias -- zsh)"
-fi
+# COMMENTED OUT BECAUSE IT WAS TAKING SOO LONG
+# if program_exists gh; then 
+#     # TODO gotta work  out if the copilot extension is installed? and ask to install if its not?
+#     _evalcache gh copilot alias -- zsh
+# fi
 
 
 # Jupyter fun times
@@ -352,15 +364,40 @@ pid_from_ps_aux() {
 }
 
 kill_processes() {
-    if [ -z "$1" ]; then
-        echo "No kill mode selected, using default of -9"
-        kill_mode="-9"
-    else
-        kill_mode="$1"
+   # Set default values
+    kill_mode="-9"
+    query=""
+
+    while (( $# )); do
+        case $1 in
+            --kill-mode)
+                kill_mode=$2
+                shift 2
+                ;;
+            --query)
+                query=$2
+                shift 2
+                ;;
+            *)
+                echo "Invalid argument: $1"
+                exit 1
+                ;;
+        esac
+    done
+
+    # Build the fzf command
+    fzf_cmd="fzf -m"
+    if [[ -n "$query" ]]; then
+        fzf_cmd="$fzf_cmd --query $query"
     fi
-    ps aux | fzf -m | pid_from_ps_aux | xargs kill $kill_mode
+
+    # Execute the ps aux and fzf command
+    ps aux | eval $fzf_cmd | awk '{print $2}' | xargs kill "$kill_mode"
 }
 
+kill_alacritty() {
+    kill_processes --query alacritty
+}
 
 color_picker() {
     color=$(grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | awk '{print $3}')
@@ -391,13 +428,13 @@ install_nvm() {
 
 # too add node version manager support
 # This loads nvm
-export NVM_DIR="$HOME/.nvm"
-if [ -f $NVM_DIR/nvm.sh ]; then
-    . "$NVM_DIR/nvm.sh"
-else
-    # TODO ask if we want to install nvm?
-    install_nvm
-fi
+# export NVM_DIR="$HOME/.nvm"
+# if [ -f $NVM_DIR/nvm.sh ]; then
+#     . "$NVM_DIR/nvm.sh"
+# else
+#     # TODO ask if we want to install nvm?
+#     install_nvm
+# fi
 
 # Turn zsh into vim mode
 # bindkey -v
@@ -457,15 +494,15 @@ install_rvm() {
     curl -sSL https://get.rvm.io | bash -s stable --ruby
 }
 
-if [ -f ~/.rvm/scripts/rvm ]; then
-    # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-    source ~/.rvm/scripts/rvm
-    export PATH="$PATH:$HOME/.rvm/bin"
-else
-    # TODO ask if we want to install rvm?
-    install_rvm
-    source ~/.rvm/scripts/rvm
-fi
+# if [ -f ~/.rvm/scripts/rvm ]; then
+#     # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+#     source ~/.rvm/scripts/rvm
+#     export PATH="$PATH:$HOME/.rvm/bin"
+# else
+#     # TODO ask if we want to install rvm?
+#     install_rvm
+#     source ~/.rvm/scripts/rvm
+# fi
 
 
 ##############################################################################
@@ -578,16 +615,18 @@ mount_pdn_store() {
 alias activate="source venv/bin/activate"
 
 # Used for poetry autoloading completion
-fpath+=~/.zfunc
-autoload -Uz compinit && compinit
+# fpath+=~/.zfunc
+# autoload -Uz compinit && compinit
 
 ## Conda
 alias condasetup="source ~/anaconda3/bin/activate"
 
 
-# PYenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null && export PATH="$PYENV_ROOT/bin:$PATH" && eval "$(pyenv init -)"
+# Pyenv
+pyenv_init() {
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null && export PATH="$PYENV_ROOT/bin:$PATH" && _evalcache pyenv init -
+}
 
 
 # Flatpak installation
@@ -667,10 +706,10 @@ alias ll="ls -la"
 #[[ $- != *i* ]] && return
 # Otherwise start tmux
 #[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if program_exists atuin; then
-  eval "$(atuin init zsh)"
+  _evalcache atuin init zsh
 else
   echo "Atuin not installed"
 fi
@@ -678,12 +717,12 @@ fi
 CLUSTER=arn:aws:ecs:us-east-1:853100499654:cluster/tradable-non-production-ecs
 SERVICE=arn:aws:ecs:us-east-1:853100499654:service/tradable-non-production-ecs/tradable-non-production-onchain-service
 
-# bun completions
-[ -s "/Users/priyav/.bun/_bun" ] && source "/Users/priyav/.bun/_bun"
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun completions
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 
 copy_abi() {
@@ -691,3 +730,8 @@ copy_abi() {
 }
 
 export PATH=$PATH:/home/layz/.spicetify
+
+## Shamelessly stolen from - https://gist.github.com/elalemanyo/cb3395af64ac23df2e0c3ded8bd63b2f
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zprof
+fi

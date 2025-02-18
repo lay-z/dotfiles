@@ -61,7 +61,7 @@ return {
 			--   start_in_insert = true,
 			--   persist_size = true,
 			--   persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
-			direction = "float", -- 'vertical' | 'horizontal' | 'tab' | 'float',
+			direction = "horizontal", -- 'vertical' | 'horizontal' | 'tab' | 'float',
 			--   close_on_exit = true, -- close the terminal window when the process exits
 			--    -- Change the default shell. Can be a string or a function returning a string
 			--   shell = vim.o.shell,

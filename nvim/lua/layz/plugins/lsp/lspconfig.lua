@@ -12,7 +12,7 @@ return {
 	},
 	config = function()
 		-- configure neovim lsp
-		require("neodev").setup()
+		require("lazydev").setup()
 		-- require("neodev").setup()
 
 		-- import lspconfig plugin

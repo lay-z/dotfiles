@@ -28,6 +28,12 @@ keymap.set("n", "<leader>bp", ":bp<CR>") -- Previous buffer
 keymap.set("n", "<leader>bn", ":bn<CR>") -- Next buffer
 keymap.set("n", "<leader>bx", ":bd<CR>") -- Close buffer TODO figure out how to close buffer, but bring on another buffer in window :thinking_face:
 
+-- Keymaps to move out of terminal mode in nvim
+keymap.set("t", "<C-j>", "<C-\\><C-N><C-w><C-j>") -- exit terminal mode
+keymap.set("t", "<C-k>", "<C-\\><C-N><C-w><C-k>") -- exit terminal mode
+keymap.set("t", "<C-h>", "<C-\\><C-N><C-w><C-h>") -- exit terminal mode
+keymap.set("t", "<C-l>", "<C-\\><C-N><C-w><C-l>") -- exit terminal mode
+
 -- Getting commenting to work
 keymap.set("n", "<C-t>", "gcc")
 keymap.set("v", "<C-t>", "gc")
