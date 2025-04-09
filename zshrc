@@ -322,6 +322,7 @@ fi
 is_running() { ps aux | grep $1 }
 untar() { tar -xzvf $1 }
 reset_keyboard() { sh ~/.profile }
+list_process_listening_to_port() { lsof -i :$1 }
 
 swap_caps_esc_alt_win() {
     local layout=${1:-gb} # Default to 'gb' if no argument is provided
@@ -392,7 +393,7 @@ kill_processes() {
     fi
 
     # Execute the ps aux and fzf command
-    ps aux | eval $fzf_cmd | awk '{print $2}' | xargs kill "$kill_mode"
+    ps aux --sort=lstart | eval $fzf_cmd | awk '{print $2}' | xargs kill "$kill_mode"
 }
 
 kill_alacritty() {
@@ -710,6 +711,12 @@ alias ll="ls -la"
 
 if program_exists atuin; then
   _evalcache atuin init zsh
+else
+  echo "Atuin not installed"
+fi
+
+if program_exists spt; then
+  eval $(spt --completions zsh)
 else
   echo "Atuin not installed"
 fi

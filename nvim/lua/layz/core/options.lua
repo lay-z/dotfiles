@@ -2,6 +2,20 @@ local config = require("layz.config")
 
 local opt = vim.opt -- for conciseness :)
 
+-- Helper method for setting the colour scheme perfect for kitty terminal
+vim.api.nvim_create_autocmd("ColorScheme", {
+	pattern = "kanagawa",
+	callback = function()
+		if vim.o.background == "light" then
+			vim.fn.system("kitty +kitten themes Kanagawa_light")
+		elseif vim.o.background == "dark" then
+			vim.fn.system("kitty +kitten themes Kanagawa_dragon")
+		else
+			vim.fn.system("kitty +kitten themes Kanagawa")
+		end
+	end,
+})
+
 --line numbers
 opt.relativenumber = true
 opt.number = true
@@ -48,7 +62,7 @@ opt.iskeyword:append("-")
 opt.mouse = "a"
 
 -- Set up that log levels
-vim.lsp.set_log_level("info")
+vim.lsp.set_log_level("error")
 
 -- Restore these parts of session when reopening nvim
 -- https://neovim.io/doc/user/options.html#'sessionoptions'
