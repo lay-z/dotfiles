@@ -310,11 +310,22 @@ reset_keyboard() { sh ~/.profile }
 
 
 check_and_install_rust_program() {
-  cargo install xremap --features "wayland"   
+  program_exists $1 || {
+    echo "$1 not found, installing..."
+    install_rust_program $1 $2
+  }
+}
+
+check_and_install_xremap() {
+  check_and_install_rust_program xremap "wayland"
+}
+
+install_rust_program() {
+  cargo install $1 --features "$2"   
 }
 
 swap_caps_esc_alt_win() {
-    check_and_install_rust_program
+    check_and_install xremap
 }
 
 # todo need to figure out how to name this, doesn't include swap_alt_win
