@@ -27,7 +27,7 @@ return {
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
-				"tsserver",
+				"typescript-language-server",
 				"html",
 				"cssls",
 				-- "tailwindcss",
@@ -41,6 +41,8 @@ return {
 				"solidity_ls_nomicfoundation",
 				"gopls",
 				"shfmt",
+				"yaml-language-server",
+				"jsonls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed

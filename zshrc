@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -311,27 +308,18 @@ is_running() { ps aux | grep $1 }
 untar() { tar -xzvf $1 }
 reset_keyboard() { sh ~/.profile }
 
+
+check_and_install_rust_program() {
+  cargo install xremap --features "wayland"   
+}
+
 swap_caps_esc_alt_win() {
-    local layout=${1:-gb} # Default to 'gb' if no argument is provided
-
-    # Clear the existing layout
-    setxkbmap -layout $layout -option
-    # make CapsLock behave like Ctrl:
-    setxkbmap -layout $layout -option ctrl:nocaps -option altwin:swap_alt_win
-
-    # make short-pressed Ctrl behave like Escape:
-    xcape -e 'Control_L=Escape'
+    check_and_install_rust_program
 }
 
 # todo need to figure out how to name this, doesn't include swap_alt_win
 swap_caps_esc() {
-    local layout=${1:-gb} # Default to 'gb' if no argument is provided
-
-    setxkbmap -layout $layout -option # make CapsLock behave like Ctrl:
-    setxkbmap -layout $layout -option ctrl:nocaps #option altwin:swap_alt_win
-
-    # make short-pressed Ctrl behave like Escape:
-    xcape -e 'Control_L=Escape'
+    check_and_install_rust_program
 }
 
 # Way of searching through howdoi in terminal

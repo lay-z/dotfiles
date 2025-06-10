@@ -12,4 +12,9 @@ ags -r "useTheme('$HOME/.config/ags/themes/catppuccin_mocha.json')"
 FOOT_CONFIG_DIR=~/.config/hypr/foot
 ln -sf $FOOT_CONFIG_DIR/colors-dark.ini $FOOT_CONFIG_DIR/colors.ini
 
-gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Frappe && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Mocha && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+
+
+# set the wallpaper :joy:
+ln -sf ~/.config/hypr/wallpapers/skeletor.jpg ~/.config/hypr/wallpapers/wallpaper.jpg
+~/.config/hypr/scripts/set-wallpaper &

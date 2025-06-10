@@ -8,7 +8,8 @@ fi
 
 if [[ "$SESSION_TYPE" == "wayland" ]]; then
     # TODO figure out if we can just add wayland flags and then open them up
-    google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --user-data-dir=$HOME/.config/google-chrome-stable-for-whatsapp/ --app=https://web.whatsapp.com
+    #
+    firefox -P "whatsapp" web.whatsapp.com
 else
     google-chrome-stable --force-device-scale-factor=1.5 --user-data-dir=$HOME/.config/google-chrome-stable-for-whatsapp/ --app=https://web.whatsapp.com
 fi

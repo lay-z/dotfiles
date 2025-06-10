@@ -14,3 +14,6 @@ ln -sf $FOOT_CONFIG_DIR/colors-cattpuccin-latte.ini $FOOT_CONFIG_DIR/colors.ini
 
 gsettings set org.gnome.desktop.interface gtk-theme Arc-Lighter && gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
 
+# Update the wallpaper :joy:
+ln -sf ~/.config/hypr/wallpapers/snowy-train.jpg ~/.config/hypr/wallpapers/wallpaper.jpg
+~/.config/hypr/scripts/set-wallpaper &

@@ -5,6 +5,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		"mrcjkb/rustaceanvim",
+		"b0o/schemastore.nvim",
 		-- "simrat39/rust-tools.nvim",
 	},
 	opts = {
@@ -52,7 +53,7 @@ return {
 			keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
 			opts.desc = "Smart rename (incremental edition)"
-			keymap.set("n", "<leader>rn", ":IncRename ", opts) -- smart rename
+			keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
 			opts.desc = "Show buffer diagnostics"
 			keymap.set("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
@@ -96,17 +97,40 @@ return {
 		})
 
 		-- configure typescript server with plugin
-		lspconfig["tsserver"].setup({
+		lspconfig["ts_ls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+		})
+
+		-- configure jsonlsp server, with access to schema store!
+		-- https://github.com/b0o/SchemaStore.nvim?tab=readme-ov-file
+		lspconfig.jsonls.setup({
+			settings = {
+				json = {
+					schemas = require("schemastore").json.schemas(),
+					validate = { enable = true },
+				},
+			},
+		})
+
+		-- configure jsonlsp server, with access to schema store!
+		-- https://github.com/b0o/SchemaStore.nvim?tab=readme-ov-file
+		lspconfig.yamlls.setup({
+			settings = {
+				yaml = {
+					schemaStore = {
+						-- You must disable built-in schemaStore support if you want to use
+						-- this plugin and its advanced options like `ignore`.
+						enable = false,
+						-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+						url = "",
+					},
+					schemas = require("schemastore").yaml.schemas(),
+				},
+			},
 		})
 
 		-- configure css server
-		lspconfig["cssls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
 		lspconfig["cssls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
