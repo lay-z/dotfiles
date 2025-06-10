@@ -27,7 +27,8 @@ return {
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
-				"typescript-language-server",
+				"tsserver",
+				"ts_ls",
 				"html",
 				"cssls",
 				-- "tailwindcss",
@@ -43,6 +44,7 @@ return {
 				"shfmt",
 				"yaml-language-server",
 				"jsonls",
+				"shfmt",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -56,6 +58,7 @@ return {
 				"black", -- python formatter
 				"pylint", -- python linter
 				"eslint_d", -- js linter
+				"codelldb", -- for debugging rust application https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file#using-codelldb-for-debugging
 			},
 		})
 	end,
