@@ -52,9 +52,12 @@ vim.g.rustaceanvim = {
 			keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
 			opts.desc = "Format the file"
-			vim.keymap.set("n", "<leader>lf", function()
+			vim.keymap.set("n", "<leader>lff", function()
 				vim.lsp.buf.format({ async = true })
 			end, opts)
+
+			opts.desc = "Show functions in file"
+			vim.keymap.set("n", "<leader>lfu", "<cmd>Telescope lsp_document_symbols<CR>", opts)
 
 			opts.desc = "Restart LSP"
 			keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
@@ -64,6 +67,6 @@ vim.g.rustaceanvim = {
 
 return {
 	"mrcjkb/rustaceanvim",
-	version = "^4", -- Recommended
+	-- version = "^4", -- Recommended
 	lazy = false, -- This plugin is already lazy
 }

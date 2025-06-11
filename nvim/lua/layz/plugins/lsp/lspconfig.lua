@@ -70,8 +70,13 @@ return {
 			keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
 			opts.desc = "Format the file"
-			vim.keymap.set("n", "<leader>lf", function()
+			vim.keymap.set("n", "<leader>lff", function()
 				vim.lsp.buf.format({ async = true })
+			end, opts)
+
+			opts.desc = "List functions from lsp for current file in telescope window"
+			vim.keymap.set("n", "<leader>lfu", function()
+				vim.cmd.Telescope("lsp_document_symbols", { symbols = "function" })
 			end, opts)
 
 			opts.desc = "Restart LSP"
