@@ -1,4 +1,4 @@
 return {
 	background = "dark",
-	colorscheme = "dracula",
+	colorscheme = "catppuccin",
 }
