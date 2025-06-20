@@ -1,18 +1,47 @@
 modmap:
+  - name: "Better capslock"
+    remap:
+      CAPSLOCK:
+        held: LEFTCTRL
+        alone: ESC
   - name: Global
     remap:
-      # CapsLock/Ctrl_L -> Esc
-      CapsLock: Esc
-      # Ctrl_L: Esc
+      # Esc key outputs backtick
+      Esc: grave
+      Alt_L: LEFTMETA
+      LEFTMETA: Alt_L
+keymap:
+  - name: Alt modifier
+    remap:
+      Alt_R-p: KEY_UP
+      Alt_R-SEMICOLON: KEY_DOWN
+      Alt_R-l: KEY_LEFT
+      Alt_R-APOSTROPHE: KEY_RIGHT
 
-      # Swap and replace alt and windows keys
-      Alt_L: Win_R
-      Win_L: Alt_R
-
-      # Try and get the same behavior as i got on previous 60% keyboard
-      # When I press right alt, and then l I get the left arrow
-      KEY_RIGHTALT:
-        press: [{ press: KEY_L }]
+# Note: Right Alt navigation moved to keymap section
+# virtual_modifiers:
+#   - Alt_R
+# keymap: - name: Turn Esc long hold into ctrl?
+#     remap:
+#       CapsLock:
+#         remap:
+#           Esc:
+#             timeout_key: Ctrl_L
+#             timeout_millis: 150  # timeout duration in ms
+# keymap:
+#   - name: Alt modifier
+#     remap:
+#       Alt_R-p: KEY_UP
+#       Win_R-l: KEY_DOWN
+      # Win_R-j: KEY_DOWN
+      # Down Win_R-l: Right - name: Shift-Esc to tilde
+  
+  # - name: Right Alt navigation
+  #   remap:
+  #     Alt_R-l: left
+  #     Alt_R-semicolon: down
+  #     Alt_R-apostrophe: right
+  #     Alt_R-p: up
 #
 #   - name: Kana -> Windows
 #     application:
