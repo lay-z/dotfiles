@@ -1,9 +1,9 @@
 require "nvchad.mappings"
 
-
 -- add yours here
 
 local map = vim.keymap.set
+local unmap = vim.keymap.del
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 -- map("i", "jk", "<ESC>")
@@ -17,6 +17,6 @@ map("n", "<Space>wa", ":wa<CR>", { desc = "Write all buffers" })
 map("n", "<Space>qa", ":qa!<CR>", { desc = "Exit all" })
 
 -- Map ctrl-b to toggle horizontal terminal
-map({ "n", "t", "i" }, "<Ctrl-b>", function()
+map({ "n", "t", "i" }, "<C-b>", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "terminal toggleable horizontal term" })
