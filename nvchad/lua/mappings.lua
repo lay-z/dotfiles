@@ -10,13 +10,32 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 -- Telescope mappings
-map("n", "<Space>fk", ":Telescope keymaps<CR>", { desc = "telescope find all keymaps" })
+map("n", "<Leader>fk", ":Telescope keymaps<CR>", { desc = "telescope find all keymaps" })
 
 -- Custom writing keymaps
-map("n", "<Space>wa", ":wa<CR>", { desc = "Write all buffers" })
-map("n", "<Space>qa", ":qa!<CR>", { desc = "Exit all" })
+map("n", "<Leader>wa", ":wa<CR>", { desc = "Write all buffers" })
+map("n", "<Leader>wq", ":wqa<CR>", { desc = "Exit all" })
+map("n", "<Leader>qa", ":qa!<CR>", { desc = "Exit all" })
+
+-- Unmap LSP's <Leader>wa mapping to prevent conflict
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function()
+    vim.schedule(function()
+      vim.keymap.del("n", "<Leader>wa", { buffer = true })
+      vim.keymap.set("n", "<Leader>wa", ":wa<CR>", { desc = "Write all buffers", buffer = true })
+    end)
+  end,
+})
 
 -- Map ctrl-b to toggle horizontal terminal
 map({ "n", "t", "i" }, "<C-b>", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "terminal toggleable horizontal term" })
+
+
+-- To make sure that plugin tmux-navigator does not conflict with the default
+local nomap = vim.keymap.del
+nomap({ "n" }, "<C-h>")
+nomap({ "n" }, "<C-l>")
+nomap({ "n" }, "<C-j>")
+nomap({ "n" }, "<C-k>")

@@ -18,5 +18,3 @@ vim.lsp.config("rust_analyzer", {
     },
   },
 })
-
--- read :h vim.lsp.config for changing options of lsp servers
