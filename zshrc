@@ -647,7 +647,7 @@ reload_tmux_conf() {
     tmux source-file ~/.tmux.conf
 }
 
-if [ -f /tmp/foo.txt ]; then
+if [ -f ~/.Xresources ] && [ program_exists xrdb ]; then
     xrdb ~/.Xresources
 fi
 
@@ -718,12 +718,30 @@ if program_exists atuin; then
   _evalcache atuin init zsh
 else
   echo "Atuin not installed"
+  echo "Would you like to install it? (y/n)"
+  read -r install_atuin
+  if [[ $install_atuin == "y" || $install_atuin == "Y" ]]; then
+    echo "Installing Atuin..."
+    curl -sS https://sh.atuin.sh | sh
+    _evalcache atuin init zsh
+  else
+    echo "Skipping Atuin installation."
+  fi
 fi
 
 if program_exists spt; then
   eval $(spt --completions zsh)
 else
-  echo "Atuin not installed"
+  echo "Spotify-cli TUI not installed"
+  echo "Would you like to install it? (y/n)"
+  read -r install_spt
+  if [[ $install_spt == "y" || $install_spt == "Y" ]]; then
+    echo "Installing SPT..."
+    paru -S spotify-tui-bin
+    eval $(spt --completions zsh)
+  else
+    echo "Skipping SPT installation."
+  fi
 fi
 
 CLUSTER=arn:aws:ecs:us-east-1:853100499654:cluster/tradable-non-production-ecs
