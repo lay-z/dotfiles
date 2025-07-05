@@ -17,6 +17,15 @@ keymap:
       Alt_R-SEMICOLON: KEY_DOWN
       Alt_R-l: KEY_LEFT
       Alt_R-APOSTROPHE: KEY_RIGHT
+      # Alt_R:
+      #   remap:
+      #     Alt_R: none
+      #     timeout_key: Alt_R   # output space after timeout or a non-mapped key (only space is mapped above)
+      #     timeout_millis: 150  # timeout duration in ms
+      # Alt_R-p: KEY_UP
+      # Alt_R-SEMICOLON: KEY_DOWN
+      # Alt_R-l: KEY_LEFT
+      # Alt_R-APOSTROPHE: KEY_RIGHT
 
 # Note: Right Alt navigation moved to keymap section
 # virtual_modifiers:

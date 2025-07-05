@@ -35,3 +35,10 @@ require "autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.g.guifont = "Fira:h7" -- text below applies for VimScript
+
+vim.g.neovide_padding_top = 5
+vim.g.neovide_padding_bottom = 5
+vim.g.neovide_padding_right = 5
+vim.g.neovide_padding_left = 5

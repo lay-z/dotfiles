@@ -253,11 +253,6 @@ alias git_rm_untracked="git ls-files --others --exclude-standard | xargs rm -rfv
 ##################################################################################################
 ########################################### GIT hub things ###########################################
 ##################################################################################################
-# COMMENTED OUT BECAUSE IT WAS TAKING SOO LONG
-# if program_exists gh; then 
-#     # TODO gotta work  out if the copilot extension is installed? and ask to install if its not?
-#     _evalcache gh copilot alias -- zsh
-# fi
 
 
 # Jupyter fun times
@@ -285,12 +280,6 @@ function init_testnet() {
     rm -rf ~/.avalanchego && AVAXBUILDPATH=$GOPATH/src/github.com/ava-labs/avalanchego/build/avalanchego ./scripts/run.sh
 }
 
-
-# Set up neovim
-# alias nvim="~/bin/nvim.appimage"
-if program_exists lvim; then
-    alias vim=lvim
-fi
 
 # My todos for the day
 export TODO_DIR=~/Documents/todos
@@ -581,7 +570,7 @@ fun_n_technological(){
 ##########################################################################################
 
 ## Try to get correct editor for visual?
-export VISUAL="vim"
+export VISUAL="nvim"
 
 # IP stuff?
 # Automatically gets your public ip address and copies it into the clipboard for use
@@ -604,7 +593,7 @@ backspace_normal() {
 }
 
 
-alias sshconfig="vim ~/.ssh/config"
+alias sshconfig="nvim ~/.ssh/config"
 
 
 
@@ -647,7 +636,7 @@ reload_tmux_conf() {
     tmux source-file ~/.tmux.conf
 }
 
-if [ -f ~/.Xresources ] && [ program_exists xrdb ]; then
+if [ -f ~/.Xresources ] && program_exists xrdb; then
     xrdb ~/.Xresources
 fi
 
@@ -672,8 +661,8 @@ function zvm_after_init() {
         FZF_DEFAULT_COMMAND="fd . $HOME"
         FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
         FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME"
+        FZF_DEFAULT_OPTS="--preview='/home/layz/Code/dotfiles/scripts/fzf-preview.sh {}'"
     fi
-    #
 
     # allow for ctrl space to accept auto suggestion
     bindkey '^ ' autosuggest-accept
@@ -713,6 +702,17 @@ alias ll="ls -la"
 # Otherwise start tmux
 #[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# COMMENTED OUT BECAUSE IT WAS TAKING SOO LONG
+if program_exists gh; then 
+    # TODO gotta work  out if the copilot extension is installed? and ask to install if its not?
+    # How to check if the copilot extension is installed?
+    if gh extension list | grep copilot-cli; then
+        echo "Installing GitHub Copilot CLI extension..."
+        gh extension install github/copilot-cli
+    fi
+    _evalcache gh copilot alias -- zsh
+fi
 
 if program_exists atuin; then
   _evalcache atuin init zsh

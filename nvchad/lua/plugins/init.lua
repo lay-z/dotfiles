@@ -33,6 +33,12 @@ return {
       build = "make tiktoken", -- Only on MacOS or Linux
       event = "VeryLazy",
       opts = {
+        mappings = {
+          complete = {
+            normal = '<C-y>',
+            insert = '<C-y>',
+          },
+        },
         -- See Configuration section for options - https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file#configuration
       },
       keys = {
@@ -109,11 +115,11 @@ return {
       defaults = {
         mappings = {
           i = {
-            ["<c-d>"] = require('telescope.actions').delete_buffer,
+            ["<c-d>"] = require("telescope.actions").delete_buffer,
           },
           n = {
-            ["<c-d>"] = require('telescope.actions').delete_buffer,
-            ["dd"] = require('telescope.actions').delete_buffer,
+            ["<c-d>"] = require("telescope.actions").delete_buffer,
+            ["dd"] = require("telescope.actions").delete_buffer,
           },
         },
       },
