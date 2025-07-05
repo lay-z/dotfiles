@@ -71,9 +71,14 @@ dir=$(pwd)                        # dotfiles directory
 echo $dir
 olddir=~/dotfiles_old             # old dotfiles backup directory
 config_dir=~/.config
-shell_config="bashrc vimrc zshrc oh-my-zsh Xresources fzf.zsh fzf"    # list of files/folders to symlink in homedir
+shell_config="zshrc oh-my-zsh Xresources fzf.zsh fzf tmux.conf"    # list of files/folders to symlink in homedir
 ui_config="i3 polybar dunst redshift"
 
+install_oh_my_zsh() {
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+copy_over_config_files
 
 ##########
 install() {

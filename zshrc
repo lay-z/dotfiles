@@ -698,7 +698,7 @@ source $ZSH/oh-my-zsh.sh
 
 # New files to replace common cli utilities
 unalias ls
-alias ls=eza
+alias ls="eza --icons=always"
 alias la="ls -la"
 alias ll="ls -la"
 

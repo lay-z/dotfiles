@@ -27,6 +27,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+-- Stuff for the tabs
+map("n", "<Leader>tc", ":tabnew<CR>", { desc = "Create new tab" })
+map("n", "<Leader>tp", ":tabp<CR>", { desc = "Go to previous tab" })
+map("n", "<Leader>tn", ":tabn<CR>", { desc = "Go to next tab" })
+
 -- Map ctrl-b to toggle horizontal terminal
 map({ "n", "t", "i" }, "<C-b>", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
@@ -39,3 +44,7 @@ nomap({ "n" }, "<C-h>")
 nomap({ "n" }, "<C-l>")
 nomap({ "n" }, "<C-j>")
 nomap({ "n" }, "<C-k>")
+
+-- Remove leader-h and leader-v keymaps for nvchad term toggling
+nomap({ "n" }, "<Leader>h")
+nomap({ "n" }, "<Leader>v")
