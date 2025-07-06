@@ -283,9 +283,9 @@ function init_testnet() {
 
 # My todos for the day
 export TODO_DIR=~/Documents/todos
-function todo()  { vim $TODO_DIR/the-big-todo.md }
-alias todo_rice="vim $TODO_DIR/ricing-todo.md"
-alias todo_productivity="vim $TODO_DIR/producivity-todo.md"
+function todo()  { nvim $TODO_DIR/the-big-todo.md }
+alias todo_rice="nvim $TODO_DIR/ricing-todo.md"
+alias todo_productivity="nvim $TODO_DIR/producivity-todo.md"
 # TODO need to put this into an if
 #
 if program_exists clipboard ; then
@@ -707,11 +707,14 @@ alias ll="ls -la"
 if program_exists gh; then 
     # TODO gotta work  out if the copilot extension is installed? and ask to install if its not?
     # How to check if the copilot extension is installed?
-    if gh extension list | grep copilot-cli; then
+    if ! gh extension list | grep gh-copilot > /dev/null; then
         echo "Installing GitHub Copilot CLI extension..."
-        gh extension install github/copilot-cli
+        gh extension install github/gh-copilot
+        _evalcache gh copilot alias -- zsh
+    else
+        _evalcache gh copilot alias -- zsh
     fi
-    _evalcache gh copilot alias -- zsh
+    _evalcache gh completion -s zsh
 fi
 
 if program_exists atuin; then
@@ -731,17 +734,17 @@ fi
 
 if program_exists spt; then
   eval $(spt --completions zsh)
-else
-  echo "Spotify-cli TUI not installed"
-  echo "Would you like to install it? (y/n)"
-  read -r install_spt
-  if [[ $install_spt == "y" || $install_spt == "Y" ]]; then
-    echo "Installing SPT..."
-    paru -S spotify-tui-bin
-    eval $(spt --completions zsh)
-  else
-    echo "Skipping SPT installation."
-  fi
+# else
+  # echo "Spotify-cli TUI not installed"
+  # echo "Would you like to install it? (y/n)"
+  # read -r install_spt
+  # if [[ $install_spt == "y" || $install_spt == "Y" ]]; then
+  #   echo "Installing SPT..."
+  #   paru -S spotify-tui-bin
+  #   eval $(spt --completions zsh)
+  # else
+  #   echo "Skipping SPT installation."
+  # fi
 fi
 
 CLUSTER=arn:aws:ecs:us-east-1:853100499654:cluster/tradable-non-production-ecs
