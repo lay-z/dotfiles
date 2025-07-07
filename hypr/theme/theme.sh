@@ -331,7 +331,7 @@ elif [[ "$1" == '--light' ]]; then
 elif [[ "$1" == '--pywal' ]]; then
 	source_pywal
 else
-	echo "Available Options: --default  --pywal"
+	echo "Available Options: --default  --pywal --light"
 	exit 1
 fi
 

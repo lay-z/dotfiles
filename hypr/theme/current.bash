@@ -25,4 +25,4 @@ color14='#62cdcd'
 color15='#e0e5e5'
 
 # Wallpaper
-wallpaper="$HOME/.config/hypr/wallpapers/wallpaper.png"
+wallpaper="$HOME/.config/hypr/wallpapers/minimalist-black-hole.png"
