@@ -35,8 +35,8 @@ return {
       opts = {
         mappings = {
           complete = {
-            normal = '<C-y>',
-            insert = '<C-y>',
+            normal = "<C-y>",
+            insert = "<C-y>",
           },
         },
         -- See Configuration section for options - https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file#configuration
