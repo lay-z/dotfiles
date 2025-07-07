@@ -126,8 +126,47 @@ return {
     },
   },
 
+  -- Python things ---
+  -- For a jupyter notebook
+  {
+    "kiyoon/jupynium.nvim",
+    dependencies = {
+      "rcarriga/nvim-notify", -- optional
+      "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
+    },
+    build = "uv pip install . --python=$HOME/.virtualenvs/jupynium/bin/python",
+    event = "VeryLazy",
+    opts = {
+      auto_start_server = {
+        enable = true,
+        file_pattern = { "*.ju.*" },
+      },
+    },
+    -- build = "pip3 install --user .",
+    -- build = "conda run --no-capture-output -n jupynium pip install .",
+  },
+
   -- test new blink
-  { import = "nvchad.blink.lazyspec" },
+  {
+    import = "nvchad.blink.lazyspec",
+    opts = {
+      sources = {
+        default = {
+          "jupynium",
+          -- ...
+        },
+        providers = {
+          jupynium = {
+            name = "Jupynium",
+            module = "jupynium.blink_cmp",
+            -- Consider higher priority than LSP
+            score_offset = 100,
+          },
+          -- ...
+        },
+      },
+    },
+  },
 
   {
     "nvim-treesitter/nvim-treesitter",
