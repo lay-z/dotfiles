@@ -124,8 +124,7 @@ ZSH_COLORIZE_STYLE="dracula"
 ZSH_COLORIZE_TOOL=chroma
 
 alias less=cless
-# alias cat=ccat
-alias cat=bat
+alias cat="bat --theme=auto --color=always"
 
 
 # User configuration
@@ -248,6 +247,12 @@ function gitprune() {
 }
 
 alias git_rm_untracked="git ls-files --others --exclude-standard | xargs rm -rfv"
+
+## Helper method to quickly checkout git branch for PR
+function gcpr() {
+  gh pr list | fzf | awk -F'	' 'BEGIN {OFS=FS} {print $3}' | xargs -I % git checkout %
+  ## Should we open up the diff view?
+}
 
 
 ##################################################################################################
@@ -661,7 +666,7 @@ function zvm_after_init() {
         FZF_DEFAULT_COMMAND="fd . $HOME"
         FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
         FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME"
-        FZF_DEFAULT_OPTS="--preview='/home/layz/Code/dotfiles/scripts/fzf-preview.sh {}'"
+        FZF_DEFAULT_OPTS='--preview="/home/layz/Code/dotfiles/scripts/fzf-preview.sh {}" --ansi --tmux'
     fi
 
     # allow for ctrl space to accept auto suggestion
@@ -687,7 +692,7 @@ source $ZSH/oh-my-zsh.sh
 
 # New files to replace common cli utilities
 unalias ls
-alias ls="eza --icons=always"
+alias ls="eza --icons=always --color=always"
 alias la="ls -la"
 alias ll="ls -la"
 

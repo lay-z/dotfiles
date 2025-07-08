@@ -6,8 +6,9 @@
 local M = {}
 
 M.base46 = {
-  theme = "bearded-arc",
-  theme_toggle = { "bearded-arc", "one_light" },
+  theme = "vscode_light",
+  theme_toggle = { "vscode_light", "vscode_light" },
+  transparency = true
 }
 
 M.ui = {

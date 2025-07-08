@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+echo "preview $1"
+thing=$(echo "$1" | awk '{print $NF}')
+echo "thing: $thing"
+1=$thing
 if [ -f "$1" ]; 
 then 
   # Now we have to start doing some splits based on file types
@@ -7,7 +11,7 @@ then
   mime_type=$(file --mime-type -b "$1")
   case "$mime_type" in
     text/*)
-      bat --color=always "$1" ;;
+      bat --color=always --theme auto "$1" ;;
     image/*)
       chafa -s ${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES} $1;;
     application/pdf)
@@ -21,10 +25,11 @@ then
       unzip -l "$1" | bat ;;
     *)
       echo "Unsupported file type: $mime_type" 
-      bat --color=always "$1";;
+      bat --theme auto --color=always "$1";;
   esac
 elif [ -d "$1" ];
 then 
-  exa -la --color=always --icons=always "$1" 
+  echo "is directory"
+  eza -la --color=always --icons=always "$1" 
   # ll "$1"
 fi

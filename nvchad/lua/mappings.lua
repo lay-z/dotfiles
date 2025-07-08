@@ -21,7 +21,9 @@ map("n", "<Leader>qa", ":qa!<CR>", { desc = "Exit all" })
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function()
     vim.schedule(function()
-      vim.keymap.del("n", "<Leader>wa", { buffer = true })
+      pcall(function()
+        vim.keymap.del("n", "<Leader>wa", { buffer = true })
+      end)
       vim.keymap.set("n", "<Leader>wa", ":wa<CR>", { desc = "Write all buffers", buffer = true })
     end)
   end,
@@ -33,10 +35,9 @@ map("n", "<Leader>tp", ":tabp<CR>", { desc = "Go to previous tab" })
 map("n", "<Leader>tn", ":tabn<CR>", { desc = "Go to next tab" })
 
 -- Map ctrl-b to toggle horizontal terminal
-map({ "n", "t", "i" }, "<C-b>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
-end, { desc = "terminal toggleable horizontal term" })
-
+-- map({ "n", "t", "i" }, "<C-b>", function()
+--   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+-- end, { desc = "terminal toggleable horizontal term" })
 
 -- To make sure that plugin tmux-navigator does not conflict with the default
 local nomap = vim.keymap.del

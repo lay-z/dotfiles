@@ -143,7 +143,7 @@ apply_foot() {
 	cat > ${PATH_FOOT}/colors.ini <<- _EOF_
 		## Colors configuration
 		[colors]
-		alpha=1.0
+		alpha=0.9
 		foreground=${foreground:1}
 		background=${background:1}
 
