@@ -2,11 +2,14 @@ tmux/resurrect
 nvim/lazy-lock.json
 hypr/alacritty/colors.toml
 hypr/foot/colors.ini
-hypr/kitty/colors.conf
+hypr/hyprpowerprofile.conf
 hypr/hyprtheme.conf
+hypr/kitty/colors.conf
 hypr/mako/config
 hypr/rofi/shared/colors.rasi
+hypr/scripts/wallpaper
 hypr/theme/current.bash
 hypr/waybar/colors.css
-hypr/wofi/style.css
 hypr/wlogout/colors.css
+hypr/wofi/style.css
+nvchad/lazy-lock.json
