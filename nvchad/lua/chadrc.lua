@@ -6,8 +6,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "vscode_light",
-  theme_toggle = { "vscode_light", "vscode_light" },
+  theme = "catppuccin",
+  theme_toggle = { "catppuccin", "catppuccin" },
   transparency = true
 }
 

@@ -117,6 +117,8 @@
     "cpu#2": {
          "interval": 5,
          "format": "{usage}%",
+          "on-click": "~/.config/hypr/scripts/foot -f btop",
+          "on-click-right": "~/.config/hypr/scripts/foot -f htop",
     },
            
 	// waybar-custom

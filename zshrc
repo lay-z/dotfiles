@@ -108,6 +108,7 @@ install_plug() {
 install_plug https://github.com/zsh-users/zsh-autosuggestions
 install_plug https://github.com/zsh-users/zsh-syntax-highlighting
 install_plug https://github.com/jeffreytse/zsh-vi-mode
+# install_plug https://github.com/softmoth/zsh-vim-mode
 install_plug https://github.com/mroth/evalcache
 
 

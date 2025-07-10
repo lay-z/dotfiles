@@ -308,6 +308,20 @@ apply_wofi() {
 		-e "s/@define-color white .*/@define-color white           ${color7};/g"
 }
 
+## Btop ----------------------------------------
+apply_btop() {
+  # TODO maybe we can automatically work out if theme is dark or light from the colors, but for now hard coding catpuccin
+  btop_theme_dir=$HOME/.config/btop/themes
+  echo "we here"
+  if [[ "$1" == '--default' ]]; then
+    echo ln -fs ${btop_theme_dir}/catppuccin_mocha.theme ${btop_theme_dir}/current.theme
+    ln -fs ${btop_theme_dir}/catppuccin_mocha.theme ${btop_theme_dir}/current.theme
+  elif [[ "$1" == '--light' ]]; then
+    echo ln -fs ${btop_theme_dir}/catppuccin_latte.theme ${btop_theme_dir}/current.theme
+    ln -fs ${btop_theme_dir}/catppuccin_latte.theme ${btop_theme_dir}/current.theme
+  fi
+}
+
 ## Hyprland --------------------------------------
 apply_hypr() {
 	# hyprland : theme
@@ -345,4 +359,5 @@ apply_rofi
 apply_waybar
 apply_wlogout
 apply_wofi
+apply_btop $1
 apply_hypr
