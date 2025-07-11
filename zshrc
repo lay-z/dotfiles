@@ -364,6 +364,41 @@ pid_from_ps_aux() {
     awk '{print $2}'
 }
 
+fzf_open_file_or_directory() {
+  file_path=$1:-.
+  echo $file_path
+  file_dir=`fzf_tmux_popout_color $1`
+
+  echo $file_dir
+
+  # Its a file
+  if [[ -f $file_dir ]]; then
+    nvim $file_dir
+  # Its a directory
+  elif [[ -d $file_dir ]]; then
+    cd $file_dir
+  else
+    echo "Not a file or directory: $file_dir"
+    echo "Opening up wiht xdg-open"
+    xdg-open $file_dir
+  fi
+}
+
+alias cx=fzf_open_file_or_directory
+
+fzf_tmux_popout_color() {
+    fzf --ansi --tmux --ansi
+    # echo $0
+    # local fzf_cmd="fzf --color=bg:#282a36,fg:#f8f8f2,hl:#bd93f9,info:#50fa7b,prompt:#ff79c6,spinner:#ffb86c,marker:#ff5555 --color=pointer:#bd93f9 --color=border:#44475a --color=header:#6272a4 --color=fg+:#f8f8f2 --color=bg+:#282a36 --tmux --ansi"
+    # query=$1
+    # fzf_cmd="fzf --ansi --tmux -m "
+    # if [[ -n "$query" ]]; then
+    #     echo "Using query: $query"
+    #     fzf_cmd="$fzf_cmd --query $query"
+    # fi
+}
+
+# TODO ISSUE-088 figure out a way in hyprland so that can run a keyboard shortcut and then click on a window and it'll force delete it.
 kill_processes() {
    # Set default values
     kill_mode="-9"
@@ -386,14 +421,8 @@ kill_processes() {
         esac
     done
 
-    # Build the fzf command
-    fzf_cmd="fzf -m"
-    if [[ -n "$query" ]]; then
-        fzf_cmd="$fzf_cmd --query $query"
-    fi
-
     # Execute the ps aux and fzf command
-    ps aux --sort=lstart | eval $fzf_cmd | awk '{print $2}' | xargs kill "$kill_mode"
+    ps aux --sort=lstart | fzf_tmux_popout_color $query | awk '{print $2}' | xargs kill "$kill_mode"
 }
 
 kill_alacritty() {
@@ -590,6 +619,8 @@ nmap_scan_local() {
     sudo nmap -sn 192.168.1.0/24
 }
 
+## Deprecated, no longer using modmap (well no longer using x11)
+## But curious to try out the remote desktop that it enabled
 backspace_swapped() {
     echo -e "keycode 22 = slash\n keycode 61 = BackSpace question" | xmodmap -
 }
@@ -667,7 +698,7 @@ function zvm_after_init() {
         FZF_DEFAULT_COMMAND="fd . $HOME"
         FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
         FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME"
-        FZF_DEFAULT_OPTS='--preview="/home/layz/Code/dotfiles/scripts/fzf-preview.sh {}" --ansi --tmux'
+        FZF_DEFAULT_OPTS='--preview="/home/layz/Code/dotfiles/scripts/fzf-preview-directory-files.sh {}" --ansi --tmux'
     fi
 
     # allow for ctrl space to accept auto suggestion

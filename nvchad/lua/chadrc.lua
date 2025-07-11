@@ -6,8 +6,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "darcula-dark",
-  theme_toggle = { "darcula-dark", "everforest_light" },
+  theme = "ayu_light",
+  theme_toggle = { "ayu_light", "everforest_light" },
   transparency = true
 }
 

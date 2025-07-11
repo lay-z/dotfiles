@@ -67,6 +67,7 @@ run test
 
 ########## Variables
 
+### TODO switch this to use stow instead will make the installation so much easier
 dir=$(pwd)                        # dotfiles directory
 echo $dir
 olddir=~/dotfiles_old             # old dotfiles backup directory
