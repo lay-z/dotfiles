@@ -16,6 +16,8 @@ map("n", "<Leader>fk", ":Telescope keymaps<CR>", { desc = "telescope find all ke
 map("n", "<Leader>wa", ":wa<CR>", { desc = "Write all buffers" })
 map("n", "<Leader>wq", ":wqa<CR>", { desc = "Exit all" })
 map("n", "<Leader>qa", ":qa!<CR>", { desc = "Exit all" })
+-- vim.api.nvim_set_keymap('t', '<ESC>', [[<C-\><C-n>]], { noremap = true })
+map('t', '<ESC>', [[<C-\><C-n>]], { noremap = true, desc = "Esc exist the terminal mode" })
 
 -- Unmap LSP's <Leader>wa mapping to prevent conflict
 vim.api.nvim_create_autocmd("LspAttach", {

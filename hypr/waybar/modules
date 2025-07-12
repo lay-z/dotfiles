@@ -105,7 +105,7 @@
     "clock#2": {
 		"interval": 60,
         "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%I:%M %p}",
+        "format": "{:%I:%M %p | %a %b %d, %G}",
         "format-alt": "{:%a %b %d, %G}"
     },
 
