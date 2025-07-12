@@ -8,8 +8,11 @@ return {
     "pwntester/octo.nvim",
     event = "VeryLazy",
     config = function()
-      require("octo").setup()
+      require("octo").setup({enable_builtin = true})
     end,
+    keys = {
+      { "<leader>O", "<cmd>Octo<cr>", desc = "List octo actions"}
+    },
     requires = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
