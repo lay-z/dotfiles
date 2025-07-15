@@ -8,10 +8,10 @@ return {
     "pwntester/octo.nvim",
     event = "VeryLazy",
     config = function()
-      require("octo").setup({enable_builtin = true})
+      require("octo").setup { enable_builtin = true }
     end,
     keys = {
-      { "<leader>O", "<cmd>Octo<cr>", desc = "List octo actions"}
+      { "<leader>O", "<cmd>Octo<cr>", desc = "List octo actions" },
     },
     requires = {
       "nvim-lua/plenary.nvim",
@@ -131,7 +131,14 @@ return {
     },
     config = true,
     opts = {
-      autoload = true, -- whether to autoload sessions in the cwd at startup
+      sessions = {
+        sessions_icon = "󱅗 ",
+      },
+      autoload = true, -- ccether to autoload sessions in the cwd at startup
+      autoprompt = true, -- default false. Allows to choose between two sessions if autoload finds two at the same path
+      autoswitch = {
+        enable = true, -- default false
+      },
     },
     event = "VeryLazy",
     keys = {

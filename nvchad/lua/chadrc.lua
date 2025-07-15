@@ -15,6 +15,19 @@ M.ui = {
   telescope = {
     style = "bordered",
   },
+  statusline = {
+    enabled = true,
+    theme = "vscode_colored",
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "session_info", "lsp", "cursor", "cwd" },
+    -- order = {
+    --   "mode", "file", "git", ,
+    -- },
+    modules = {
+      session_info = function()
+        return require("nvim-possession").status()
+      end,
+    },
+  },
 }
 
 -- M.nvdash = { load_on_startup = true }
