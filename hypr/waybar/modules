@@ -23,6 +23,18 @@
         "smooth-scrolling-threshold": 1,
     },
 
+	// battery-discharger
+    "custom/batterydrain": {
+        "format": "⚡",
+    },
+    "custom/batterydrain#2": {
+        "exec": "~/.config/hypr/scripts/power_energy_rate",
+        "interval": 5,
+        "format": "-{}W",
+        "tooltip": true,
+        "tooltip-format": "Power consumption: {}W"
+    },
+
 	// waybar-battery
     "battery": {
 		"interval": 60,
