@@ -6,8 +6,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "material-lighter",
-  theme_toggle = { "material-lighter", "everforest_light" },
+  theme = "catppuccin",
+  theme_toggle = { "catppuccin", "everforest_light" },
   transparency = false
 }
 
