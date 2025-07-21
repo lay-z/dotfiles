@@ -6,8 +6,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "catppuccin",
-  theme_toggle = { "catppuccin", "everforest_light" },
+  theme = "ayu_light",
+  theme_toggle = { "ayu_light", "everforest_light" },
   transparency = false
 }
 
