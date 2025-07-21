@@ -26,17 +26,14 @@ fi
 
 # Try to attach to 'keyboard' session
 if tmux has-session -t keyboard 2>/dev/null; then
-    echo "Attaching to existing 'keyboard' session..."
-    tmux attach-session -t keyboard
+    echo "Tmux has session no need to create"
 else
     echo "Creating new 'keyboard' session..."
     tmux new-session -d -s keyboard
-    
-    # Send the xremap command to the session
-    echo "Executing xremap command in 'keyboard' session..."
-    tmux send-keys -t keyboard "xremap \$HOME/Code/dotfiles/xremap/config.yml" Enter
-    
-    # Attach to the session
-    echo "Attaching to 'keyboard' session..."
-    tmux attach-session -t keyboard
 fi
+    
+# Send the xremap command to the session
+echo "Executing xremap command in 'keyboard' session..."
+tmux send-keys -t keyboard "xremap \$HOME/Code/dotfiles/xremap/config.yml" Enter
+
+tmux attach -t keyboard

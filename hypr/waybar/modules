@@ -29,7 +29,7 @@
     },
     "custom/batterydrain#2": {
         "exec": "~/.config/hypr/scripts/power_energy_rate",
-        "interval": 1,
+        "interval": 10,
         "format": "{}",
         "tooltip": true,
         "tooltip-format": "Power consumption: {}W"
