@@ -172,34 +172,41 @@ apply_foot() {
 ## Kitty ---------------------------------
 apply_kitty() {
 	# kitty : colors
-	cat > ${PATH_KITY}/colors.conf <<- _EOF_
-		## Colors configuration
-		background ${background}
-		foreground ${foreground}
-		selection_background ${foreground}
-		selection_foreground ${background}
-		cursor ${foreground}
-		
-		color0 ${color0}
-		color8 ${color8}
-		color1 ${color1}
-		color9 ${color9}
-		color2 ${color2}
-		color10 ${color10}
-		color3 ${color3}
-		color11 ${color11}
-		color4 ${color4}
-		color12 ${color12}
-		color5 ${color5}
-		color13 ${color13}
-		color6 ${color6}
-		color14 ${color14}
-		color7 ${color7}
-		color15 ${color15}
-	_EOF_
-
-	# reload kitty config
-	kill -SIGUSR1 $(pidof kitty)
+	# cat > ${PATH_KITY}/colors.conf <<- _EOF_
+	# 	## Colors configuration
+	# 	background ${background}
+	# 	foreground ${foreground}
+	# 	selection_background ${foreground}
+	# 	selection_foreground ${background}
+	# 	cursor ${foreground}
+	#
+	# 	color0 ${color0}
+	# 	color8 ${color8}
+	# 	color1 ${color1}
+	# 	color9 ${color9}
+	# 	color2 ${color2}
+	# 	color10 ${color10}
+	# 	color3 ${color3}
+	# 	color11 ${color11}
+	# 	color4 ${color4}
+	# 	color12 ${color12}
+	# 	color5 ${color5}
+	# 	color13 ${color13}
+	# 	color6 ${color6}
+	# 	color14 ${color14}
+	# 	color7 ${color7}
+	# 	color15 ${color15}
+	# _EOF_
+	#
+	# # reload kitty config
+	# kill -SIGUSR1 $(pidof kitty)
+  # If default then set to Catppuccin-Mocha
+  # If light then set to Catppuccin-Latte
+  if [[ "$1" == '--default' ]]; then
+    kitty +kitten themes Catppuccin-Mocha
+  elif [[ "$1" == '--light' ]]; then
+    kitty +kitten themes Catppuccin-Latte
+  fi
 }
 
 ## Mako --------------------------------------
@@ -353,7 +360,7 @@ fi
 apply_wallpaper
 apply_alacritty
 apply_foot
-apply_kitty
+apply_kitty $1
 apply_mako
 apply_rofi
 apply_waybar
