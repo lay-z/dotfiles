@@ -4,7 +4,7 @@
 {
 	// waybar-backlight
     "backlight": {
-		"interval": 2,
+		"interval": 60,
         //"device": "amdgpu_bl0",
         "format": "{icon}",
         "format-icons": ["", "", "", "", "", "", ""],
@@ -14,7 +14,7 @@
         "smooth-scrolling-threshold": 1,
     },
     "backlight#2": {
-		"interval": 2,
+		"interval": 60,
         //"device": "amdgpu_bl0",
         "format": "{percent}%",
 		// Commands to execute on events
@@ -29,7 +29,7 @@
     },
     "custom/batterydrain#2": {
         "exec": "~/.config/hypr/scripts/power_energy_rate",
-        "interval": 1,
+        "interval": 60,
         "format": "{}",
         "tooltip": true,
         "tooltip-format": "Power consumption: {}W"
@@ -158,21 +158,21 @@
 
 	// waybar-disk
     "disk": {
-         "interval": 30,
+         "interval": 60,
          "format": "",
     },           	
     "disk#2": {
-         "interval": 30,
+         "interval": 60,
          "format": "{free}",
     },           	
 	
 	// waybar-memory
     "memory": {
-         "interval": 10,
+         "interval": 60,
          "format": "",
     },
     "memory#2": {
-         "interval": 10,
+         "interval": 60,
          "format": "{used:0.1f}G",
     },
            
