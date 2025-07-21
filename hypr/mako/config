@@ -1,0 +1,18 @@
+# Mako_Colors
+background-color=#eff1f5
+text-color=#4c4f69
+border-color=#f7f8fa
+progress-color=over #b4befe
+
+[urgency=low]
+border-color=#f7f8fa
+default-timeout=2000
+
+[urgency=normal]
+border-color=#f7f8fa
+default-timeout=5000
+
+[urgency=high]
+border-color=#ea76cb
+text-color=#ea76cb
+default-timeout=0
