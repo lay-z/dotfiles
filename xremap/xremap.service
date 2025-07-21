@@ -9,6 +9,8 @@ Restart=always
 RestartSec=1
 StandardOutput=journal
 StandardError=journal
+User=layz
+Group=input
 Environment=DISPLAY=:0
 SupplementaryGroups=input uinput
 

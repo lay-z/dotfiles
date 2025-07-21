@@ -509,6 +509,12 @@ fi
 
 
 # Rust stuff
+#
+
+install_rustup() {
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}
+
 
 rust_clear_target(){
     find . -name target -type d | xargs rm -rfv
@@ -524,6 +530,14 @@ if path_exists ~/.foundry/bin ; then
     # Add cargo to PATH
     export PATH=~/.foundry/bin:$PATH
 fi
+
+
+# Foundry stuff
+install_foundry() {
+    curl -L https://foundry.paradigm.xyz | bash
+    # This will install the latest version of foundry
+    foundryup
+}
 
 
 
@@ -692,9 +706,13 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=#B08AE7,bg=underline
 
 # thanks to vi-mode plugin, need to run these key binds after zsh init
 function zvm_after_init() {
-    # Initialize fzf
-    if [ -f ~/.fzf.zsh ]; then
-        source ~/.fzf.zsh
+
+    if program_exists fzf; then
+      _evalcache fzf --zsh
+    # fi
+    # # Initialize fzf
+    # if [ -f ~/.fzf.zsh ]; then
+    #     source ~/.fzf.zsh
         # now lets do some zsh specific functions
 
         # TODO try to figure out a way to produce some kind of usability like
@@ -710,6 +728,7 @@ function zvm_after_init() {
         FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
         FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME"
         FZF_DEFAULT_OPTS='--preview="/home/layz/Code/dotfiles/scripts/fzf-preview-directory-files.sh {}" --ansi --tmux'
+        # fi
     fi
 
     # allow for ctrl space to accept auto suggestion
