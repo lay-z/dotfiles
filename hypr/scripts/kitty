@@ -5,8 +5,8 @@
 ## launch kitty with hypr config
 
 # hypr directory
-DIR="$HOME/.config/hypr"
-CONFIG="$DIR/kitty/kitty.conf"
+DIR="$HOME/.config/kitty"
+CONFIG="$DIR/kitty.conf"
 
 if [ "$1" == "-f" ]; then
 	kitty --class 'kitty-float' --config "$CONFIG"
