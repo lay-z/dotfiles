@@ -1,0 +1,153 @@
+/* @import url('./light-colours.css'); */
+@import url('./dark-colours.css');
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Ubuntu Nerd Font", "Font Awesome 5 Free";
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    /* background: transparent; */
+    background: #282A36 ;
+    color: @text-color;
+}
+
+#window {
+    font-weight: bold;
+    color: #F1FA8C;
+    font-family: "Ubuntu", "Font Awesome 5 Free";
+}
+
+#workspaces {
+    padding: 0 5px;
+    /* font-weight: bold; */
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: @text-color;
+    border-top: 2px solid transparent;
+}
+
+#workspaces button.focused {
+    /* color: #87D7FF; */
+  color: @highlight-text-color;
+    border-top: 2px solid @htext-color;
+}
+
+#mode {
+    background: #64727D;
+    border-bottom: 3px solid black;
+}
+
+#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
+    padding: 0 3px;
+    margin: 0 2px;
+}
+
+#clock {
+    font-weight: bold;
+}
+
+#battery {
+}
+
+#battery icon {
+    color: @text-color;
+}
+
+
+#battery.max {
+  color: #b1ff00;
+}
+
+#battery.good {
+  color: #8fce00;
+}
+
+#battery.medium {
+  color: #ffd966;
+}
+
+#battery.low {
+  color: #FF5555 ;
+}
+
+#battery.warning {
+}
+
+#battery.charging {
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
+
+#battery.warning:not(.charging) {
+    color: #FF5555 ;
+    /* color: black; */
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 10;
+    animation-direction: alternate;
+}
+ 
+#custom-separator {
+  color: @text-color;
+  margin: 0 5px;
+}
+
+
+#cpu {
+  color: #8BE9FD ;
+}
+
+#memory {
+  color: #ff79c6;
+}
+
+#network {
+}
+
+#network.disconnected {
+    background: #f53c3c;
+}
+
+#pulseaudio {
+  color: #50FA7B;
+}
+
+#pulseaudio.muted {
+}
+
+#backlight {
+  color: #ff79c6;
+}
+
+#custom-spotify {
+    color: rgb(102, 220, 105);
+}
+
+#tray {
+  color: black;
+}
+
+#custom-notification {
+  font-family: "NotoSansMono Nerd Font";
+}
+
+#custom-pomodoro.paused {
+  font-weight: bold;
+}
+
+#custom-pomodoro.paused {
+  border-bottom: 3px solid #FFD75F;
+}
