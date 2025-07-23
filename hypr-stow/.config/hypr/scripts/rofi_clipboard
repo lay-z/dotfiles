@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+set -euo pipefail
+
+DIR="$HOME/.config/hypr"
+RASI="$DIR/rofi/launcher.rasi"
+
+wl-clipboard-history -l 100 | cut -d , -f2 | rofi -theme ${RASI} -mesg "Clipboard Manager" -dmenu -markup-rows | wl-copy
