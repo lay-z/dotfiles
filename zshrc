@@ -739,6 +739,11 @@ function zvm_after_init() {
       bindkey "^r" atuin-search
       # used to use down arrow key to search through history but for the directory
       bindkey "^[[B" atuin-up-search
+      # Use ctrl p to bind to upsearch as well
+      bindkey "^p" atuin-up-search
+
+      # Use ctrl n to bind to upsearch as well
+      bindkey "^n" atuin-up-search
     fi
 
 }
