@@ -86,6 +86,11 @@ install_package() {
         error "Package '$package' not found!"
         return 1
     fi
+
+if [[ ! " ${PACKAGES[@]} " =~ " ${package} " ]]; then
+      error "Not a stowable package!"
+      return 1
+    fi
     
     info "Installing package: $package"
     

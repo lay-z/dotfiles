@@ -23,9 +23,13 @@ nvchad_config.on_attach = function(_, bufnr)
 
   map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Show line diagnostics", buffer = bufnr }) -- show diagnostics for line
 
-  map("n", "[d", function() vim.diagnostic.jump({count = -1, float = true }) end, { desc = "Go to previous diagnostic", buffer = bufnr }) -- jump to previous diagnostic in buffer
+  map("n", "[d", function()
+    vim.diagnostic.jump { count = -1, float = true }
+  end, { desc = "Go to previous diagnostic", buffer = bufnr }) -- jump to previous diagnostic in buffer
 
-  map("n", "]d", function() vim.diagnostic.jump({count = 1, float = true }) end, { desc = "Go to next diagnostic", buffer = bufnr }) -- jump to next diagnostic in buffer
+  map("n", "]d", function()
+    vim.diagnostic.jump { count = 1, float = true }
+  end, { desc = "Go to next diagnostic", buffer = bufnr }) -- jump to next diagnostic in buffer
 
   map("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor", buffer = bufnr }) -- show documentation for what is under cursor
 
