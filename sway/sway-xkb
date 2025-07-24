@@ -1,5 +1,0 @@
-option "ctrl:swapcaps_fnctrl" {
-    type    = "bool"
-    default = "false"
-    label   = "Swap Control and Fn"
-};

@@ -1,6 +1,6 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = { "html", "cssls", "rust_analyzer", "bashls", "lua_ls" }
+local servers = { "html", "cssls", "rust_analyzer", "bashls", "lua_ls", "ts_ls" }
 vim.lsp.enable(servers)
 
 vim.lsp.set_log_level "warn"

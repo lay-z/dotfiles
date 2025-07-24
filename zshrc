@@ -462,20 +462,14 @@ convert_image() {
 ###########################################################################################
 
 ## Node stuff
-
+## TODO is there a way to make sure that this is the latest version?
 install_nvm() {
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 }
 
-# too add node version manager support
-# This loads nvm
-# export NVM_DIR="$HOME/.nvm"
-# if [ -f $NVM_DIR/nvm.sh ]; then
-#     . "$NVM_DIR/nvm.sh"
-# else
-#     # TODO ask if we want to install nvm?
-#     install_nvm
-# fi
+install_bun() { 
+    curl -fsSL https://bun.sh/install | bash
+}
 
 # Turn zsh into vim mode
 # bindkey -v
@@ -545,6 +539,18 @@ install_rvm() {
 #     source ~/.rvm/scripts/rvm
 # fi
 
+
+### Blockchain specfic functionality
+
+if [ -d /home/layz/.local/share/solana/install/active_release/bin ]; then
+    # Add Solana to PATH
+    export PATH="/home/layz/.local/share/solana/install/active_release/bin:$PATH"
+fi
+
+if [ -d /home/layz/.avm/bin ]; then
+    # Add Solana to PATH
+    export PATH="/home/layz/.avm/bin:$PATH"
+fi
 
 ##############################################################################
 ##################### fun shell methods chatGPT ##############################
@@ -749,7 +755,6 @@ alias ll="ls -la"
 #[[ $- != *i* ]] && return
 # Otherwise start tmux
 #[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # COMMENTED OUT BECAUSE IT WAS TAKING SOO LONG
 if program_exists gh; then 
