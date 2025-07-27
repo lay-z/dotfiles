@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+declare -A icon_map
+
+icon_map["powersave"]="󰡵"
+icon_map["balanced"]=""
+icon_map["balanced-battery"]="󱟦"
+icon_map["performance"]=""
+icon_map["latency-performance"]=""
+icon_map["throughput-performance"]=""
+icon_map["desktop"]=""
+
+current_profile=$(tuned-adm active | awk '{print $NF}')
+icon=${icon_map[$current_profile]}
+
+printf '{"text":"%s","tooltip":"%s", "class": "%s"}' "$icon" "Current power profile: $current_profile" $current_profile

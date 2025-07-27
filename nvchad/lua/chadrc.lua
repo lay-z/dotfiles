@@ -8,7 +8,7 @@ local stl_utils = require("configs.stl")
 local M = {}
 
 M.base46 = {
-  theme = "ayu_light",
+  theme = "catppuccin",
   transparency = false
 }
 
@@ -24,7 +24,7 @@ end
 
 print("Terminal mode: " .. terminal_mode)
 if terminal_mode == "light" then
-  M.base46.theme = "ayu_light"
+  M.base46.theme = "catppuccin"
 end
 
 M.ui = {

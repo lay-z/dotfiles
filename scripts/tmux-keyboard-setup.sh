@@ -10,12 +10,11 @@ echo "Starting tmux keyboard setup..."
 # Check if tmux server is running
 if ! tmux has-session 2>/dev/null; then
     echo "No tmux server running. Starting tmux server..."
-    tmux new-session -d -s temp
-    tmux kill-session -t temp
+
     
     # Wait for tmux restore to complete if using tmux-resurrect or similar
     echo "Waiting for tmux restore to complete..."
-    sleep 3
+    sleep 10
     
     # Check for common restore indicators
     while pgrep -f "tmux.*restore" > /dev/null 2>&1; do

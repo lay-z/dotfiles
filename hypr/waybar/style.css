@@ -8,7 +8,7 @@
 /** ********** Fonts ********** **/
 * {
   font-family: "JetBrains Mono", "Symbols Nerd Font", "Iosevka Fixed", archcraft, sans-serif;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 /** ********** Waybar Window ********** **/
@@ -29,7 +29,7 @@ window#waybar.hidden {
 #custom-menu {
   background-color: @background-alt1;
   color: @magenta;
-  font-size: 18px;
+  font-size: 30px;
   border-radius: 0px 14px 0px 0px;
   margin: 0px 0px 0px 0px;
   padding: 2px 8px 2px 8px;
@@ -44,7 +44,6 @@ window#waybar.hidden {
   font-size: 16px;
 }
 
-#custom-power,
 #custom-themes {
   color: @background;
   border-radius: 10px;
@@ -303,6 +302,21 @@ window#waybar.hidden {
 
 #workspaces button.hidden {
   color: @yellow;
+}
+
+
+/** ********** Custom colors for our lovely power profile ********** **/
+#custom-batterydrain.powersave {
+  color: @green;
+}
+
+#custom-batterydrain.throughput-performance {
+  color: @red;
+}
+
+#custom-batterydrain.balanced,
+#custom-batterydrain.balanced-battery {
+  color: @blue;
 }
 
 /** ********** Common style ********** **/
