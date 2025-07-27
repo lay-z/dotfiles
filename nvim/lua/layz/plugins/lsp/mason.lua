@@ -39,12 +39,15 @@ return {
 				-- "prismals",
 				"pyright",
 				"bashls",
+				"bash-language-server",
 				"solidity_ls_nomicfoundation",
 				"gopls",
 				"shfmt",
 				"yaml-language-server",
 				"jsonls",
 				"shfmt",
+        "rust_analyzer",
+        "copilot-language-server"
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed

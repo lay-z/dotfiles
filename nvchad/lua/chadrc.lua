@@ -2,11 +2,13 @@
 -- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
 -- Please read that file to know all available options :(
 
+local stl_utils = require("configs.stl")
+
 ---@type ChadrcConfig
 local M = {}
 
 M.base46 = {
-  theme = "catppuccin",
+  theme = "ayu_light",
   transparency = false
 }
 
@@ -32,7 +34,7 @@ M.ui = {
   statusline = {
     enabled = true,
     theme = "vscode_colored",
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "session_info", "lsp", "cursor", "cwd" },
+    order = { "mode", "full_file_path", "git", "%=", "lsp_msg", "%=", "diagnostics", "session_info", "lsp", "cursor", "cwd" },
     -- order = {
     --   "mode", "file", "git", ,
     -- },
@@ -40,6 +42,11 @@ M.ui = {
       session_info = function()
         return require("nvim-possession").status()
       end,
+      -- Method pretty much copied from https://github.com/NvChad/ui/blob/v3.0/lua/nvchad/stl/utils.lua#L83
+      full_file_path = function()
+        -- return "test"
+        return stl_utils.files()
+      end
     },
   },
 }
