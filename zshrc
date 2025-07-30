@@ -170,6 +170,11 @@ function program_exists() {
     hash $1 2>/dev/null
 }
 
+# Checks if the file directory exists and if it does adds it to the PATH
+function add_to_path() {
+  path_exists $1 && export PATH="$1:$PATH"
+}
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -525,20 +530,6 @@ if path_exists ~/.cargo/bin ; then
     export PATH=~/.cargo/bin:$PATH
 fi
 
-# rust, but also web3
-if path_exists ~/.foundry/bin ; then
-    # Add cargo to PATH
-    export PATH=~/.foundry/bin:$PATH
-fi
-
-
-# Foundry stuff
-install_foundry() {
-    curl -L https://foundry.paradigm.xyz | bash
-    # This will install the latest version of foundry
-    foundryup
-}
-
 
 
 # Ruby stuff
@@ -558,6 +549,26 @@ install_rvm() {
 #     install_rvm
 #     source ~/.rvm/scripts/rvm
 # fi
+
+
+### Blockchain things
+
+
+# rust, but also web3
+add_to_path ~/.foundry/bin
+
+
+# Foundry stuff
+install_foundry() {
+    curl -L https://foundry.paradigm.xyz | bash
+    # This will install the latest version of foundry
+    foundryup
+}
+
+
+### Solana
+add_to_path ~/.local/share/solana/install/active_release/bin
+add_to_path ~/.avm/bin
 
 
 ##############################################################################
@@ -687,10 +698,7 @@ pyenv_init() {
 
 
 # Flatpak installation
-PATH=/var/lib/flatpak/app:$PATH
-
-# Set up chrome apps
-export PATH="$PATH:$DOTFILES_DIR/chrome-apps"
+add_to_path /var/lib/flatpak/app
 
 
 # TMUX specific stuff
@@ -824,17 +832,18 @@ SERVICE=arn:aws:ecs:us-east-1:853100499654:service/tradable-non-production-ecs/t
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+add_to_path $BUN_INSTALL/bin
 
 # bun completions
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 
+# opencode
+add_to_path /home/layz/.opencode/bin
+
 copy_abi() {
   cat ../../onchain-v2/out/$1.sol/$1.json | jq '.abi' > abi/$1.json
 }
-
-export PATH=$PATH:/home/layz/.spicetify
 
 ## Shamelessly stolen from - https://gist.github.com/elalemanyo/cb3395af64ac23df2e0c3ded8bd63b2f
 if [ -n "${ZSH_DEBUGRC+1}" ]; then

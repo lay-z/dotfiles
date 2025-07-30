@@ -16,15 +16,16 @@ local terminal_mode_path = "/home/layz/.local/state/TERMINAL_MODE"
 local terminal_mode = nil
 
 local file = io.open(terminal_mode_path, "r")
-print("Terminal mode file found: " .. tostring(file ~= nil))
+vim.notify("Terminal mode file found: " .. tostring(file ~= nil), vim.log.levels.DEBUG)
 if file then
   terminal_mode = file:read("*l")
   file:close()
 end
 
-print("Terminal mode: " .. terminal_mode)
+vim.notify("Terminal mode: " .. terminal_mode, vim.log.levels.DEBUG)
 if terminal_mode == "light" then
-  M.base46.theme = "catppuccin"
+  vim.notify("Using light terminal mode", vim.log.levels.DEBUG)
+  M.base46.theme = "ayu_light"
 end
 
 M.ui = {

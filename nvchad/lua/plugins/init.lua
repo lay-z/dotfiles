@@ -58,6 +58,23 @@ return {
         },
       },
     },
+    keys = {
+      {
+        "<leader>fc",
+        "<cmd>Telescope commands<cr>",
+        desc = "List all commands available",
+      },
+      {
+        "<leader>fch",
+        "<cmd>Telescope command_history<cr>",
+        desc = "Search through history of commands",
+      },
+      {
+        "<leader>fco",
+        "<cmd>Telescope commands<cr>Overseer",
+        desc = "Search through all Overseer commands"
+      }
+    },
   },
   {
     "vim-test/vim-test",
@@ -69,7 +86,7 @@ return {
     vim.keymap.set("n", "<leader>ta", "<cmd>:TestSuite<CR>"),
     vim.keymap.set("n", "<leader>tl", "<cmd>:TestLast<CR>"),
     vim.keymap.set("n", "<leader>tg", "<cmd>:TestVisit<CR>"),
-    vim.cmd "let test#strategy = 'toggleterm'", -- Use toggle term
+    vim.cmd "let test#strategy = 'toggleterm'",         -- Use toggle term
     vim.cmd "let test#neovim_sticky#reopen_window = 1", -- Reopen terminal split if not visible
     -- vim.cmd("let test#project_root = function('get_base_dir'"),
   },
@@ -79,7 +96,7 @@ return {
   {
     "kiyoon/jupynium.nvim",
     dependencies = {
-      "rcarriga/nvim-notify", -- optional
+      "rcarriga/nvim-notify",   -- optional
       "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
     },
     build = "uv pip install . --python=$HOME/.virtualenvs/jupynium/bin/python",
@@ -143,6 +160,7 @@ return {
         "css",
         "rust",
         "solidity",
+        "bash",
       },
     },
   },

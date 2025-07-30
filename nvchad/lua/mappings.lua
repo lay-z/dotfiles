@@ -36,6 +36,9 @@ map("n", "<Leader>tc", ":tabnew<CR>", { desc = "Create new tab" })
 map("n", "<Leader>tp", ":tabp<CR>", { desc = "Go to previous tab" })
 map("n", "<Leader>tn", ":tabn<CR>", { desc = "Go to next tab" })
 
+map("n", "<Leader>tp", ":tabp<CR>", { desc = "Go to previous tab" })
+map("n", "<Leader>tn", ":tabn<CR>", { desc = "Go to next tab" })
+
 -- Map ctrl-b to toggle horizontal terminal
 -- map({ "n", "t", "i" }, "<C-b>", function()
 --   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
