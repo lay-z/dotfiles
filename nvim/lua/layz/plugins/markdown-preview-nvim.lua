@@ -1,3 +1,4 @@
+return {}
 -- TODO deprecated
 -- return {
 -- 	"iamcco/markdown-preview.nvim",

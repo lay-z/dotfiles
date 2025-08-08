@@ -1,3 +1,4 @@
+return {}
 -- No longer cloneable?
 -- Failed (1)
 --   ○ tabline.nvim

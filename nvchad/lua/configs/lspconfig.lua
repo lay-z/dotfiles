@@ -61,6 +61,7 @@ local servers = {
   },
   bashls = {},
   lua_ls = {},
+  ts_ls = {},
 }
 
 for name, opts in pairs(servers) do

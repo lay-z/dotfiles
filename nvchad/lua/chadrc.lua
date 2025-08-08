@@ -16,7 +16,8 @@ local terminal_mode_path = "/home/layz/.local/state/TERMINAL_MODE"
 local terminal_mode = nil
 
 local file = io.open(terminal_mode_path, "r")
-vim.notify("Terminal mode file found: " .. tostring(file ~= nil), vim.log.levels.DEBUG)
+-- TODO understand why is this printing out when the log level has been set to DEBUG!
+-- vim.notify("Terminal mode file found: " .. tostring(file ~= nil), vim.log.levels.DEBUG)
 if file then
   terminal_mode = file:read("*l")
   file:close()
@@ -24,9 +25,10 @@ end
 
 vim.notify("Terminal mode: " .. terminal_mode, vim.log.levels.DEBUG)
 if terminal_mode == "light" then
-  vim.notify("Using light terminal mode", vim.log.levels.DEBUG)
-  M.base46.theme = "ayu_light"
+  -- vim.notify("Using light terminal mode", vim.log.levels.DEBUG)
+  M.base46.theme = "tokyonight"
 end
+
 
 M.ui = {
   telescope = {
@@ -36,9 +38,6 @@ M.ui = {
     enabled = true,
     theme = "vscode_colored",
     order = { "mode", "full_file_path", "git", "%=", "lsp_msg", "%=", "diagnostics", "session_info", "lsp", "cursor", "cwd" },
-    -- order = {
-    --   "mode", "file", "git", ,
-    -- },
     modules = {
       session_info = function()
         return require("nvim-possession").status()

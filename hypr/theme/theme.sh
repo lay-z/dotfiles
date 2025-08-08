@@ -199,14 +199,22 @@ apply_kitty() {
 	# _EOF_
 	#
 	# # reload kitty config
-	# kill -SIGUSR1 $(pidof kitty)
+
   # If default then set to Catppuccin-Mocha
   # If light then set to Catppuccin-Latte
   if [[ "$1" == '--default' ]]; then
     kitty +kitten themes Catppuccin-Mocha
+    echo "dark" > /home/layz/.local/state/TERMINAL_MODE
   elif [[ "$1" == '--light' ]]; then
     kitty +kitten themes Catppuccin-Latte
+    echo "light" > /home/layz/.local/state/TERMINAL_MODE
   fi
+
+
+
+
+	kill -SIGUSR1 $(pidof kitty)
+  kitty &
 }
 
 ## Mako --------------------------------------
