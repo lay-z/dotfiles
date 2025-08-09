@@ -38,6 +38,9 @@ keymap.set("t", "<C-l>", "<C-\\><C-N><C-w><C-l>") -- exit terminal mode
 keymap.set("n", "<C-t>", "gcc")
 keymap.set("v", "<C-t>", "gc")
 
+keymap.set("v", "<leader>hs", function()
+	get_command_history()
+end)
 -- TODO think about some new keymaps
 -- way to search and replace based on the word under current character.
 -- Would have to do things for search and replace for line, vs for file

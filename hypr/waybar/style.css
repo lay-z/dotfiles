@@ -7,8 +7,10 @@
 
 /** ********** Fonts ********** **/
 * {
-  font-family: "JetBrains Mono", "Symbols Nerd Font", "Iosevka Fixed", archcraft, sans-serif;
-  font-size: 20px;
+  font-family:
+    "JetBrains Mono", "Symbols Nerd Font", "Iosevka Fixed", archcraft,
+    sans-serif;
+  font-size: 14px;
 }
 
 /** ********** Waybar Window ********** **/
@@ -17,7 +19,7 @@ window#waybar {
   color: @foreground;
   border-bottom: 2px solid @background-alt1;
   transition-property: background-color;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 window#waybar.hidden {
@@ -72,15 +74,16 @@ window#waybar.hidden {
   padding: 4px 6px;
 }
 
-#tray>.passive {
+#tray > .passive {
   -gtk-icon-effect: dim;
 }
 
-#tray>.needs-attention {
+#tray > .needs-attention {
   -gtk-icon-effect: highlight;
 }
 
-#tray>.active {}
+#tray > .active {
+}
 
 /** ********** MPD ********** **/
 @keyframes gradient {
@@ -115,7 +118,8 @@ window#waybar.hidden {
   color: @cyan;
 }
 
-#mpd.paused {}
+#mpd.paused {
+}
 
 #mpd.2 {
   border-radius: 10px 0px 0px 10px;
@@ -157,7 +161,13 @@ window#waybar.hidden {
 }
 
 #custom-spotify.playing {
-  background: linear-gradient(90deg, @magenta 25%, @red 50%, @yellow 75%, @cyan 100%);
+  background: linear-gradient(
+    90deg,
+    @magenta 25%,
+    @red 50%,
+    @yellow 75%,
+    @cyan 100%
+  );
   background-size: 300% 300%;
   animation: gradient 10s ease infinite;
   color: @background;
@@ -195,11 +205,14 @@ window#waybar.hidden {
   color: @red;
 }
 
-#pulseaudio.2 {}
+#pulseaudio.2 {
+}
 
-#pulseaudio.2.bluetooth {}
+#pulseaudio.2.bluetooth {
+}
 
-#pulseaudio.2.muted {}
+#pulseaudio.2.muted {
+}
 
 /** ********** Backlight ********** **/
 #backlight {
@@ -211,9 +224,11 @@ window#waybar.hidden {
   color: @cyan;
 }
 
-#battery.charging {}
+#battery.charging {
+}
 
-#battery.plugged {}
+#battery.plugged {
+}
 
 @keyframes blink {
   to {
@@ -245,11 +260,14 @@ window#waybar.hidden {
   color: @red;
 }
 
-#network.linked {}
+#network.linked {
+}
 
-#network.ethernet {}
+#network.ethernet {
+}
 
-#network.wifi {}
+#network.wifi {
+}
 
 /** ********** Bluetooth ********** **/
 #bluetooth {
@@ -264,15 +282,20 @@ window#waybar.hidden {
   color: @red;
 }
 
-#bluetooth.on {}
+#bluetooth.on {
+}
 
-#bluetooth.connected {}
+#bluetooth.connected {
+}
 
-#bluetooth.discoverable {}
+#bluetooth.discoverable {
+}
 
-#bluetooth.discovering {}
+#bluetooth.discovering {
+}
 
-#bluetooth.pairable {}
+#bluetooth.pairable {
+}
 
 /** ********** Clock ********** **/
 #clock {
@@ -303,7 +326,6 @@ window#waybar.hidden {
 #workspaces button.hidden {
   color: @yellow;
 }
-
 
 /** ********** Custom colors for our lovely power profile ********** **/
 #custom-batterydrain.powersave {
