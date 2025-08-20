@@ -105,7 +105,7 @@ install_package() {
     
     info "Installing package: $package"
     
-    if stow "$package" -t ~; then
+    if stow --adopt "$package" -t ~; then
         info "✓ Successfully installed $package"
     else
         error "✗ Failed to install $package"
