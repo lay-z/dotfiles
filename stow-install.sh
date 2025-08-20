@@ -44,6 +44,14 @@ check_stow() {
     info "GNU Stow is installed ✓"
 }
 
+is_installed() {
+    if ! command -v $1 &> /dev/null; then
+        error "$1 is not installed!"
+        info "Please install it"
+        exit 1
+    fi
+}
+
 # Available packages
 PACKAGES=(
     "zsh"            # ZSH shell configuration
@@ -53,22 +61,24 @@ PACKAGES=(
     "git"            # Git configuration
     "x11"            # X11/Xresources
     "kitty"          # Kitty terminal configuration
-    "alacritty-stow" # Alacritty terminal
-    "nvim-stow"      # Neovim editor
-    "hypr-stow"      # Hyprland compositor
-    "i3-stow"        # i3 window manager
-    "sway-stow"      # Sway compositor
-    "atuin-stow"     # Shell history
-    "bat-stow"       # Better cat
-    "btop-stow"      # System monitor
-    "dunst-stow"     # Notifications
+    "alacritty" # Alacritty terminal
+    "nvim"      # Neovim editor
+    "hypr"      # Hyprland compositor
+    "atuin"     # Shell history
+    "bat"       # Better cat
+    "btop"      # System monitor
+    "redshift"  # Blue light filter
+    "waybar"    # Wayland status bar
+    "wofi"      # Wayland launcher
+    "sway"      # Configs specifically for sway
+)
+
+x11_PACKAGE=(
+    "i3"        # i3 window manager
+    "dunst"     # Notifications
     "picom-stow"     # X11 compositor
     "polybar-stow"   # Status bar
-    "redshift-stow"  # Blue light filter
     "rofi-stow"      # Application launcher
-    "waybar-stow"    # Wayland status bar
-    "wofi-stow"      # Wayland launcher
-    "misc-stow"      # Miscellaneous configs
 )
 
 show_packages() {
@@ -127,6 +137,16 @@ install_all() {
     done
 }
 
+uninstall_all() {
+    info "uninstalling all available packages..."
+    
+    for package in "${PACKAGES[@]}"; do
+        if [ -d "$package" ]; then
+            uninstall_package "$package"
+        fi
+    done
+}
+
 backup_existing() {
     local backup_dir="$HOME/dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
     info "Creating backup directory: $backup_dir"
@@ -176,6 +196,11 @@ main() {
                 error "Please specify a package to uninstall"
                 exit 1
             fi
+            ;;
+        "uninstall_all")
+            is_installed gum
+            echo "Uninstalling all packages..."
+            gum confirm && uninstall_all
             ;;
         "list")
             show_packages

@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep energy-rate | awk '{printf "%.3f\n", $2}'
-if [ ! -f /sys/class/power_supply/BAT1/current_now ] || [ ! -f /sys/class/power_supply/BAT1/voltage_now ]; then
-  echo "0"
-else
-  awk '{getline voltage < "/sys/class/power_supply/BAT1/voltage_now"; printf "%.3f W\n", $1 * voltage / 1000000000000}' /sys/class/power_supply/BAT1/current_now
-fi
