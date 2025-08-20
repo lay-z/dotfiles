@@ -37,7 +37,7 @@ opt.smartcase = true -- if you have caps in search string, then will be case sen
 opt.cursorline = true
 
 -- set spell check line
-opt.spell = true
+opt.spell = false
 opt.spelllang = "en_us"
 
 -- appearance
