@@ -1,21 +1,21 @@
 ## Colors configuration
 [colors.primary]
-background = "#eff1f5"
-foreground = "#4c4f69"
+background = "#20262C"
+foreground = "#f1fcf9"
 
 [colors.normal]
 black   = "#20262c"
-red     = "#ea76cb"
-green   = "#40a02b"
-yellow  = "#fe640b"
-blue    = "#04a5e5"
-magenta = "#b4befe"
-cyan    = "#89b4fa"
+red     = "#db86ba"
+green   = "#74dd91"
+yellow  = "#e49186"
+blue    = "#75dbe1"
+magenta = "#b4a1db"
+cyan    = "#9ee9ea"
 white   = "#f1fcf9"
 
 [colors.bright]
 black   = "#465463"
-red     = "#eba0ac"
+red     = "#d04e9d"
 green   = "#4bc66d"
 yellow  = "#db695b"
 blue    = "#3dbac2"
