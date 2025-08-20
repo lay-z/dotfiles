@@ -125,7 +125,7 @@ ZSH_COLORIZE_STYLE="dracula"
 ZSH_COLORIZE_TOOL=chroma
 
 alias less=cless
-alias cat="bat --theme=auto --color=always"
+alias cat="bat --theme=auto"
 
 
 # User configuration
@@ -168,6 +168,11 @@ function path_exists() {
 function program_exists() {
     # TODO figure out why this and not `which`
     hash $1 2>/dev/null
+}
+
+# Checks if the file directory exists and if it does adds it to the PATH
+function add_to_path() {
+  path_exists $1 && export PATH="$1:$PATH"
 }
 
 # Compilation flags
@@ -462,20 +467,14 @@ convert_image() {
 ###########################################################################################
 
 ## Node stuff
-
+## TODO is there a way to make sure that this is the latest version?
 install_nvm() {
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 }
 
-# too add node version manager support
-# This loads nvm
-# export NVM_DIR="$HOME/.nvm"
-# if [ -f $NVM_DIR/nvm.sh ]; then
-#     . "$NVM_DIR/nvm.sh"
-# else
-#     # TODO ask if we want to install nvm?
-#     install_nvm
-# fi
+install_bun() { 
+    curl -fsSL https://bun.sh/install | bash
+}
 
 # Turn zsh into vim mode
 # bindkey -v
@@ -509,6 +508,12 @@ fi
 
 
 # Rust stuff
+#
+
+install_rustup() {
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}
+
 
 rust_clear_target(){
     find . -name target -type d | xargs rm -rfv
@@ -517,12 +522,6 @@ rust_clear_target(){
 if path_exists ~/.cargo/bin ; then
     # Add cargo to PATH
     export PATH=~/.cargo/bin:$PATH
-fi
-
-# rust, but also web3
-if path_exists ~/.foundry/bin ; then
-    # Add cargo to PATH
-    export PATH=~/.foundry/bin:$PATH
 fi
 
 
@@ -545,6 +544,18 @@ install_rvm() {
 #     source ~/.rvm/scripts/rvm
 # fi
 
+
+### Blockchain specfic functionality
+
+if [ -d /home/layz/.local/share/solana/install/active_release/bin ]; then
+    # Add Solana to PATH
+    export PATH="/home/layz/.local/share/solana/install/active_release/bin:$PATH"
+fi
+
+if [ -d /home/layz/.avm/bin ]; then
+    # Add Solana to PATH
+    export PATH="/home/layz/.avm/bin:$PATH"
+fi
 
 ##############################################################################
 ##################### fun shell methods chatGPT ##############################
@@ -673,10 +684,7 @@ pyenv_init() {
 
 
 # Flatpak installation
-PATH=/var/lib/flatpak/app:$PATH
-
-# Set up chrome apps
-export PATH="$PATH:$DOTFILES_DIR/chrome-apps"
+add_to_path /var/lib/flatpak/app
 
 
 # TMUX specific stuff
@@ -692,9 +700,13 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=#B08AE7,bg=underline
 
 # thanks to vi-mode plugin, need to run these key binds after zsh init
 function zvm_after_init() {
-    # Initialize fzf
-    if [ -f ~/.fzf.zsh ]; then
-        source ~/.fzf.zsh
+
+    if program_exists fzf; then
+      _evalcache fzf --zsh
+    # fi
+    # # Initialize fzf
+    # if [ -f ~/.fzf.zsh ]; then
+    #     source ~/.fzf.zsh
         # now lets do some zsh specific functions
 
         # TODO try to figure out a way to produce some kind of usability like
@@ -710,6 +722,7 @@ function zvm_after_init() {
         FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
         FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME"
         FZF_DEFAULT_OPTS='--preview="/home/layz/Code/dotfiles/scripts/fzf-preview-directory-files.sh {}" --ansi --tmux'
+        # fi
     fi
 
     # allow for ctrl space to accept auto suggestion
@@ -720,6 +733,11 @@ function zvm_after_init() {
       bindkey "^r" atuin-search
       # used to use down arrow key to search through history but for the directory
       bindkey "^[[B" atuin-up-search
+      # Use ctrl p to bind to upsearch as well
+      bindkey "^p" atuin-up-search
+
+      # Use ctrl n to bind to upsearch as well
+      bindkey "^n" atuin-up-search
     fi
 
 }
@@ -749,7 +767,6 @@ alias ll="ls -la"
 #[[ $- != *i* ]] && return
 # Otherwise start tmux
 #[[ -z "$TMUX" ]] && exec tmux new-session -A -s main && exit
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # COMMENTED OUT BECAUSE IT WAS TAKING SOO LONG
 if program_exists gh; then 
@@ -800,17 +817,18 @@ SERVICE=arn:aws:ecs:us-east-1:853100499654:service/tradable-non-production-ecs/t
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+add_to_path $BUN_INSTALL/bin
 
 # bun completions
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 
+# opencode
+add_to_path /home/layz/.opencode/bin
+
 copy_abi() {
   cat ../../onchain-v2/out/$1.sol/$1.json | jq '.abi' > abi/$1.json
 }
-
-export PATH=$PATH:/home/layz/.spicetify
 
 ## Shamelessly stolen from - https://gist.github.com/elalemanyo/cb3395af64ac23df2e0c3ded8bd63b2f
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
