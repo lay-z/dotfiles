@@ -125,7 +125,7 @@ ZSH_COLORIZE_STYLE="dracula"
 ZSH_COLORIZE_TOOL=chroma
 
 alias less=cless
-alias cat="bat --theme=auto --color=always"
+alias cat="bat --theme=auto"
 
 
 # User configuration

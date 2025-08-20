@@ -2,7 +2,6 @@ vim.g.rustaceanvim = {
 	-- LSP configuration
 	server = {
 		on_attach = function(client, bufnr)
-			print("On attach running on rustaceanvim")
 			local keymap = vim.keymap -- for conciseness
 			local opts = {
 				noremap = true,

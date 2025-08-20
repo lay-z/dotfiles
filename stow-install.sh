@@ -46,28 +46,29 @@ check_stow() {
 
 # Available packages
 PACKAGES=(
-    "zsh"           # ZSH shell configuration
-    "bash"          # Bash shell configuration  
-    "tmux"          # Terminal multiplexer
-    "vim"           # Vim editor
-    "git"           # Git configuration
-    "x11"           # X11/Xresources
+    "zsh"            # ZSH shell configuration
+    "bash"           # Bash shell configuration  
+    "tmux"           # Terminal multiplexer
+    "vim"            # Vim editor
+    "git"            # Git configuration
+    "x11"            # X11/Xresources
+    "kitty"          # Kitty terminal configuration
     "alacritty-stow" # Alacritty terminal
-    "nvim-stow"     # Neovim editor
-    "hypr-stow"     # Hyprland compositor
-    "i3-stow"       # i3 window manager
-    "sway-stow"     # Sway compositor
-    "atuin-stow"    # Shell history
-    "bat-stow"      # Better cat
-    "btop-stow"     # System monitor
-    "dunst-stow"    # Notifications
-    "picom-stow"    # X11 compositor
-    "polybar-stow"  # Status bar
-    "redshift-stow" # Blue light filter
-    "rofi-stow"     # Application launcher
-    "waybar-stow"   # Wayland status bar
-    "wofi-stow"     # Wayland launcher
-    "misc-stow"     # Miscellaneous configs
+    "nvim-stow"      # Neovim editor
+    "hypr-stow"      # Hyprland compositor
+    "i3-stow"        # i3 window manager
+    "sway-stow"      # Sway compositor
+    "atuin-stow"     # Shell history
+    "bat-stow"       # Better cat
+    "btop-stow"      # System monitor
+    "dunst-stow"     # Notifications
+    "picom-stow"     # X11 compositor
+    "polybar-stow"   # Status bar
+    "redshift-stow"  # Blue light filter
+    "rofi-stow"      # Application launcher
+    "waybar-stow"    # Wayland status bar
+    "wofi-stow"      # Wayland launcher
+    "misc-stow"      # Miscellaneous configs
 )
 
 show_packages() {
@@ -87,7 +88,7 @@ install_package() {
         return 1
     fi
 
-if [[ ! " ${PACKAGES[@]} " =~ " ${package} " ]]; then
+    if [[ ! " ${PACKAGES[@]} " =~ " ${package} " ]]; then
       error "Not a stowable package!"
       return 1
     fi
