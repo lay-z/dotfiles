@@ -31,7 +31,7 @@ window#waybar.hidden {
 #custom-menu {
   background-color: @background-alt1;
   color: @magenta;
-  font-size: 30px;
+  font-size: 22px;
   border-radius: 0px 14px 0px 0px;
   margin: 0px 0px 0px 0px;
   padding: 2px 8px 2px 8px;
@@ -46,6 +46,7 @@ window#waybar.hidden {
   font-size: 16px;
 }
 
+#custom-power,
 #custom-themes {
   color: @background;
   border-radius: 10px;
