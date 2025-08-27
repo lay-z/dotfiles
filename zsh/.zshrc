@@ -756,6 +756,7 @@ unalias ls
 alias ls="eza --icons=always --color=always"
 alias la="ls -la"
 alias ll="ls -la"
+alias tree="ll--tree"
 
 
 # TRAPWINCH() {

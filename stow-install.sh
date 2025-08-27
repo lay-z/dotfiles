@@ -54,23 +54,25 @@ is_installed() {
 
 # Available packages
 PACKAGES=(
-    "zsh"            # ZSH shell configuration
-    "bash"           # Bash shell configuration  
-    "tmux"           # Terminal multiplexer
-    "vim"            # Vim editor
-    "git"            # Git configuration
-    "x11"            # X11/Xresources
-    "kitty"          # Kitty terminal configuration
-    "alacritty" # Alacritty terminal
-    "nvim"      # Neovim editor
-    "hypr"      # Hyprland compositor
-    "atuin"     # Shell history
-    "bat"       # Better cat
-    "btop"      # System monitor
-    "redshift"  # Blue light filter
-    "waybar"    # Wayland status bar
-    "wofi"      # Wayland launcher
-    "sway"      # Configs specifically for sway
+    "zsh"                   # ZSH shell configuration
+    "bash"                  # Bash shell configuration  
+    "tmux"                  # Terminal multiplexer
+    "git"                   # Git configuration
+    "x11"                   # X11/Xresources
+    "kitty"                 # Kitty terminal configuration
+    "alacritty"             # Alacritty terminal
+    "nvim"                  # Neovim editor
+    "hypr"                  # Hyprland compositor
+    "hyprshell"             # Hyprland shell extension to give a process switcher
+    "atuin"                 # Shell history
+    "bat"                   # Better cat
+    "btop"                  # System monitor
+    "redshift"              # Blue light filter
+    "waybar"                # Wayland status bar
+    "wofi"                  # Wayland launcher
+    "sway"                  # Configs specifically for sway
+    "xremap"                # Xremapper for x11 and wayland keyboard remapping
+    "desktop_launchers"     # Desktop launchers, e.g. brave browser / x.com
 )
 
 x11_PACKAGE=(
