@@ -26,13 +26,22 @@ get_current_theme() {
     fi
 }
 
+get_opposite_theme() {
+    current=$(get_current_theme)
+    if [[ "$current" == "light" ]]; then
+        echo "default"
+    else
+        echo "light"
+    fi
+}
+
 # Function to get icon based on current theme
 get_icon() {
     current=$(get_current_theme)
     if [[ "$current" == "light" ]]; then
-        echo "🌞"  # Sun icon for light theme (switch is "on" for light)
-    else
         echo "🌙"  # Moon icon for dark theme (switch is "off" for light)
+    else
+        echo "🌞"  # Sun icon for light theme (switch is "on" for light)
     fi
 }
 
@@ -51,7 +60,8 @@ case "$1" in
     --json)
       icon=$(get_icon)
       current=$(get_current_theme)
-      printf '{"text":"%s","tooltip":"%s", "class": "%s"}' $icon $current
+      tooltip="switch to $(get_opposite_theme)"
+      printf '{"text":"%s","tooltip":"%s", "class": "%s"}' $icon $tooltip
         ;;
     *)
         echo "Usage: $0 {--toggle|--icon|--status}"

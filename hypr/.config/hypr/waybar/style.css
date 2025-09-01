@@ -48,7 +48,8 @@ window#waybar.hidden {
 
 #custom-power,
 #custom-themes {
-  color: @background;
+  background-color: @background-alt1;
+  color: @foreground;
   border-radius: 10px;
   margin: 6px 6px 6px 0px;
   padding: 2px 8px 2px 8px;
