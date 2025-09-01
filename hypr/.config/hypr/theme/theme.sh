@@ -209,12 +209,6 @@ apply_kitty() {
     kitty +kitten themes Catppuccin-Latte
     echo "light" > /home/layz/.local/state/TERMINAL_MODE
   fi
-
-
-
-
-	kill -SIGUSR1 $(pidof kitty)
-  kitty &
 }
 
 ## Mako --------------------------------------
