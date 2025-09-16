@@ -120,12 +120,14 @@
     "clock": {
         "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
         "format": "",
+        "on-click": "~/.config/hypr/scripts/kitty -f ~/.config/hypr/scripts/choose_timezone"
     },
     "clock#2": {
-		"interval": 60,
+		"interval": 1,
         "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
         "format": "{:%I:%M %p | %a %b %d, %G}",
-        "format-alt": "{:%a %b %d, %G}"
+        // "format-alt": "{:%a %b %d, %G}",
+        "on-click": "~/.config/hypr/scripts/kitty -f ~/.config/hypr/scripts/choose_timezone"
     },
 
 	// waybar-cpu
@@ -137,7 +139,7 @@
          "interval": 5,
          "format": "{usage}%",
           "on-click": "~/.config/hypr/scripts/kitty -f btop",
-          "on-click-right": "~/.config/hypr/scripts/kitty -f htop",
+          "on-click-right": "~/.config/hypr/scripts/kitty htop",
     },
 
 	// waybar-custom
