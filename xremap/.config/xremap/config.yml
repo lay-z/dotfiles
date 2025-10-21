@@ -11,6 +11,42 @@ modmap:
       Esc: grave
       Alt_L: LEFTMETA
       LEFTMETA: Alt_L
+  # - name: Homerow attempt (j)
+  #   remap:
+  #     j:
+  #       held: Shift_L
+  #       alone: j
+  #       free_hold: true
+  # - name: Homerow attempt (f)
+  #   remap:
+  #     f:
+  #       held: Shift_R
+  #       alone: f
+  #       free_hold: true
+  # - name: Homerow attempt (k)
+  #   remap:
+  #     k:
+  #       held: RIGHTCTRL
+  #       alone: k
+  #       free_hold: true
+  # - name: Homerow attempt (d)
+  #   remap:
+  #     d:
+  #       held: LEFTCTRL
+  #       alone: d
+  #       free_hold: true
+  # - name: Homerow attempt (SEMICOLON)
+  #   remap:
+  #     "SEMICOLON":
+  #       held: RIGHTMETA
+  #       alone: SEMICOLON
+  #       free_hold: true
+  # - name: Homerow attempt (a)
+  #   remap:
+  #     "a":
+  #       held: LEFTMETA
+  #       alone: a
+  #       free_hold: true
 # virtual_modifiers:
 #   - Alt_R
 keymap:

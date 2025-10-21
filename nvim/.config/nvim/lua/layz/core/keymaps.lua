@@ -38,8 +38,13 @@ keymap.set("t", "<C-l>", "<C-\\><C-N><C-w><C-l>") -- exit terminal mode
 keymap.set("n", "<C-t>", "gcc")
 keymap.set("v", "<C-t>", "gc")
 
+-- For buffer stuff
+keymap.set("n", "<leader>bd", function()
+	DeleteBuffers()
+end)
+
 keymap.set("v", "<leader>hs", function()
-	get_command_history()
+	GetCommandHistory()
 end)
 -- TODO think about some new keymaps
 -- way to search and replace based on the word under current character.
@@ -49,7 +54,7 @@ end)
 -- TODO should this be wrapped in a pcall? probably
 -- TODO maybe this should be placed with the plugin.
 
-local function get_command_history()
+function GetCommandHistory()
 	local history = {}
 	for i = vim.fn.histnr("cmd"), 1, -1 do
 		local cmd = vim.fn.histget("cmd", i)
@@ -60,8 +65,8 @@ local function get_command_history()
 	return history
 end
 
-function run_command_from_history()
-	local history = get_command_history()
+function RunCommandFromHistory()
+	local history = GetCommandHistory()
 	vim.ui.select(history, {
 		prompt = "Select a command to run:",
 		format_item = function(item)
@@ -72,4 +77,9 @@ function run_command_from_history()
 			vim.cmd(item)
 		end
 	end)
+end
+
+-- Method to delete all buffers apart from the last one edited
+function DeleteBuffers()
+	vim.cmd(":%bd|e#")
 end

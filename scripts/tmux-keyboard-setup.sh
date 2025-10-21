@@ -33,6 +33,6 @@ fi
     
 # Send the xremap command to the session
 echo "Executing xremap command in 'keyboard' session..."
-tmux send-keys -t keyboard "xremap \$HOME/Code/dotfiles/xremap/config.yml" Enter
+tmux send-keys -t keyboard "sudo xremap \$HOME/.config/xremap/config.yml" Enter
 
 tmux attach -t keyboard

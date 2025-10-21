@@ -3,5 +3,5 @@ return {
 	"tpope/vim-unimpaired",
 	"nvim-lua/plenary.nvim",
 	"FabijanZulj/blame.nvim",
-	"github/copilot.vim",
+	-- "github/copilot.vim",
 }

@@ -219,6 +219,7 @@ router_models() {
   curl https://openrouter.ai/api/v1/models | jq --arg name "$1" '.data[] | select(.name | contains($name)) | "\(.name): $\((.pricing.prompt | tonumber) * 1000000)"' 
 }
 
+
 ##################################################################################################
 ########################################## DOCKER THINGS #########################################
 ##################################################################################################
@@ -812,6 +813,10 @@ if program_exists spt; then
   #   echo "Skipping SPT installation."
   # fi
 fi
+
+# if program_exists crush; then
+	eval $(crush completion zsh)
+# fi
 
 CLUSTER=arn:aws:ecs:us-east-1:853100499654:cluster/tradable-non-production-ecs
 SERVICE=arn:aws:ecs:us-east-1:853100499654:service/tradable-non-production-ecs/tradable-non-production-onchain-service
