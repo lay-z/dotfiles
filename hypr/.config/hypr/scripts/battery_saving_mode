@@ -1,0 +1,14 @@
+#/env/bash
+
+# Simple script to set power saving mode options
+
+function tuned_battery_saving() {
+    sudo tuned-adm profile powersave
+}
+
+function hyprland_battery_saving() {
+     sed -i s/true/false/g ~/.config/hypr/hyprpowerprofile.conf
+}
+
+tuned_battery_saving
+hyprland_battery_saving
