@@ -558,6 +558,15 @@ if [ -d /home/layz/.avm/bin ]; then
     export PATH="/home/layz/.avm/bin:$PATH"
 fi
 
+
+### DAML :PUKE:
+
+if [ -d /home/layz/.daml ]; then
+    # Completion
+    fpath=(~/.daml/zsh $fpath)
+    export PATH="/home/layz/.daml/bin:$PATH"
+fi
+
 ##############################################################################
 ##################### fun shell methods chatGPT ##############################
 ##############################################################################
