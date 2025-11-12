@@ -59,7 +59,17 @@ return {
 
 		keymap.set("n", "<leader>fj", "<cmd>Telescope jumplist<cr>", { desc = "Search through jump list" })
 		keymap.set("n", "<leader>fc", "<cmd>Telescope commands<cr>", { desc = "Search through commands" })
-		keymap.set("n", "<leader>fch", "<cmd>Telescope commands_history<cr>", { desc = "Search through commands history" })
-		keymap.set("n", "<leader>fo", "<cmd>Telescope commands<cr>Overseer", { desc = "Search through all Overseer commands" })
+		keymap.set(
+			"n",
+			"<leader>fch",
+			"<cmd>Telescope commands_history<cr>",
+			{ desc = "Search through commands history" }
+		)
+		keymap.set(
+			"n",
+			"<leader>fo",
+			"<cmd>Telescope commands<cr>Overseer",
+			{ desc = "Search through all Overseer commands" }
+		)
 	end,
 }
