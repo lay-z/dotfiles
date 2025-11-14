@@ -15,8 +15,8 @@ if file then
 	file:close()
 end
 
-vim.notify("Terminal mode: " .. terminal_mode, vim.log.levels.DEBUG)
 if terminal_mode == "light" then
+	vim.notify("Terminal mode: " .. terminal_mode, vim.log.levels.DEBUG)
 	-- vim.notify("Using light terminal mode", vim.log.levels.DEBUG)
 	defaults.background = "light"
 end

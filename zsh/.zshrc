@@ -823,9 +823,9 @@ if program_exists spt; then
   # fi
 fi
 
-# if program_exists crush; then
-	eval $(crush completion zsh)
-# fi
+if program_exists crush; then
+  eval $(crush completion zsh)
+fi
 
 CLUSTER=arn:aws:ecs:us-east-1:853100499654:cluster/tradable-non-production-ecs
 SERVICE=arn:aws:ecs:us-east-1:853100499654:service/tradable-non-production-ecs/tradable-non-production-onchain-service
