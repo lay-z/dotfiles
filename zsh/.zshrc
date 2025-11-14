@@ -643,7 +643,7 @@ export VISUAL="nvim"
 # Automatically gets your public ip address and copies it into the clipboard for use
 whatsmyip() {
     ## dig +short myip.opendns.com resolver2.opendns.com | clipboard
-    curl https://ipinfo.io/ip | clipboard
+    curl https://ipinfo.io/ip | tee | clipboard
 }
 
 # Scan local network for Machines and some info about them
