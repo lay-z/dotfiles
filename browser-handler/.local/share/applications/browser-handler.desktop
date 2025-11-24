@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Browser Handler
+Exec=/home/layz/bin/launch-application.sh %u
+Icon=twitter
+StartupNotify=true
+NoDisplay=true
+MimeType=x-scheme-handler/https;

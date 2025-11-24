@@ -52,6 +52,38 @@ is_installed() {
     fi
 }
 
+pre_install() {
+    pre_install_script="./$1/pre-install.sh"
+    if [[ ! -f "$pre_install_script" ]]; then
+        warning "no install script"
+        return 0
+    fi
+    
+    if sh "$pre_install_script"; then
+        info "Successfully completed pre install for $1"
+    else
+        error "Failed pre-install"
+        warning "please check and try again"
+        exit 1
+    fi
+}
+
+post_install() {
+    post_install_script="./$1/post-install.sh"
+    if [[ ! -f "$post_install_script" ]]; then
+        warning "no install script"
+        return 0
+    fi
+    
+    if sh "$post_install_script"; then
+        info "Successfully completed post install for $1"
+    else
+        error "Failed post-install"
+        warning "please check and try again"
+        exit 1
+    fi
+}
+
 # Available packages
 PACKAGES=(
     "zsh"                   # ZSH shell configuration
@@ -73,6 +105,7 @@ PACKAGES=(
     "sway"                  # Configs specifically for sway
     "xremap"                # Xremapper for x11 and wayland keyboard remapping
     "desktop_launchers"     # Desktop launchers, e.g. brave browser / x.com
+    "browser-handler"       # For handling all sorts of URLs and slack URLs
 )
 
 x11_PACKAGE=(
@@ -106,8 +139,11 @@ install_package() {
     fi
     
     info "Installing package: $package"
-    
-    if stow --adopt "$package" -t ~; then
+
+    pre_install $1
+
+    if stow --ignore "\-install\.sh" --adopt "$package" -t ~; then
+        post_install $1
         info "✓ Successfully installed $package"
     else
         error "✗ Failed to install $package"
