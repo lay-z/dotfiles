@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+
+ARCH=$(uname -m)
+case $ARCH in
+  aarch64)   export KB_OPTIONS="caps:ctrl_modifier,altwin:swap_alt_win,caps:swapescape";;
+  x86_64)    export KB_OPTIONS="";;
+  *)         export KB_OPTIONS="";;
+esac
+
+Hyprland
+

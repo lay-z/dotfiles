@@ -124,7 +124,6 @@ plugins=(nvm git zsh-autosuggestions zsh-syntax-highlighting colorize colored-ma
 ZSH_COLORIZE_STYLE="dracula"
 ZSH_COLORIZE_TOOL=chroma
 
-alias less=cless
 alias cat="bat --theme=auto"
 
 
@@ -197,6 +196,9 @@ alias tmuxrc="vim ~/.tmux.conf && commit_dot_files 'tmux'"
 alias swayconf="vim ~/.config/sway/config && commit_dot_files 'sway config updated'"
 alias alacrittyconf="vim ~/.config/alacritty/alacritty.yml && commit_dot_files 'alacritty config updated'"
 alias chromeapps="cd $DOTFILES_DIR/chrome-apps/"
+function parus {
+	paru -Ss $1 | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S
+}
 
 # Cheatsheet
 alias chtsh="CHTSH_QUERY_OPTIONS="style=perldoc" cht.sh"

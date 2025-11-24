@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
 # upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep energy-rate | awk '{printf "%.3f\n", $2}'
-if [ ! -f /sys/class/power_supply/BAT1/current_now ] || [ ! -f /sys/class/power_supply/BAT1/voltage_now ]; then
-  echo "0"
-else
+
+# Qualcomm battery manager (x13s) - has power_now directly in microwatts
+if [ -f /sys/class/power_supply/qcom-battmgr-bat/power_now ]; then
+  awk '{printf "%.3f W\n", ($1 < 0 ? -$1 : $1) / 1000000}' /sys/class/power_supply/qcom-battmgr-bat/power_now
+# Traditional laptops - calculate from current * voltage
+elif [ -f /sys/class/power_supply/BAT1/current_now ] && [ -f /sys/class/power_supply/BAT1/voltage_now ]; then
   awk '{getline voltage < "/sys/class/power_supply/BAT1/voltage_now"; printf "%.3f W\n", $1 * voltage / 1000000000000}' /sys/class/power_supply/BAT1/current_now
+else
+  echo "0"
 fi
