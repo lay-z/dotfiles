@@ -39,7 +39,7 @@ source_light() {
 	accent="$color5"
 
   ## Set the theme to be light even for GTK based applications
-  gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark && gsettings set org.gnome.desktop.interface color-scheme prefer-light
+  gsettings set org.gnome.desktop.interface gtk-theme catppuccin-latte-flamingo-standard+default && gsettings set org.gnome.desktop.interface color-scheme prefer-light
 	notify-send -h string:x-canonical-private-synchronous:sys-notify-dtheme -u normal -i ${PATH_MAKO}/icons/palette.png "Applying Light Theme..."
 }
 
@@ -51,7 +51,7 @@ source_default() {
 	altforeground="`pastel color $foreground | pastel darken 0.30 | pastel format hex`"
 	modbackground=(`pastel gradient -n 3 $background $altbackground | pastel format hex`)
 	accent="$color5"
-  gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Mocha && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" 
+  gsettings set org.gnome.desktop.interface gtk-theme catppuccin-mocha-rosewater-standard+default && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" 
 	notify-send -h string:x-canonical-private-synchronous:sys-notify-dtheme -u normal -i ${PATH_MAKO}/icons/palette.png "Applying Default Theme..."
 }
 
@@ -104,6 +104,16 @@ source_pywal() {
 apply_wallpaper() {
 	sed -i -e "s#WALLPAPER=.*#WALLPAPER='$wallpaper'#g" ${DIR}/scripts/wallpaper
 	bash ${DIR}/scripts/wallpaper &
+}
+
+
+## Font ---------------------------------------
+FONT=Roboto 
+
+apply_font() {
+  gsettings set org.gnome.desktop.interface font-name "$FONT Nerd Font 11"
+  gsettings set org.gnome.desktop.interface document-font-name "$FONT Nerd Font 11"
+  gsettings set org.gnome.desktop.interface monospace-font-name "$FONT Nerd Font 11"
 }
 
 ## Alacritty ---------------------------------
@@ -221,6 +231,9 @@ apply_mako() {
 		text-color=${foreground}
 		border-color=${modbackground[1]}
 		progress-color=over ${accent}
+
+    # Font
+    font=$FONT Nerd Font 11
 
 		[urgency=low]
 		border-color=${modbackground[1]}
@@ -370,3 +383,4 @@ apply_wlogout
 apply_wofi
 apply_btop $1
 apply_hypr
+apply_font
