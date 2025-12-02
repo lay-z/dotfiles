@@ -1,14 +1,45 @@
+# Utiliy functions
+function path_exists() {
+    [ -d $1 ]
+}
+
+function program_exists() {
+    # TODO figure out why this and not `which`
+    hash $1 2>/dev/null
+}
+
+function path_has() {
+    case ":$PATH:" in
+      *:"$1":* ) return 0 ;;
+      *)        return 1 ;;
+    esac
+  }
+
+# Checks if the file directory exists and if it does adds it to the PATH
+function add_to_path() {
+  # ! path_has "$1" && path_exists "$1" && export PATH="$1:$PATH"
+
+       local dir
+       # resolve symlinks, remove .., strip trailing slash
+       dir=${1:A}
+       dir=${dir%/}
+
+       # if it exists and isn’t already in PATH, prepend it
+       if [[ -d "$dir" ]] && case ":$PATH:" in *:"$dir":*) false;; *) true;; esac; then
+         export PATH="$dir:$PATH"
+       fi
+}
+
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
+add_to_path $HOME/bin
+add_to_path /usr/local/bin
+add_to_path $HOME/.local/bin
 
 ## Shamelessly stolen from - https://gist.github.com/elalemanyo/cb3395af64ac23df2e0c3ded8bd63b2f
 # Use `time ZSH_DEBUGRC=1 zsh -i -c exit` to then profile oh-my-zsh startup times
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zmodload zsh/zprof
 fi
-
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -110,7 +141,11 @@ install_plug https://github.com/zsh-users/zsh-syntax-highlighting
 install_plug https://github.com/jeffreytse/zsh-vi-mode
 # install_plug https://github.com/softmoth/zsh-vim-mode
 install_plug https://github.com/mroth/evalcache
+install_plug https://github.com/TunaCuma/zsh-vi-man
 
+## Plugin config
+# https://github.com/TunaCuma/zsh-vi-man?tab=readme-ov-file#%EF%B8%8F-configuration
+ZVM_MAN_PAGER='bat'
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -118,7 +153,7 @@ install_plug https://github.com/mroth/evalcache
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 zstyle ':omz:plugins:nvm' lazy yes
-plugins=(nvm git zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages zsh-vi-mode evalcache)
+plugins=(nvm git zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages zsh-vi-mode evalcache zsh-vi-man)
 
 ##### plugin configuration for colorize
 ZSH_COLORIZE_STYLE="dracula"
@@ -156,22 +191,6 @@ export DOTFILES_DIR=~/Code/dotfiles
 
 function commit_dot_files() {
     cd $DOTFILES_DIR && git add --all && git commit -am "modified $1" && cd -
-}
-
-
-# Utiliy functions
-function path_exists() {
-    [ -d $1 ]
-}
-
-function program_exists() {
-    # TODO figure out why this and not `which`
-    hash $1 2>/dev/null
-}
-
-# Checks if the file directory exists and if it does adds it to the PATH
-function add_to_path() {
-  path_exists $1 && export PATH="$1:$PATH"
 }
 
 # Compilation flags
@@ -232,13 +251,13 @@ docker_started() {
 }
 
 
-alias dc="docker_started && docker compose"
-alias dcu="docker_started && docker compose up"
-alias d="docker_started docker"
-alias dps="docker ps"
-alias dpsa="docker ps -a"
-alias dst='docker stop $(docker ps -q)'
-alias drm='docker rm $(dst)'
+alias dc="docker_started && docker compose;"
+alias dcu="docker_started && docker compose up;"
+alias d="docker_started docker;"
+alias dps="docker ps;"
+alias dpsa="docker ps -a;"
+alias dst='docker stop $(docker ps -q);'
+alias drm='docker rm $(dst);'
 
 
 # Unclear if this is useful or not
@@ -328,7 +347,7 @@ setup_mac_things() {
   # For LLVM and rust installation
   export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
   export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-  export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+  add_to_path "/opt/homebrew/opt/llvm/bin"
 }
 
 if uname -a | grep -q "Darwin"; then
@@ -405,6 +424,18 @@ fzf_open_file_or_directory() {
 
 alias cx=fzf_open_file_or_directory
 
+
+if program_exists flatpak; then
+  # check that zen has been installed
+  if flatpak list --app | grep app.zen_browser.zen > /dev/null 2&>1; then
+    alias zen='flatpak run app.zen_browser.zen'
+  fi
+fi
+
+
+ 
+  
+
 fzf_tmux_popout_color() {
     fzf --ansi --tmux --ansi
     # echo $0
@@ -460,6 +491,7 @@ color_picker() {
 ##########################################################################################
 
 
+## FFMPEG smart enough to automatically convert between the two file types
 convert_image() {
     ffmpeg -i $1 -preset ultrafast $2
 }
@@ -488,7 +520,7 @@ install_bun() {
 if path_exists /usr/local/go ; then
     export GOBIN=$HOME/Code/go/bin
     export GOPATH=$HOME/Code/go
-    export PATH=/usr/local/go/bin:$GOBIN:$PATH
+    add_to_path /usr/local/go/bin
     go env -w GOPATH=$GOPATH
     go env -w GOBIN=$GOBIN
 
@@ -524,7 +556,7 @@ rust_clear_target(){
 
 if path_exists ~/.cargo/bin ; then
     # Add cargo to PATH
-    export PATH=~/.cargo/bin:$PATH
+    add_to_path ~/.cargo/bin
 fi
 
 
@@ -552,12 +584,12 @@ install_rvm() {
 
 if [ -d /home/layz/.local/share/solana/install/active_release/bin ]; then
     # Add Solana to PATH
-    export PATH="/home/layz/.local/share/solana/install/active_release/bin:$PATH"
+    add_to_path /home/layz/.local/share/solana/install/active_release/bin
 fi
 
 if [ -d /home/layz/.avm/bin ]; then
     # Add Solana to PATH
-    export PATH="/home/layz/.avm/bin:$PATH"
+    add_to_path /home/layz/.avm/bin
 fi
 
 
@@ -566,7 +598,7 @@ fi
 if [ -d /home/layz/.daml ]; then
     # Completion
     fpath=(~/.daml/zsh $fpath)
-    export PATH="/home/layz/.daml/bin:$PATH"
+    add_to_path /home/layz/.daml/bin
 fi
 
 ##############################################################################
@@ -755,8 +787,6 @@ function zvm_after_init() {
 }
 
 
-
-
 source $ZSH/oh-my-zsh.sh
 
 
@@ -768,7 +798,7 @@ unalias ls
 alias ls="eza --icons=always --color=always"
 alias la="ls -la"
 alias ll="ls -la"
-alias tree="ll--tree"
+alias tree="ll --tree"
 
 
 # TRAPWINCH() {

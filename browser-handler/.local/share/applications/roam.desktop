@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Roam (MSL)
+Exec=brave --app=https://ro.am
+Icon=brave
+StartupNotify=true
+NoDisplay=false

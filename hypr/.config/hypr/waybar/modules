@@ -4,7 +4,7 @@
 {
 	// waybar-backlight
     "backlight": {
-		"interval": 2,
+		"interval": 5,
         //"device": "amdgpu_bl0",
         "format": "{icon}",
         "format-icons": ["", "", "", "", "", "", ""],
@@ -14,7 +14,7 @@
         "smooth-scrolling-threshold": 1,
     },
     "backlight#2": {
-		"interval": 2,
+		"interval": 5,
         //"device": "amdgpu_bl0",
         "format": "{percent}%",
 		// Commands to execute on events
@@ -25,7 +25,7 @@
 	  // battery-discharger
     "custom/batterydrain": {
         "exec": "~/.config/hypr/scripts/power_profile",
-        "interval": 1,
+        "interval": 5,
         "format": "{}",
         "tooltip": true,
         // "tooltip-format": "Current tuned profile: {}",
@@ -123,7 +123,7 @@
         "on-click": "~/.config/hypr/scripts/kitty -f ~/.config/hypr/scripts/choose_timezone"
     },
     "clock#2": {
-		"interval": 1,
+		"interval": 5,
         "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
         "format": "{:%I:%M %p | %a %b %d, %G}",
         // "format-alt": "{:%a %b %d, %G}",
@@ -145,7 +145,7 @@
 	// waybar-custom
     "custom/themes": {
         "exec": "$HOME/.config/hypr/scripts/theme_toggle.sh --json",
-        "interval": 1,
+        "interval": 5,
         "format": "{}",
         "return-type": "json",
         "tooltip": false,
@@ -190,7 +190,7 @@
 	// waybar-spotify
     "custom/spotify": {
         "exec": "$HOME/.config/hypr/waybar/spotify",
-        "interval": 1,
+        "interval": 5,
         "format": "{}",
         "tooltip": true,
         "max-length": 40,
@@ -204,7 +204,7 @@
 
 	// waybar-mpd
     "mpd": {
-        "interval": 2,
+        "interval": 5,
         "unknown-tag": "N/A",
         "format": "{artist} - {title} | 祥 {elapsedTime:%M:%S}",
         "format-disconnected": "Disconnected",
@@ -227,7 +227,7 @@
         "on-click": "mpc prev",
     },
     "mpd#3": {
-        "interval": 1,
+        "interval": 5,
         "format": "{stateIcon}",
         "format-disconnected": "",
         "format-paused": "{stateIcon}",

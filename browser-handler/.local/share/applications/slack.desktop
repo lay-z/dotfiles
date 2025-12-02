@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Slack (MSL)
+Exec=brave --app=https://app.slack.com/client/T0560534ESC/C055AE730KU
+Icon=slack
+StartupNotify=true
+NoDisplay=false

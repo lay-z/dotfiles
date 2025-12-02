@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Notion (MSL)
+Exec=brave --app=https://notion.so
+Icon=brave
+StartupNotify=true
+NoDisplay=false
