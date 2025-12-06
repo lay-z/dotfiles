@@ -145,7 +145,7 @@ install_plug https://github.com/TunaCuma/zsh-vi-man
 
 ## Plugin config
 # https://github.com/TunaCuma/zsh-vi-man?tab=readme-ov-file#%EF%B8%8F-configuration
-ZVM_MAN_PAGER='bat'
+ZVM_MAN_PAGER='less'
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -427,7 +427,7 @@ alias cx=fzf_open_file_or_directory
 
 if program_exists flatpak; then
   # check that zen has been installed
-  if flatpak list --app | grep app.zen_browser.zen > /dev/null 2&>1; then
+  if flatpak list --app | grep app.zen_browser.zen > /dev/null 2>&1; then
     alias zen='flatpak run app.zen_browser.zen'
   fi
 fi

@@ -359,6 +359,34 @@ apply_hypr() {
 		-e "s/\$groupbar_text_color =.*/\$groupbar_text_color = 0xFF${foreground:1}/g"
 }
 
+
+## Tmux ----------------------------------------
+apply_tmux() {
+  TMUX_CONFIG="$HOME/.tmux.conf"
+
+  # Check that cattpuccin is there, otherwise do nothing
+  using_catppuccin=$(grep -oP "catppuccin" "$TMUX_CONFIG")
+
+  if [[ -n using_catppuccin ]]; then
+
+    if [[ "$1" == '--default' ]]; then
+      new_theme="mocha"
+    elif [[ "$1" == '--light' ]]; then
+      new_theme="latte"
+    fi
+
+    echo $new_theme
+    # Update the theme in the tmux config file
+    sed -i "s/@catppuccin_flavor '.*/@catppuccin_flavor '$new_theme'/" "$TMUX_CONFIG"
+
+    # Reload the tmux config
+    tmux source-file "$TMUX_CONFIG"
+
+
+    on-button-middle=exec makoctl menu -n "$id" dmenu -p 'Select action:'
+  fi
+}
+
 ## Source Theme Accordingly -----------------
 if [[ "$1" == '--default' ]]; then
 	source_default
@@ -384,3 +412,5 @@ apply_wofi
 apply_btop $1
 apply_hypr
 apply_font
+apply_tmux $1
+
