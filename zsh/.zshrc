@@ -747,26 +747,10 @@ function zvm_after_init() {
 
     if program_exists fzf; then
       _evalcache fzf --zsh
-    # fi
-    # # Initialize fzf
-    # if [ -f ~/.fzf.zsh ]; then
-    #     source ~/.fzf.zsh
-        # now lets do some zsh specific functions
-
-        # TODO try to figure out a way to produce some kind of usability like
-        # https://github.com/ajeetdsouza/zoxide but with zsh
-        #function zcd() {
-        #    dir=[ -z "$1"] || cwd
-        #    while [ -d $dir ]" do
-        #        dir=$(ls $dir | fzf)
-        #        echo $dir
-        #    done
-        #}
         FZF_DEFAULT_COMMAND="fd . $HOME"
         FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-        FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --exclude 'node_modules' -d 6 . $HOME"
+        FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --hidden --exclude 'node_modules' -d 6 . $HOME"
         FZF_DEFAULT_OPTS='--preview="/home/layz/Code/dotfiles/scripts/fzf-preview-directory-files.sh {}" --ansi --tmux'
-        # fi
     fi
 
     # allow for ctrl space to accept auto suggestion

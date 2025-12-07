@@ -17,6 +17,10 @@ PATH_WAYB="$DIR/waybar"
 PATH_WLOG="$DIR/wlogout"
 PATH_WOFI="$DIR/wofi"
 
+## Theme Names ------------------------------
+GTK_THEME_LIGHT="catppuccin-latte-flamingo-standard+default"
+GTK_THEME_DARK="catppuccin-mocha-rosewater-standard+default"
+
 ## Source Theme File ------------------------
 CURRENT_THEME="$DIR/theme/current.bash"
 DEFAULT_THEME="$DIR/theme/default.bash"
@@ -39,7 +43,7 @@ source_light() {
 	accent="$color5"
 
   ## Set the theme to be light even for GTK based applications
-  gsettings set org.gnome.desktop.interface gtk-theme catppuccin-latte-flamingo-standard+default && gsettings set org.gnome.desktop.interface color-scheme prefer-light
+  gsettings set org.gnome.desktop.interface gtk-theme "${GTK_THEME_LIGHT}" && gsettings set org.gnome.desktop.interface color-scheme prefer-light
 	notify-send -h string:x-canonical-private-synchronous:sys-notify-dtheme -u normal -i ${PATH_MAKO}/icons/palette.png "Applying Light Theme..."
 }
 
@@ -51,7 +55,7 @@ source_default() {
 	altforeground="`pastel color $foreground | pastel darken 0.30 | pastel format hex`"
 	modbackground=(`pastel gradient -n 3 $background $altbackground | pastel format hex`)
 	accent="$color5"
-  gsettings set org.gnome.desktop.interface gtk-theme catppuccin-mocha-rosewater-standard+default && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" 
+  gsettings set org.gnome.desktop.interface gtk-theme "${GTK_THEME_DARK}" && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" 
 	notify-send -h string:x-canonical-private-synchronous:sys-notify-dtheme -u normal -i ${PATH_MAKO}/icons/palette.png "Applying Default Theme..."
 }
 
@@ -102,8 +106,11 @@ source_pywal() {
 
 ## Wallpaper ---------------------------------
 apply_wallpaper() {
+  source ${CURRENT_THEME}
+  ln -sf $wallpaper ${DIR}/wallpapers/current.png
 	sed -i -e "s#WALLPAPER=.*#WALLPAPER='$wallpaper'#g" ${DIR}/scripts/wallpaper
 	bash ${DIR}/scripts/wallpaper &
+  # And link up the correct wallpaper
 }
 
 
