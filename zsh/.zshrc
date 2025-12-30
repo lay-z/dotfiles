@@ -21,8 +21,11 @@ function add_to_path() {
 
        local dir
        # resolve symlinks, remove .., strip trailing slash
-       dir=${1:A}
-       dir=${dir%/}
+       # Temporarily removed because solana cli was moving away from symlink
+       # to actual path, needed symlink
+       # FROM: /home/layz/.local/share/solana/install/active_release/bin/solana
+       # dir=${1:A}
+       dir=${1%/}
 
        # if it exists and isn’t already in PATH, prepend it
        if [[ -d "$dir" ]] && case ":$PATH:" in *:"$dir":*) false;; *) true;; esac; then
@@ -232,8 +235,13 @@ alias list_open_ports_with_processes="sudo netstat -tlnp"
 ########################################## AI things #########################################
 ##################################################################################################
 
-alias ai=ghcs
 
+if program_exists llm; then
+  alias g2="llm -m openrouter/google/gemini-2.5-flash"
+  alias 4o="llm -m openrouter/openai/o4-mini"
+  alias 4oh="llm -m openrouter/openai/o4-mini-high"
+  alias op4="llm -m openrouter/anthropic/claude-opus-4.5"
+fi
 
 ### Search through open router models and return name and pricing for it
 router_models() { 
@@ -588,7 +596,6 @@ if [ -d /home/layz/.local/share/solana/install/active_release/bin ]; then
 fi
 
 if [ -d /home/layz/.avm/bin ]; then
-    # Add Solana to PATH
     add_to_path /home/layz/.avm/bin
 fi
 
