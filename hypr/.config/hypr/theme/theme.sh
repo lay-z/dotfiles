@@ -186,6 +186,17 @@ apply_foot() {
 	_EOF_
 }
 
+apply_nvim() {
+  notify-send `which nvim`
+  if [[ "$1" == '--default' ]]; then
+    notify-send "Switching nvim instaces to dark mode" 
+    for socket in /run/user/1000/nvim.*.0; do nvim --server "$socket" --remote-expr "execute('set background=dark')"; done
+  elif [[ "$1" == '--light' ]]; then
+    notify-send "Switching nvim instaces to light mode" 
+    for socket in /run/user/1000/nvim.*.0; do nvim --server "$socket" --remote-expr "execute('set background=light')"; done
+  fi
+}
+
 ## Kitty ---------------------------------
 apply_kitty() {
 	# kitty : colors
@@ -420,4 +431,5 @@ apply_btop $1
 apply_hypr
 apply_font
 apply_tmux $1
+apply_nvim $1
 

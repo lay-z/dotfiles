@@ -872,3 +872,6 @@ copy_abi() {
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zprof
 fi
+
+### For color output
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
