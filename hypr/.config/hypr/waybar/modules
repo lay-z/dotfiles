@@ -1,3 +1,4 @@
+// vim: set ft=json5:
 // Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
 //
 // Waybar modules configuration
@@ -31,8 +32,7 @@
         // "tooltip-format": "Current tuned profile: {}",
         "return-type": "json",
         "max-length": 20,
-        // "on-click": "kitty --class floating-term -e sudo tuned-adm list"
-    // 
+        "on-click": "~/.config/hypr/scripts/rofi_power_profile"
     },
     "custom/batterydrain#2": {
         "exec": "~/.config/hypr/scripts/power_energy_rate",
@@ -323,7 +323,7 @@
 
 	// waybar-wlr-workspaces
     "hyprland/workspaces": {
-         "format": "{icon}",
+         "format": "{name}: {icon}",
          "sort-by-number": true,
          "active-only": false,
          "format-icons": {

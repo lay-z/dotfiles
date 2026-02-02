@@ -6,10 +6,13 @@ URL="$1"
 
 notify-send $URL
 
+default_twitter=/home/layz/bin/zen
+default_browser=brave
+
 if [[ "$URL" =~ (twitter\.com|x\.com) ]]; then
     echo "Handling Twitter URL: $URL"
     # Your custom logic here
-    /home/layz/bin/zen --new-instance --new-window $URL -P xUser
+    $default_twitter --new-instance --new-window $URL -P xUser
 elif [[ "$URL" =~ slack\.com ]] || [[ "$URL" =~ ^slack:// ]]; then
     echo "Handling Slack URL: $URL"
     # Convert slack:// protocol URLs to https://app.slack.com if needed
@@ -22,7 +25,7 @@ elif [[ "$URL" =~ slack\.com ]] || [[ "$URL" =~ ^slack:// ]]; then
     fi
 else
     # Pass to default browser for non-Twitter URLs
-    /home/layz/bin/zen --new-tab "$URL"
+    $default_browser --new-tab "$URL"
 fi
 
 

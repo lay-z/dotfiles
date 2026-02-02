@@ -56,6 +56,7 @@ opt.clipboard:append("unnamedplus") -- used for sharing clipboard between nvim a
 -- split windows
 opt.splitright = true
 opt.splitbelow = true
+opt.equalalways = false -- prevent auto-resizing windows when switching focus
 
 opt.iskeyword:append("-")
 

@@ -106,6 +106,7 @@ PACKAGES=(
     "xremap"                # Xremapper for x11 and wayland keyboard remapping
     "desktop_launchers"     # Desktop launchers, e.g. brave browser / x.com
     "browser-handler"       # For handling all sorts of URLs and slack URLs
+    "opencode"              # For opencode llm agent orchestrator
 )
 
 x11_PACKAGE=(

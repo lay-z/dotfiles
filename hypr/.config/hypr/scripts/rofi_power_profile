@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+DIR="$HOME/.config/hypr"
+RASI="$DIR/rofi/powerprofile.rasi"
+
+if ! command -v tuned-adm &> /dev/null; then
+    notify-send -u critical "Error" "tuned-adm is not installed"
+    exit 1
+fi
+
+declare -A icon_map
+icon_map["powersave"]="󰡵"
+icon_map["balanced"]=""
+icon_map["balanced-battery"]="󱟦"
+icon_map["throughput-performance"]="󰓦"
+icon_map["latency-performance"]=""
+
+profiles=("powersave" "balanced" "balanced-battery" "throughput-performance" "latency-performance")
+
+current_profile=$(tuned-adm active | awk '{print $NF}')
+
+options=""
+for profile in "${profiles[@]}"; do
+    options+="${icon_map[$profile]} $profile\n"
+done
+options+="────────────\nExit"
+
+chosen=$(echo -e "$options" | rofi -dmenu -p "Power Profiles" -theme ${RASI})
+
+case "$chosen" in
+    "")
+        exit 0
+        ;;
+    "Exit")
+        exit 0
+        ;;
+    *)
+        selected="${chosen##* }"
+        if [[ " ${profiles[@]} " =~ " ${selected} " ]]; then
+            if sudo tuned-adm profile "$selected" > /dev/null 2>&1; then
+                notify-send -u normal "Power Profile" "Switched to $selected" \
+                    -a "hypr-powerprofile" \
+                    -h string:x-canonical-private-synchronous:hypr-powerprofile
+            else
+                notify-send -u critical "Error" "Failed to switch to $selected"
+            fi
+        fi
+        ;;
+esac

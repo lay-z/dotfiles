@@ -24,24 +24,14 @@ return {
 		})
 
 		local lsp_servers = {
-			"tsserver",
 			"ts_ls",
 			"html",
 			"cssls",
-			-- "tailwindcss",
-			-- "svelte",
-			"lua_ls",
-			-- "graphql",
-			-- "emmet_ls",
-			-- "prismals",
 			"pyright",
 			"bashls",
-			"bash-language-server",
 			"solidity_ls_nomicfoundation",
-			"shfmt",
-			"yaml-language-server",
 			"jsonls",
-			"shfmt",
+			"yamlls",
 		}
 
 		local mason_tools = {

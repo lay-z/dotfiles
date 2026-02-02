@@ -4,15 +4,12 @@ After=default.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/xremap --watch=device %h/.config/xremap/config.yml
+ExecStart=/usr/bin/xremap --watch %h/.config/xremap/config.yml
 Restart=always
 RestartSec=1
 StandardOutput=journal
 StandardError=journal
-User=1000
-Group=1000
 Environment=DISPLAY=:0
-SupplementaryGroups=input uinput
 
 [Install]
 WantedBy=default.target

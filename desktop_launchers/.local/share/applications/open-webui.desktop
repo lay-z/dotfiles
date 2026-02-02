@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Name=Open Chat WebUi
+# Only KDE 4 seems to use GenericName, so we reuse the KDE strings.
+# From Ubuntu's language-pack-kde-XX-base packages, version 9.04-20090413.
+GenericName=LLM Chat
+# Gnome and KDE 3 uses Comment.
+Comment=Access the Internet
+Exec=brave --app=http://localhost:8080
+StartupNotify=true
+Terminal=false
+Icon=brave-browser
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=;

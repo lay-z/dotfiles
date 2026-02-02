@@ -15,8 +15,7 @@ return {
 		-- configure nvim-tree
 		nvimtree.setup({
 			view = {
-				width = 35,
-				relativenumber = true,
+				adaptive_size = true,
 			},
 			update_focused_file = { enable = true },
 			-- change folder arrow icons
@@ -39,6 +38,7 @@ return {
 			-- window splits
 			actions = {
 				open_file = {
+					resize_window = false,
 					window_picker = {
 						enable = false,
 					},

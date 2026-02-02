@@ -432,6 +432,14 @@ fzf_open_file_or_directory() {
 
 alias cx=fzf_open_file_or_directory
 
+ck() {
+  local dir
+  dir=$(fd -t d -L --hidden --exclude '.git' --exclude 'node_modules' . "${1:-.}" | fzf --ansi --tmux)
+  if [[ -n "$dir" ]]; then
+    cd "$dir"
+  fi
+}
+
 
 if program_exists flatpak; then
   # check that zen has been installed
@@ -773,6 +781,15 @@ function zvm_after_init() {
 
       # Use ctrl n to bind to upsearch as well
       bindkey "^n" atuin-up-search
+
+      # Copy last command to clipboard
+      copy_last_cmd() {
+        local cmd=$(atuin history last --cmd-only)
+        echo -n $cmd | wl-copy
+        zle reset-prompt
+      }
+      zle -N copy_last_cmd
+      bindkey "^y" copy_last_cmd
     fi
 
 }

@@ -279,7 +279,7 @@ return {
 			-- 	},
 			-- },
 			bashls = {},
-			lua_ls = {},
+			-- lua_ls = {},
 			ts_ls = {},
 		}
 

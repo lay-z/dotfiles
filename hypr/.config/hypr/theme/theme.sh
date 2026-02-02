@@ -231,10 +231,10 @@ apply_kitty() {
   # If default then set to Catppuccin-Mocha
   # If light then set to Catppuccin-Latte
   if [[ "$1" == '--default' ]]; then
-    kitty +kitten themes Catppuccin-Mocha
+    kitty +kitten themes --reload-in=all Catppuccin-Mocha
     echo "dark" > /home/layz/.local/state/TERMINAL_MODE
   elif [[ "$1" == '--light' ]]; then
-    kitty +kitten themes Catppuccin-Latte
+    kitty +kitten themes --reload-in=all Catppuccin-Latte
     echo "light" > /home/layz/.local/state/TERMINAL_MODE
   fi
 }
@@ -399,6 +399,14 @@ apply_tmux() {
 
     # Reload the tmux config
     tmux source-file "$TMUX_CONFIG"
+
+    # now unset all existing theme options
+    tmux show-options -g | grep '@thm_' | cut -d' ' -f1 | xargs -I {} tmux set-option -gu {}
+    tmux source-file ~/.tmux/plugins/tmux/themes/catppuccin_${new_theme}_tmux.conf
+    tmux source-file ~/.tmux/plugins/tmux/catppuccin_options_tmux.conf
+    tmux source-file ~/.tmux/plugins/tmux/catppuccin_tmux.conf
+
+
 
 
     on-button-middle=exec makoctl menu -n "$id" dmenu -p 'Select action:'
