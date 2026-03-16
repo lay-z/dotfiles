@@ -15,6 +15,23 @@ RASI="$DIR/rofi/screenshot.rasi"
 prompt='Screenshot'
 mesg="Directory :: `xdg-user-dir PICTURES`/Screenshots"
 
+# Screen recording state
+recording_pid="/tmp/wl-screenrec.pid"
+echo "[DEBUG] Checking PID file: $recording_pid"
+if [[ -f "$recording_pid" ]]; then
+	echo "[DEBUG] PID file exists, contents: $(cat "$recording_pid")"
+	if kill -0 "$(cat "$recording_pid")" 2>/dev/null; then
+		echo "[DEBUG] Process is alive, is_recording=true"
+		is_recording=true
+	else
+		echo "[DEBUG] Process is dead, stale PID file, is_recording=false"
+		is_recording=false
+	fi
+else
+	echo "[DEBUG] No PID file found, is_recording=false"
+	is_recording=false
+fi
+
 # Options
 layout=`cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2`
 if [[ "$layout" == 'NO' ]]; then
@@ -23,12 +40,22 @@ if [[ "$layout" == 'NO' ]]; then
 	option_3=" Capture Window"
 	option_4=" Capture in 5s"
 	option_5=" Capture in 10s"
+	if $is_recording; then
+		option_6="󰒤 Stop Recording"
+	else
+		option_6="󰕧 Record Screen"
+	fi
 else
 	option_1=""
 	option_2=""
 	option_3=""
 	option_4=""
 	option_5=""
+	if $is_recording; then
+		option_6="󰒤"
+	else
+		option_6="󰕧"
+	fi
 fi
 
 # Rofi CMD
@@ -42,7 +69,7 @@ rofi_cmd() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
+	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5\n$option_6" | rofi_cmd
 }
 
 # Screenshot
@@ -107,6 +134,36 @@ shotarea () {
 	notify_view
 }
 
+# Screen recording
+rec_dir="`xdg-user-dir VIDEOS`/Recordings"
+rec_file="Recording_${time}.mp4"
+
+if [[ ! -d "$rec_dir" ]]; then
+	mkdir -p "$rec_dir"
+fi
+
+record_screen () {
+	notify_cmd_rec="notify-send -h string:x-canonical-private-synchronous:sys-notify-rec -u low -i ${iDIR}/picture.png"
+	echo "[DEBUG] record_screen called, is_recording=$is_recording"
+	if $is_recording; then
+		echo "[DEBUG] Stopping recording, killing PID: $(cat "$recording_pid")"
+		kill -INT "$(cat "$recording_pid")"
+		echo "[DEBUG] kill exit code: $?"
+		rm -f "$recording_pid"
+		${notify_cmd_rec} "Recording Saved."
+	else
+		echo "[DEBUG] Starting recording to: ${rec_dir}/${rec_file}"
+		wl-screenrec --audio --codec hevc -b "500 kB" -f "${rec_dir}/${rec_file}" >/dev/null 2>/tmp/wl-screenrec.log &
+		echo "[DEBUG] wl-screenrec PID: $!"
+		echo $! > "$recording_pid"
+		disown $!
+		echo "[DEBUG] PID file written, contents: $(cat "$recording_pid")"
+		sleep 0.5
+		echo "[DEBUG] Process alive after 0.5s? $(kill -0 $! 2>/dev/null && echo yes || echo no)"
+		${notify_cmd_rec} "Recording Started..."
+	fi
+}
+
 # Execute Command
 run_cmd() {
 	if [[ "$1" == '--opt1' ]]; then
@@ -119,11 +176,15 @@ run_cmd() {
 		shot5
 	elif [[ "$1" == '--opt5' ]]; then
 		shot10
+	elif [[ "$1" == '--opt6' ]]; then
+		record_screen
 	fi
 }
 
 # Actions
 chosen="$(run_rofi)"
+echo "[DEBUG] chosen: '$chosen'"
+echo "[DEBUG] option_6: '$option_6'"
 case ${chosen} in
     $option_1)
 		run_cmd --opt1
@@ -139,5 +200,8 @@ case ${chosen} in
         ;;
     $option_5)
 		run_cmd --opt5
+        ;;
+    $option_6)
+		run_cmd --opt6
         ;;
 esac
