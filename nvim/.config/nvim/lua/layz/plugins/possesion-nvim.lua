@@ -5,34 +5,19 @@ return {
 		"nvim-tree/nvim-tree.lua",
 	},
 	config = true,
+	keys = {
+		{ "<leader>pl", function() require("nvim-possession").list() end, desc = "List sessions" },
+		{ "<leader>pn", function() require("nvim-possession").new() end, desc = "New session" },
+		{ "<leader>pu", function() require("nvim-possession").update() end, desc = "Update session" },
+		{ "<leader>pd", function() require("nvim-possession").delete() end, desc = "Delete session" },
+	},
 	opts = {
-		autoload = true, -- Automatiacally load sessions defined for the current working directory
+		autoload = true,
 		autoswitch = {
-			enable = true, -- Automatically saves and removes deletes any unsaved buffers currently open
+			enable = true,
 		},
 		autosave = {
-			enable = true, -- Automatically saves the session when you quit the editor
+			enable = true,
 		},
-		-- post_hook = function()
-		-- 	-- require("FTerm").open()
-		-- 	print("post_hook posession!")
-		-- 	-- require("nvim-tree").toggle(false, true)
-		-- end,
 	},
-	init = function()
-		-- should check if session location is created and create if not?
-		local possession = require("nvim-possession")
-		vim.keymap.set("n", "<leader>pl", function()
-			possession.list()
-		end)
-		vim.keymap.set("n", "<leader>pn", function()
-			possession.new()
-		end)
-		vim.keymap.set("n", "<leader>pu", function()
-			possession.update()
-		end)
-		vim.keymap.set("n", "<leader>pd", function()
-			possession.delete()
-		end)
-	end,
 }

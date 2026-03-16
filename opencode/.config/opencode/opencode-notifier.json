@@ -1,0 +1,15 @@
+{
+  "notification": false,
+  "command": {
+    "enabled": true,
+    "path": "notify-send",
+    "args": [
+      "-i",
+      "/usr/share/icons/Archcraft/categories/32/applications-development.svg",
+      "-u",
+      "critical",
+      "OpenCode",
+      "{message}"
+    ]
+  }
+}

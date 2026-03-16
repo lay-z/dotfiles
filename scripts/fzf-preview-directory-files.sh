@@ -1,8 +1,6 @@
 #!/bin/zsh
 
-echo "preview $1"
 thing=$(echo "$1" | awk '{print $NF}')
-echo "thing: $thing"
 1=$thing
 if [ -f "$1" ]; 
 then 
@@ -29,7 +27,5 @@ then
   esac
 elif [ -d "$1" ];
 then 
-  echo "is directory"
   eza -la --color=always --icons=always "$1" 
-  # ll "$1"
 fi

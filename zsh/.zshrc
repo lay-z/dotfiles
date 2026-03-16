@@ -517,6 +517,15 @@ convert_image() {
 #######################        Language Specfics       ####################################
 ###########################################################################################
 
+
+## Generalized installer asdf ####
+
+if program_exists asdf; then
+  export ASDF_DATA_DIR="$HOME/.asdf"
+  # Add shims to PATH
+  add_to_path ~/.asdf/shims
+fi
+
 ## Node stuff
 ## TODO is there a way to make sure that this is the latest version?
 install_nvm() {
@@ -766,6 +775,9 @@ function zvm_after_init() {
         FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
         FZF_ALT_C_COMMAND="fd -i -t d -L --exclude 'go/pkg' --hidden --exclude 'node_modules' -d 6 . $HOME"
         FZF_DEFAULT_OPTS='--preview="/home/layz/Code/dotfiles/scripts/fzf-preview-directory-files.sh {}" --ansi --tmux'
+
+        # Bind ctrl-f to directory-only fuzzy finder (cd into selection)
+        bindkey '^f' fzf-cd-widget
     fi
 
     # allow for ctrl space to accept auto suggestion
@@ -892,3 +904,7 @@ fi
 
 ### For color output
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+
+# peon-ping quick controls
+alias peon="bash /home/layz/.claude/hooks/peon-ping/peon.sh"
+[ -f /home/layz/.claude/hooks/peon-ping/completions.bash ] && source /home/layz/.claude/hooks/peon-ping/completions.bash

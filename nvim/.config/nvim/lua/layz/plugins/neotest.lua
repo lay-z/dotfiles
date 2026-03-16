@@ -6,6 +6,7 @@ return {
 		"zidhuss/neotest-minitest", -- For ruby minitest support
 		"nvim-neotest/nvim-nio",
 	},
+	cmd = "Neotest",
 	config = function()
 		require("neotest").setup({
 			adapters = {

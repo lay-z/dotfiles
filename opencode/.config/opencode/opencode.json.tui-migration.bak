@@ -50,6 +50,9 @@
       "*": "ask"
     }
   },
+  "keybinds": {
+    "leader": "ctrl+b"
+  },
   "plugin": [
     // "oh-my-opencode",
     // "opencode-antigravity-auth@1.2.8",
