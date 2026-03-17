@@ -1,13 +1,12 @@
 return {
 	"rcarriga/nvim-dap-ui",
+	dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+	keys = {
+		{ "<leader>dt", function() require("dapui").toggle() end, desc = "Toggle dap ui" },
+		{ "<leader>do", function() require("dapui").open() end, desc = "Open dap ui" },
+		{ "<leader>dC", function() require("dapui").close() end, desc = "Close dap ui" },
+	},
 	config = function()
 		require("dapui").setup()
-
-		-- set keymaps
-		local keymap = vim.keymap -- for conciseness
-
-		keymap.set("n", "<leader>dt", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle dap ui" }) -- toggle ui for debugging
-		keymap.set("n", "<leader>do", "<cmd>lua require('dapui').open()<CR>", { desc = "open dap ui" }) -- open ui for debugging
-		keymap.set("n", "<leader>dc", "<cmd>lua require('dapui').close()<CR>", { desc = "close dap ui" }) -- close ui for debugging
 	end,
 }

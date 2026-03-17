@@ -6,6 +6,22 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
 	},
+	cmd = "Telescope",
+	keys = {
+		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Fuzzy find files in cwd" },
+		{ "<leader>fhd", "<cmd>Telescope find_files hidden=true no_ignore=true<cr>", desc = "Fuzzy find hidden files in cwd" },
+		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Fuzzy find recent files" },
+		{ "<leader>fs", "<cmd>Telescope live_grep hidden=false<cr>", desc = "Find string in cwd" },
+		{ "<leader>fy", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Find LSP workspace symbols" },
+		{ "<leader>fc", "<cmd>Telescope commands<cr>", desc = "Search through commands" },
+		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find active buffers" },
+		{ "<leader>fht", "<cmd>Telescope help_tags<cr>", desc = "Find help tags" },
+		{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Search through keymaps" },
+		{ "<leader>fhi", "<cmd>Telescope command_history<cr>", desc = "Search through command history" },
+		{ "<leader>fj", "<cmd>Telescope jumplist<cr>", desc = "Search through jump list" },
+		{ "<leader>fch", "<cmd>Telescope commands_history<cr>", desc = "Search through commands history" },
+		{ "<leader>fo", "<cmd>Telescope commands<cr>Overseer", desc = "Search through all Overseer commands" },
+	},
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
@@ -32,44 +48,5 @@ return {
 		})
 
 		telescope.load_extension("fzf")
-
-		-- set keymaps
-		local keymap = vim.keymap -- for conciseness
-
-		keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-		keymap.set(
-			"n",
-			"<leader>fhd",
-			"<cmd>Telescope find_files hidden=true no_ignore=true<cr>",
-			{ desc = "Fuzzy find files in cwd" }
-		)
-		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-		keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep hidden=false<cr>", { desc = "Find string in cwd" })
-		keymap.set("n", "<leader>fy", "<cmd>Telescope lsp_workspace_symbols<cr>", { desc = "Find string in cwd" })
-		keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
-		keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find active buffers" })
-		keymap.set("n", "<leader>fht", "<cmd>Telescope help_tags<cr>", { desc = "Find help tags?" })
-		keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Search through keymaps" })
-		keymap.set(
-			"n",
-			"<leader>fhi",
-			"<cmd>Telescope command_history<cr>",
-			{ desc = "Search through command history" }
-		)
-
-		keymap.set("n", "<leader>fj", "<cmd>Telescope jumplist<cr>", { desc = "Search through jump list" })
-		keymap.set("n", "<leader>fc", "<cmd>Telescope commands<cr>", { desc = "Search through commands" })
-		keymap.set(
-			"n",
-			"<leader>fch",
-			"<cmd>Telescope commands_history<cr>",
-			{ desc = "Search through commands history" }
-		)
-		keymap.set(
-			"n",
-			"<leader>fo",
-			"<cmd>Telescope commands<cr>Overseer",
-			{ desc = "Search through all Overseer commands" }
-		)
 	end,
 }

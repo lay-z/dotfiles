@@ -3,29 +3,17 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
+	keys = {
+		{ "<leader>hm", function() require("harpoon.mark").add_file() end, desc = "Adds the current file to harpoon" },
+		{ "<leader>ht", function() require("harpoon.ui").toggle_quick_menu() end, desc = "Open harpoon quick menu UI" },
+		{ "<leader>h1", function() require("harpoon.ui").nav_file(1) end, desc = "Navigate to 1st harpooned file" },
+		{ "<leader>h2", function() require("harpoon.ui").nav_file(2) end, desc = "Navigate to 2nd harpooned file" },
+		{ "<leader>h3", function() require("harpoon.ui").nav_file(3) end, desc = "Navigate to 3rd harpooned file" },
+		{ "<leader>h4", function() require("harpoon.ui").nav_file(4) end, desc = "Navigate to 4th harpooned file" },
+		{ "<leader>hp", function() require("harpoon.ui").nav_prev() end, desc = "Navigate to previous harpooned file" },
+		{ "<leader>hn", function() require("harpoon.ui").nav_next() end, desc = "Navigate to next harpooned file" },
+	},
 	config = function()
-		local telescope = require("telescope")
-		-- local harpoon = require("harpoon")
-		local ui = require("harpoon.ui")
-		local mark = require("harpoon.mark")
-		telescope.load_extension("harpoon")
-
-		-- set keymaps
-		local keymap = vim.keymap -- for conciseness
-
-		local go_to = function(file_number)
-			return function()
-				ui.nav_file(file_number)
-			end
-		end
-
-		keymap.set("n", "<leader>hm", mark.add_file, { desc = "Adds the current file to harpoon" })
-		keymap.set("n", "<leader>ht", ui.toggle_quick_menu, { desc = "Open harpoon quick menu UI" })
-		keymap.set("n", "<leader>h1", go_to(1), { desc = "Navigate to 1st harpooned file" })
-		keymap.set("n", "<leader>h2", go_to(2), { desc = "Navigate to 2st harpooned file" })
-		keymap.set("n", "<leader>h3", go_to(3), { desc = "Navigate to 3st harpooned file" })
-		keymap.set("n", "<leader>h4", go_to(4), { desc = "Navigate to 4th harpooned file" })
-		keymap.set("n", "<leader>hp", ui.nav_prev, { desc = "Navigate to previous harpooned file" })
-		keymap.set("n", "<leader>hn", ui.nav_next, { desc = "Navigate to next harpooned file" })
+		require("telescope").load_extension("harpoon")
 	end,
 }

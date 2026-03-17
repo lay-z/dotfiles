@@ -1,6 +1,8 @@
 return {
 	"akinsho/toggleterm.nvim",
 	version = "*",
+	keys = { "<c-b>" },
+	cmd = { "ToggleTerm", "TermExec" },
 	config = function()
 		-- local Terminal = require("toggleterm.terminal").Terminal
 		-- local down_terminal = Terminal:new({ cmd = "zsh", hidden = false, direction = "vertical" })

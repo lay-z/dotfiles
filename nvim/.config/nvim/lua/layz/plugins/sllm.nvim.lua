@@ -4,12 +4,11 @@ return {
 		"echasnovski/mini.notify",
 		"echasnovski/mini.pick",
 	},
+	cmd = "Sllm",
+	keys = {
+		{ "<leader>sa", "<cmd>Sllm ask<cr>", mode = { "n", "v" }, desc = "Ask LLM" },
+	},
 	opts = {
 		default_model = "default",
 	},
-	-- config = function()
-	--   require("sllm").setup {
-	--     -- your custom options here
-	--   }
-	-- end,
 }

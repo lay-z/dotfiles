@@ -1,12 +1,16 @@
 return {
 	"vim-test/vim-test",
 	dependencies = { "akinsho/toggleterm.nvim" },
-	vim.keymap.set("n", "<leader>tt", "<cmd>:TestNearest<CR>"),
-	vim.keymap.set("n", "<leader>tT", "<cmd>:TestFile<CR>"),
-	vim.keymap.set("n", "<leader>ta", "<cmd>:TestSuite<CR>"),
-	vim.keymap.set("n", "<leader>tl", "<cmd>:TestLast<CR>"),
-	vim.keymap.set("n", "<leader>tg", "<cmd>:TestVisit<CR>"),
-	vim.cmd("let test#strategy = 'toggleterm'"), -- Use toggle term
-	vim.cmd("let test#neovim_sticky#reopen_window = 1"), -- Reopen terminal split if not visible
-	-- vim.cmd("let test#project_root = function('get_base_dir'"),
+	cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit" },
+	keys = {
+		{ "<leader>tt", "<cmd>TestNearest<CR>", desc = "Test nearest" },
+		{ "<leader>tT", "<cmd>TestFile<CR>", desc = "Test file" },
+		{ "<leader>ta", "<cmd>TestSuite<CR>", desc = "Test suite" },
+		{ "<leader>tl", "<cmd>TestLast<CR>", desc = "Test last" },
+		{ "<leader>tg", "<cmd>TestVisit<CR>", desc = "Test visit" },
+	},
+	config = function()
+		vim.cmd("let test#strategy = 'toggleterm'")
+		vim.cmd("let test#neovim_sticky#reopen_window = 1")
+	end,
 }
