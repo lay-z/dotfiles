@@ -806,6 +806,29 @@ function zvm_after_init() {
 
 }
 
+# Hook to send vi-mode state to tmux status bar
+function zvm_after_select_vi_mode() {
+  if [[ -n "$TMUX" ]]; then
+    case $ZVM_MODE in
+      $ZVM_MODE_NORMAL)
+        tmux set-environment -g ZSH_VI_MODE "NORMAL"
+        ;;
+      $ZVM_MODE_INSERT)
+        tmux set-environment -g ZSH_VI_MODE "INSERT"
+        ;;
+      $ZVM_MODE_VISUAL|$ZVM_MODE_VISUAL_LINE)
+        tmux set-environment -g ZSH_VI_MODE "VISUAL"
+        ;;
+      $ZVM_MODE_REPLACE)
+        tmux set-environment -g ZSH_VI_MODE "REPLACE"
+        ;;
+      *)
+        tmux set-environment -g ZSH_VI_MODE "INSERT"
+        ;;
+    esac
+    tmux refresh-client -S
+  fi
+}
 
 source $ZSH/oh-my-zsh.sh
 
