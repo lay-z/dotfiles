@@ -153,7 +153,7 @@ record_screen () {
 		${notify_cmd_rec} "Recording Saved."
 	else
 		echo "[DEBUG] Starting recording to: ${rec_dir}/${rec_file}"
-		wl-screenrec --audio --codec hevc -b "500 kB" -f "${rec_dir}/${rec_file}" >/dev/null 2>/tmp/wl-screenrec.log &
+    wl-screenrec --geometry "$(slurp)" --audio --codec hevc -b "500 kB" -f "${rec_dir}/${rec_file}" >/dev/null 2>/tmp/wl-screenrec.log &
 		echo "[DEBUG] wl-screenrec PID: $!"
 		echo $! > "$recording_pid"
 		disown $!
