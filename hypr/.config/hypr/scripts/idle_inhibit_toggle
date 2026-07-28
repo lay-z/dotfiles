@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Toggle hypridle inhibition. hypridle exposes org.freedesktop.ScreenSaver
+# Inhibit/UnInhibit over dbus, but the inhibit only lives as long as the
+# dbus connection that made the call. So we hold it open with a long-lived
+# python holder process and kill it to release.
+#
+# Waybar built-in idle_inhibitor uses the Wayland idle-inhibit protocol,
+# which hypridle does NOT honor — that's why clicking it did nothing.
+
+PIDFILE="${XDG_RUNTIME_DIR:-/tmp}/hypridle_inhibit.pid"
+
+is_active() {
+    [[ -f "$PIDFILE" ]] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null
+}
+
+status() {
+    # icons via \u escapes: f06e = eye (on), f070 = eye-slash (off)
+    if is_active; then
+        printf '{"text":"","tooltip":"Idle inhibit: ON (hypridle paused)","class":"activated","alt":"activated"}\n'
+    else
+        printf '{"text":"","tooltip":"Idle inhibit: OFF","class":"deactivated","alt":"deactivated"}\n'
+    fi
+}
+
+start() {
+    # Long-lived process holding a ScreenSaver inhibit on hypridle's dbus iface.
+    setsid python3 - <<'PY' &
+import dbus, signal, time
+bus = dbus.SessionBus()
+obj = bus.get_object('org.freedesktop.ScreenSaver', '/org/freedesktop/ScreenSaver')
+iface = dbus.Interface(obj, 'org.freedesktop.ScreenSaver')
+cookie = iface.Inhibit('waybar-idle-toggle', 'User requested keep-awake')
+signal.signal(signal.SIGTERM, lambda *_: (iface.UnInhibit(cookie), exit(0)))
+while True:
+    time.sleep(3600)
+PY
+    echo $! > "$PIDFILE"
+}
+
+stop() {
+    if [[ -f "$PIDFILE" ]]; then
+        kill "$(cat "$PIDFILE")" 2>/dev/null
+        rm -f "$PIDFILE"
+    fi
+}
+
+case "$1" in
+    toggle)
+        if is_active; then stop; else start; fi
+        ;;
+    status|"")
+        ;;
+esac
+
+status

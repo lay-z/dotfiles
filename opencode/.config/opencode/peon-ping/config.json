@@ -1,0 +1,27 @@
+{
+  "default_pack": "rick-and-morty",
+  "volume": 0.5,
+  "enabled": true,
+  "categories": {
+    "session.start": true,
+    "session.end": true,
+    "task.acknowledge": true,
+    "task.complete": true,
+    "task.error": true,
+    "task.progress": true,
+    "input.required": true,
+    "resource.limit": true,
+    "user.spam": true
+  },
+  "spam_threshold": 3,
+  "spam_window_seconds": 10,
+  "pack_rotation": [],
+  "debounce_ms": 500,
+  "desktop_notifications": true,
+  "mobile_notify": {
+    "enabled": true,
+    "service": "telegram",
+    "bot_token": "8103875264:AGYvM9ECCm5gp8QWnWcPTUspg2fSnx6p7c",
+    "chat_id": "8103875264"
+  }
+}

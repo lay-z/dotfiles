@@ -16,7 +16,7 @@ return {
 		notifier = { enabled = true },
 		quickfile = { enabled = true },
 		scope = { enabled = true },
-		scroll = { enabled = true },
+		scroll = { enabled = not vim.g.neovide },
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
 	},

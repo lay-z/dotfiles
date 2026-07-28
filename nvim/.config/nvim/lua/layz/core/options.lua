@@ -75,7 +75,7 @@ opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,
 -- Set up NEOVIDE
 if vim.g.neovide then
 	-- Put anything you want to happen only in Neovide here
-	vim.o.guifont = "RobotoMono Nerd Font Mono:h8"
+	vim.o.guifont = "RobotoMono Nerd Font Mono:h12"
 	vim.g.neovide_padding_top = 20
 	vim.g.neovide_padding_bottom = 20
 	vim.g.neovide_padding_right = 10

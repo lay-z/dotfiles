@@ -321,6 +321,17 @@
          "timeout": 30
     },
 
+	// custom idle inhibitor that actually pauses hypridle via dbus
+	// (built-in idle_inhibitor above uses the Wayland idle-inhibit
+	// protocol, which hypridle does NOT honor — hence it did nothing)
+    "custom/idle_inhibit": {
+         "format": "{}",
+         "return-type": "json",
+         "exec": "$HOME/.config/hypr/scripts/idle_inhibit_toggle status",
+         "on-click": "$HOME/.config/hypr/scripts/idle_inhibit_toggle toggle",
+         "interval": 5
+    },
+
 	// waybar-wlr-workspaces
     "hyprland/workspaces": {
          "format": "{name}: {icon}",

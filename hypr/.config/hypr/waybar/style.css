@@ -68,6 +68,18 @@ window#waybar.hidden {
   background-color: @red;
 }
 
+#custom-idle_inhibit {
+  background-color: @green;
+  color: @background;
+  border-radius: 10px;
+  margin: 6px 0px 6px 6px;
+  padding: 4px 6px;
+}
+
+#custom-idle_inhibit.deactivated {
+  background-color: @red;
+}
+
 /** ********** Tray ********** **/
 #tray {
   background-color: @background-alt1;

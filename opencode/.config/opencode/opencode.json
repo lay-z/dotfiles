@@ -1,15 +1,98 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    // Build mode: permissive - auto-allow editing and reading within project
+    "build": {
+      "permission": {
+        "edit": "allow",
+        "bash": {
+          "*": "allow", // Testing out more permissioned mode, start to add asks
+          // Reading/searching always allowed
+          "grep *": "allow",
+          "rg *": "allow",
+          "find *": "allow",
+          "ls *": "allow",
+          "cat *": "allow",
+          "head *": "allow",
+          "tail *": "allow",
+          "echo *": "allow",
+          "man *": "allow",
+          // Build tools
+          "make *": "allow",
+          "cargo *": "allow",
+          "npm run *": "allow",
+          "npm test *": "allow",
+          "npm install *": "ask",
+          "bun *": "allow",
+          // Git - allow most, ask for destructive
+          "git rm *": "ask",
+          "git checkout *": "ask",
+          "git commit *": "ask",
+          "git push *": "ask",
+          "git reset *": "ask",
+          "git init *": "ask",
+          "git *": "allow",
+          // Docker
+          "docker build *": "allow",
+          "docker run *": "ask",
+          "docker compose *": "allow",
+          "docker --version": "allow",
+          // Solana
+          "solana *": "allow",
+          "anchor *": "allow",
+          // GitHub CLI
+          "gh run *": "allow",
+          "gh pr *": "allow",
+          "gh issue *": "allow"
+        },
+        "webfetch": "allow",
+        "external_directory": "ask"
+      }
+    },
+    // Plan mode: restrictive - read-only, no edits without asking
+    "plan": {
+      "permission": {
+        "edit": "ask",
+        "bash": {
+          "*": "ask",
+          // Only allow read-only operations
+          "grep *": "allow",
+          "rg *": "allow",
+          "find *": "allow",
+          "ls *": "allow",
+          "cat *": "allow",
+          "head *": "allow",
+          "tail *": "allow",
+          "man *": "allow",
+          "git status": "allow",
+          "git log *": "allow",
+          "git diff *": "allow",
+          "git show *": "allow",
+          "git branch *": "allow",
+          "gh pr list *": "allow",
+          "gh pr view *": "allow",
+          "gh issue list *": "allow",
+          "gh issue view *": "allow"
+        },
+        "webfetch": "allow",
+        "external_directory": "ask"
+      }
+    }
+  },
   "permission": {
     "bash": {
       // Anything not specified ask
-      "*": "ask",
+
+      "ln *": "ask",
       "rm *": "ask",
-      "npm *": "ask",
+      "*saves": "ask",
+
+      "*": "allow",
 
       // Alows
       // Gnu tools
       "grep *": "allow",
+      "sed *": "allow",
       "rg *": "allow",
       "glob *": "allow",
       "find *": "allow",
@@ -36,6 +119,7 @@
       "gh pr list *": "allow",
       "gh pr view *": "allow",
       "gh issue view *": "allow",
+      "gh issue list *": "allow",
 
       // Docker
       "docker --version": "allow",
@@ -43,8 +127,6 @@
 
       // Solana CLI specific:
       "solana rent *": "allow"
-
-      // Denies after here
     },
     "edit": {
       "*": "ask"
@@ -56,8 +138,7 @@
     // "opencode-openai-codex-auth"
     "opencode-antigravity-auth@latest",
     "opencode-antigravity-quota@latest",
-    "opencode-mystatus",
-    "@mohak34/opencode-notifier@latest"
+    "opencode-mystatus"
   ],
   "command": {
     "mystatus": {

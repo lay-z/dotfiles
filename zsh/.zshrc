@@ -625,6 +625,12 @@ if [ -d /home/layz/.daml ]; then
     add_to_path /home/layz/.daml/bin
 fi
 
+
+#### PHP
+
+alias sail='./vendor/bin/sail'
+
+
 ##############################################################################
 ##################### fun shell methods chatGPT ##############################
 ##############################################################################
@@ -702,6 +708,11 @@ export VISUAL="nvim"
 whatsmyip() {
     ## dig +short myip.opendns.com resolver2.opendns.com | clipboard
     curl https://ipinfo.io/ip | tee | clipboard
+}
+
+## Fetches the ip address of url (first arg) by querying goolges nameserver
+dns_ip() {
+    dig +short $1 @8.8.8.8
 }
 
 # Scan local network for Machines and some info about them
@@ -840,7 +851,8 @@ source $ZSH/oh-my-zsh.sh
 unalias ls
 alias ls="eza --icons=always --color=always"
 alias la="ls -la"
-alias ll="ls -la"
+alias ll="ls -l --sort created"
+alias l="ls -l --sort created --reverse"
 alias tree="ll --tree"
 
 
@@ -916,6 +928,10 @@ add_to_path $BUN_INSTALL/bin
 # opencode
 add_to_path /home/layz/.opencode/bin
 
+if program_exists opencode; then 
+      _evalcache opencode completion
+fi
+
 copy_abi() {
   cat ../../onchain-v2/out/$1.sol/$1.json | jq '.abi' > abi/$1.json
 }
@@ -929,5 +945,7 @@ fi
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 # peon-ping quick controls
-alias peon="bash /home/layz/.claude/hooks/peon-ping/peon.sh"
-[ -f /home/layz/.claude/hooks/peon-ping/completions.bash ] && source /home/layz/.claude/hooks/peon-ping/completions.bash
+if [[  -f /home/layz/.claude/hooks/peon-ping/peon.sh ]]; then
+  alias claudepeon="bash /home/layz/.claude/hooks/peon-ping/peon.sh"
+  [ -f /home/layz/.claude/hooks/peon-ping/completions.bash ] && source /home/layz/.claude/hooks/peon-ping/completions.bash
+fi

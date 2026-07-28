@@ -130,8 +130,7 @@ shotwin () {
 }
 
 shotarea () {
-	cd ${dir} && grim -g "$(slurp -b ${background:1}CC -c ${accent:1}ff -s ${accent:1}0D -w 2 && sleep 0.3)" - | tee "$file" | wl-copy
-	notify_view
+	gradia --screenshot
 }
 
 # Screen recording

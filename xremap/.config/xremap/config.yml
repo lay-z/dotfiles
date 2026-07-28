@@ -5,12 +5,15 @@ modmap:
         held: LEFTCTRL
         alone: ESC
         free_hold: true
-  - name: Global
+  - name: Only on external keys
+    device:
+      not: ["SEMICO   USB Gaming Keyboard"]
     remap:
-      # Esc key outputs backtick
-      Esc: grave
       Alt_L: LEFTMETA
       LEFTMETA: Alt_L
+  - name: Grave Fix
+    remap:
+      Esc: grave
   # - name: Homerow attempt (j)
   #   remap:
   #     j:
