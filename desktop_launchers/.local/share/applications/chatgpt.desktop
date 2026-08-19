@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=ChatGPT
+Comment=ChatGPT in a dedicated Brave profile
+Exec=brave --enable-features=TouchpadOverscrollHistoryNavigation --ozone-platform=wayland --user-data-dir=/home/layz/.config/brave-profile-chatgpt %U --app="https://chatgpt.com"
+StartupNotify=true
+Terminal=false
+Icon=/home/layz/.local/share/icons/chatgpt.png
+Categories=Network;AI;
