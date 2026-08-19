@@ -851,8 +851,8 @@ source $ZSH/oh-my-zsh.sh
 unalias ls
 alias ls="eza --icons=always --color=always"
 alias la="ls -la"
-alias ll="ls -l --sort created"
-alias l="ls -l --sort created --reverse"
+alias l="ls -la --sort created"
+alias ll="ls -la --sort created --reverse"
 alias tree="ll --tree"
 
 
