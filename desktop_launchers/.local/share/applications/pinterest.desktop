@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pinterest
+Comment=Pinterest in a dedicated Brave profile
+Exec=brave --enable-features=TouchpadOverscrollHistoryNavigation --ozone-platform=wayland --user-data-dir=/home/layz/.config/brave-profile-pinterest %U --app="https://www.pinterest.com"
+StartupNotify=true
+Terminal=false
+Icon=/home/layz/.local/share/icons/pinterest.png
+Categories=Network;
