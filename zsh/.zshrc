@@ -720,6 +720,11 @@ nmap_scan_local() {
     sudo nmap -sn 192.168.1.0/24
 }
 
+# DNS toggles - Quad9 is default via /etc/NetworkManager/dispatcher.d/10-dns-quad9
+# At a captive portal that blocks 9.9.9.9: run `dns-dhcp`, authenticate, then `dns-quad`
+alias dns-quad='rm -f /tmp/dns-skip-quad9 && resolvectl dns wlan0 9.9.9.9 149.112.112.112 2620:fe::fe 2620:fe::9 && resolvectl status wlan0 | grep "DNS Server"'
+alias dns-dhcp='touch /tmp/dns-skip-quad9 && resolvectl dns wlan0 $(cat /tmp/dns-dhcp-saved 2>/dev/null) && resolvectl status wlan0 | grep "DNS Server"'
+
 ## Deprecated, no longer using modmap (well no longer using x11)
 ## But curious to try out the remote desktop that it enabled
 backspace_swapped() {

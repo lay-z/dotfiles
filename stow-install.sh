@@ -107,6 +107,7 @@ PACKAGES=(
     "desktop_launchers"     # Desktop launchers, e.g. brave browser / x.com
     "browser-handler"       # For handling all sorts of URLs and slack URLs
     "opencode"              # For opencode llm agent orchestrator
+    "NetworkManager"        # Quad9 DNS dispatcher for systemd-resolved
 )
 
 x11_PACKAGE=(
